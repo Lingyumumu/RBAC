@@ -15,21 +15,39 @@
         if($count == 1){
             echo '<br>User Exists in the database';
             //start a session
-            $_SESSION['name'] = $row['first_name'] . ' ' . $row['last_name'];
+            $_SESSION['name'] = $row['prenom'] . ' ' . $row['nom'];
             $_SESSION['ID'] = $row['ID'];
             $_SESSION['email'] = $row['email'];
+            $_SESSION['RID'] = $row['RID'];
 
             //redorect the user 
-            header("location: index.php");
-        }else{
-            echo '<br>User does not exist in the database';
-        }
+
+            if($_SESSION['RID'] >= 1 && $_SESSION['RID'] <= 9999){
+                header("location: ../PHP/Etudiant/Home_Etudiant.php");
+            }
+            if($_SESSION['RID'] >= 10000 && $_SESSION['RID'] <= 19999){
+                header("location: ../PHP/Professeur/Home_Professeur.php");
+            }
+            if($_SESSION['RID'] >= 20000 && $_SESSION['RID'] <= 29999){
+                header("location: ../PHP/Personnel_Admin/Home_Personnel_Admin.php");
+            }
+            if ($_SESSION['RID'] <= 40000) {
+                header("location: ../PHP/Administrateur/Home_Admin.php");
+            }
+            } else {
+                header("location: index.php");
+            }
+
+        
         /*if($username == 'admin' && $password == '123456'){
             $_SESSION['username'] = $username;
             header('location: index.php');
         }else{
             echo 'Login failed';
         }*/
+    }
+    else{
+        echo '<br>User does not exist in the database';
     }
     mysqli_close($connection);
 ?>

@@ -1,5 +1,4 @@
 <?php
-session_start();
 //step1: create a database connection
 include('dbConn.php');
 $lastRIDQuery = "SELECT MAX(RID) as maxRID FROM user";
