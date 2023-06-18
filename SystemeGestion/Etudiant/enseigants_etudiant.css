@@ -1,0 +1,53 @@
+/* styles.css */
+
+/* Réinitialisation des styles par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F2F2F2;
+    color: #333333;
+}
+
+h1, h2 {
+    color: #00ADEF;
+}
+
+header {
+    padding: 20px;
+    background-color: #FFFFFF;
+}
+
+nav ul {
+    list-style-type: none;
+    background-color: #00ADEF;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 10px;
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    background-color: #00ADEF;
+    color: #FFFFFF;
+    padding: 10px;
+    text-align: center;
+}
