@@ -8,6 +8,12 @@ if(isset($_POST['btnRegister'])){
     $email = $prenom . "." . $nom . "@efrei.fr";
     $mdp = $_POST['txtmdp'];
     
+    // Check if password and confirmation are the same
+    if ($_POST['txtmdp'] != $_POST['txtmdp2']) {
+        echo "Les mots de passe ne correspondent pas.";
+        exit();
+    }
+
     // Check if user already exists
     $querysame = "SELECT * FROM user WHERE email = '$email'";
     $resultsame = mysqli_query($connection, $querysame);
@@ -43,6 +49,7 @@ if(isset($_POST['btnRegister'])){
         Nom: <input type='text' name='txtnom' required><br>
         Prenom: <input type='text' name='txtprenom' required><br>
         mot de passe: <input type='password' name='txtmdp' required><br>
+        Confirmation: <input type='password' name='txtmdp2' required><br>
         <input type='submit' name='btnRegister' value='Register'>
     </form>
 </body>
