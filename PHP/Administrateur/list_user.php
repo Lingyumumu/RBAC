@@ -99,8 +99,8 @@ include ('../dbConn.php');
             echo '<td>'. $row['password'] . '</td>';
             echo '<td>'. $row['role'] . '</td>';
             echo '<td>'. $row['statut'] . '</td>';
-            echo '<td><a href="../editPage.php?ID=' . $row['ID'] . '">Modifier</a></td>';
-            echo '<td><a href="../deletePage.php?ID=' . $row['ID'] . '">Supprimer</a></td>';
+            echo '<td><a href="editPage.php?ID=' . $row['ID'] . '">Modifier</a></td>';
+            echo '<td><a href="deletePage.php?ID=' . $row['ID'] . '">Supprimer</a></td>';
             echo '</tr>';
         }
     ?>

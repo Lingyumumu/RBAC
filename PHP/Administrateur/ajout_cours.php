@@ -11,7 +11,7 @@ if(isset($_POST['btnRegister'])){
 
     
  // Check if user already exists
-$querysame = "SELECT * FROM cours WHERE nom_cours = '$nom_c'";
+$querysame = "SELECT * FROM etude WHERE nom_cours = '$nom_c'";
 $resultsame = mysqli_query($connection, $querysame);
 $count = mysqli_num_rows($resultsame);
 
@@ -20,7 +20,7 @@ $count = mysqli_num_rows($resultsame);
         echo "Un cours avec ce nom existe déjà.";
     }
     else {
-        $query = "INSERT INTO cours(nom_cours,nom_formations) VALUES('$nom_c','$nom_f')";
+        $query = "INSERT INTO etude(nom_formation, nom_cours,type) VALUES('$nom_f','$nom_c','cours')";
         $results = mysqli_query($connection, $query);
         if ($results) {
             echo "Creation de cours reussis.";
@@ -42,12 +42,13 @@ $count = mysqli_num_rows($resultsame);
 </head>
 
 <body>
+    <a href="list_cours.php">liste de formation</a>
     <h2>Registration page</h2>
     <form action='' method='post'>
         Nom du Cours: <input type='text' name='txtnomc' required><br>
         Intitule de la formation: <select type='text' name='txtnomf' required><br>
         <?php
-        $queryf = "SELECT * FROM formation";
+        $queryf = "SELECT * FROM etude WHERE type = 'formation'";
         $resultsf = mysqli_query($connection, $queryf);
         while ($row = mysqli_fetch_array($resultsf)) {
             echo "<option value='" . $row['nom_formation'] . "'>" . $row['nom_formation'] . "</option>";

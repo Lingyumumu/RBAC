@@ -1,9 +1,11 @@
 <?php 
-include 'dbConn.php';
+include '../dbConn.php';
 $id = $_GET['ID'];
-$query = "DELETE FROM formation WHERE ID = $id";
+$query = "DELETE FROM etude WHERE ID = $id";
+
 if(mysqli_query($connection, $query)){
-    header("Location: Administrateur/list_formation.php");
+
+    header("Location: list_cours.php");
 }
 else{
     echo "Error: " . $query . "<br>" . mysqli_error($conn);
