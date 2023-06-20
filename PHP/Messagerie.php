@@ -58,7 +58,7 @@
 
 <?php
             //afficher les messages
-            $queryshow = "SELECT * FROM messages WHERE expediteur_email = '$expediteuremail || destinataire_email = '$destinataireemail'";
+            $queryshow = "SELECT * FROM messages WHERE expediteur_email = '$expediteuremail  destinataire_email = '$destinataireemail'";
             $resultshow = mysqli_query($connection,$queryshow);
             ?>
             <table border="1" cellspacing='10'>
