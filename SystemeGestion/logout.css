@@ -1,0 +1,49 @@
+/* styles.css */
+
+/* Réinitialisation des styles par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F2F2F2;
+    color: #333333;
+}
+
+h1,
+h2 {
+    color: #00ADEF;
+}
+
+header {
+    padding: 20px;
+    background-color: #FFFFFF;
+}
+
+main {
+    padding: 20px;
+}
+
+a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #00ADEF;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+a:hover {
+    background-color: #007B9E;
+}
+
+footer {
+    background-color: #00ADEF;
+    color: #FFFFFF;
+    padding: 10px;
+    text-align: center;
+}
