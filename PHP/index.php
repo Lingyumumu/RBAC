@@ -1,6 +1,9 @@
 
 <?php
     session_start();
+    if (isset($_SESSION['nom']) == null || isset($_SESSION['ID']) == null || isset($_SESSION['email']) == null || isset($_SESSION['role']) == null){
+        header("location: login.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +21,7 @@
 
     <nav>
         <ul>
-            <li><a href="index.html">Accueil</a></li>
+            <li><a href="Messagerie.php">Accueil</a></li>
             <li><a href="cours.html">Cours</a></li>
             <li><a href="salles.html">Salles</a></li>
             <li><a href="horaires.html">Horaires</a></li>

@@ -43,7 +43,7 @@ $count = mysqli_num_rows($result);
         Nom du Cours: <input type='text' name='txtnomc' value="<?php echo $row['nom_cours'] ?>" required><br>
         Nom de Formation: <select name="txtnomf">
             <?php
-            $query = "SELECT * FROM eutde";
+            $query = "SELECT * FROM etude";
             $result = mysqli_query($connection, $query);
             while($row = mysqli_fetch_assoc($result)){
                 echo '<option value="' . $row['nom_formation'] . '">' . $row['nom_formation'] . '</option>';

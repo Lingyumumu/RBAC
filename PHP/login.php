@@ -24,13 +24,14 @@
         if($count == 1){
             echo '<br>User Exists in the database';
             //start a session
-            $_SESSION['name'] = $row['prenom'] . ' ' . $row['nom'];
+            $_SESSION['nom'] = $row['prenom'] . ' ' . $row['nom'];
             $_SESSION['ID'] = $row['ID'];
             $_SESSION['email'] = $row['email'];
             $_SESSION['role'] = $row['role'];
 
+            header("location: Messagerie.php");
             //redorect the user 
-
+            /*
             if($_SESSION['role'] == 'étudiant'){
                 header("location: ../PHP/Etudiant/Home_Etudiant.php");
             }
@@ -43,13 +44,14 @@
             if ($_SESSION['role'] == 'administrateur') {
                 header("location: ../PHP/Administrateur/Home_Admin.php");
             }
+            
         } elseif($countfailed == 1){
             echo '<br>Mot de passe incorrect';
         }
 
         else{
             echo '<br>User does not exist in the database';
-        } 
+        } */
         
 
         
@@ -60,7 +62,8 @@
             echo 'Login failed';
         }*/
         
-    }
+        }
+    }   
     
     mysqli_close($connection);
 ?>
