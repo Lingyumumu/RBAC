@@ -15,7 +15,8 @@
 
 
     if(isset($_POST['btnMessage'])){
-
+        
+        $texte = $_POST['txttexte'];
         $destinataireemail = $_POST['txtemail'];
         
         echo "$destinataireemail";
@@ -25,22 +26,23 @@
         $count = mysqli_num_rows($resultexist);
         if ($count > 0) {
             echo "Le destinataire existe.";
-        }
-        else {
-            echo "Le destinataire n'existe pas.";
-        }
-
-        $texte = $_POST['txttexte'];
-
-    
-     // stocker les messages dans la base de données
-            $query = "INSERT INTO messages(expediteur_email,destinataire_email,contexte) VALUES('$expediteuremail','$destinataireemail','$texte')";
+                 // stocker les messages dans la base de données
+            $query = "INSERT INTO messages(expediteur_email,destinataire_email,contexte,date_envoi) VALUES('$expediteuremail','$destinataireemail','$texte',NOW())";
             $results = mysqli_query($connection, $query);
             if ($results) {
                 echo "Envoie reussi.";
             } else {
                 echo "Échec de l'envoi.";
             }
+        }
+        else {
+            echo "Le destinataire n'existe pas.";
+        }
+
+
+
+    
+
   
 
     }
@@ -58,7 +60,7 @@
 
 <?php
             //afficher les messages
-            $queryshow = "SELECT * FROM messages WHERE expediteur_email = '$expediteuremail  destinataire_email = '$destinataireemail'";
+            $queryshow = "SELECT * FROM messages WHERE expediteur_email = '$expediteuremail' OR destinataire_email = '$expediteuremail'";
             $resultshow = mysqli_query($connection,$queryshow);
             ?>
             <table border="1" cellspacing='10'>
@@ -66,12 +68,14 @@
                     <th>expediteur</th>
                     <th>destinataire</th>
                     <th>message</th>
+                    <th>date d'envoi</th>
                 </tr>
                 <?php while($row = mysqli_fetch_assoc($resultshow)){
                     echo '<tr>';
                     echo '<td>'. $row['expediteur_email'] . '</td>';
                     echo '<td>'. $row['destinataire_email'] . '</td>';
                     echo '<td>'. $row['contexte'] . '</td>';
+                    echo '<td>'. $row['date_envoi'] . '</td>';
                     echo '</tr>';
                 }
             ?>

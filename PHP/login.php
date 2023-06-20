@@ -29,7 +29,7 @@
             $_SESSION['email'] = $row['email'];
             $_SESSION['role'] = $row['role'];
 
-            header("location: Messagerie.php");
+            header("location: Message.php");
             //redorect the user 
             /*
             if($_SESSION['role'] == 'étudiant'){
