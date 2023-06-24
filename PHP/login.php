@@ -29,8 +29,8 @@
             $_SESSION['email'] = $row['email'];
             $_SESSION['role'] = $row['role'];
 
-            header("location: Message.php");
-            //redorect the user 
+            header("location: Administrateur/Admin_register.php");
+            //redirect the user 
             /*
             if($_SESSION['role'] == 'étudiant'){
                 header("location: ../PHP/Etudiant/Home_Etudiant.php");

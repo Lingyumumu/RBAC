@@ -3,7 +3,7 @@
 //step1: create a database connection
 include ('../dbConn.php');
 // Exécuter la requête avec la clause WHERE appropriée
-        $query = "SELECT * FROM formations";
+        $query = "SELECT * FROM salles";
         $results = mysqli_query($connection, $query);      
     //step3: execute the query
     /*
@@ -34,19 +34,17 @@ include ('../dbConn.php');
         <title>Document</title>
 
     <table border="1" cellspacing='10'>
-        <a href="ajout_formation.php">Ajouter une formation</a>
+        <a href="ajout_salle.php">Ajouter une salle</a>
         <tr>
-            <th>Nom de Formation</th>
-            <th>Niveau</th>
-            <th>Durée</th>
+            <th>Nom de Salle</th>
+            <th>Capaciter</th>
         </tr>
         <?php while($row = mysqli_fetch_assoc($results)){
             echo '<tr>';
             echo '<td>' . $row['nom'] . '</td>';
-            echo '<td>' . $row['niveau'] . '</td>';
-            echo '<td>' . $row['duree'] . '</td>';
-            echo '<td><a href="editPageformation.php?ID=' . $row['ID'] . '">Modifier</a></td>';
-            echo '<td><a href="deletePageformation.php?ID=' . $row['ID'] . '">Supprimer</a></td>';
+            echo '<td>' . $row['capacite'] . '</td>';
+            echo '<td><a href="editPagesalle.php?ID=' . $row['ID'] . '">Modifier</a></td>';
+            echo '<td><a href="deletePagesalle.php?ID=' . $row['ID'] . '">Supprimer</a></td>';
             echo '</tr>';
         }
     ?>

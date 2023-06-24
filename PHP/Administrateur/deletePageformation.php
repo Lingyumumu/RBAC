@@ -1,42 +1,28 @@
 <?php 
 include '../dbConn.php';
     $formationID = $_GET['ID'];
-    
-    // Supprimer tous les cours ayant le même nom de formation
-    $deleteCoursQuery = "DELETE FROM etude WHERE nom_formation = (SELECT nom_formation FROM etude WHERE ID = $formationID)";
-    $resultDeleteCours = mysqli_query($connection, $deleteCoursQuery);
-    
-    // Supprimer la formation
-    $deleteFormationQuery = "DELETE FROM etude WHERE ID = $formationID";
-    $resultDeleteFormation = mysqli_query($connection, $deleteFormationQuery);
-    
-    if($resultDeleteFormation && $resultDeleteCours){
-        echo "La formation et les cours associés ont été supprimés avec succès.";
-        header("Location: list_formation.php");
-    } else {
-        echo "Erreur lors de la suppression de la formation et des cours associés.";
+    if (isset($_GET['ID']) == null ){
+        header("location: list_formation.php");
     }
-/*$id = $_GET['ID'];
-$nomf = $_GET['nom_formation'];
-$query = "DELETE FROM etude WHERE ID = $id";
+    
+
+    $query = "SELECT * FROM formations WHERE ID = $formationID";
+$result = mysqli_query($connection, $query);
+$row = mysqli_fetch_assoc($result);
+
+echo $row['nom'];
+
+$deleteQuery = "DELETE FROM cours WHERE nom_formation = '" . $row['nom'] . "'";
+$resultDelete = mysqli_query($connection, $deleteQuery);
+
+$deleteQuery = "DELETE FROM formations WHERE ID = $formationID";
+$resultDelete = mysqli_query($connection, $deleteQuery);
 
 
-
-if(mysqli_query($connection, $query)){
-    $query = "DELETE * FROM etude WHERE nom_formation = '$nomf'";
+if ($resultDelete && $resultDelete) {
+    echo "La formation a été supprimée avec succès.<br>";
     header("Location: list_formation.php");
+} else {
+    echo "Erreur lors de la suppression de la formation.";
 }
-else{
-    echo "Error: " . $query . "<br>" . mysqli_error($conn);
-}
-mysql_close($connection);
-
-*/
-
-
-
-
 ?>
-
-
- 

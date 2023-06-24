@@ -1,6 +1,9 @@
 <?php
 include '../dbConn.php';
 $id = $_GET['ID'];
+if (isset($_GET['ID']) == null ){
+    header("location: list_cours.php");
+}
 // Récupérer l'ancien nom de formation
 
 if (isset($_POST['btnUpdate'])){
@@ -8,7 +11,7 @@ if (isset($_POST['btnUpdate'])){
     $nomc = $_POST['txtnomc'];
 
 
-    $updateQuery = "UPDATE etude SET nom_formation = '$nomf', nom_cours = '$nomc' WHERE id = $id";
+    $updateQuery = "UPDATE cours SET nom_formation = '$nomf', nom_cours = '$nomc' WHERE id = $id";
     $resultQuery = mysqli_query($connection, $updateQuery);
 
     if($resultQuery){
@@ -22,10 +25,11 @@ if (isset($_POST['btnUpdate'])){
     }
 }
 
-$query = "SELECT * FROM etude WHERE ID = $id";
+$query = "SELECT * FROM cours WHERE ID = $id";
 $result = mysqli_query($connection, $query);
 $row = mysqli_fetch_assoc($result);
 $count = mysqli_num_rows($result);
+
 
 
 
@@ -42,18 +46,21 @@ $count = mysqli_num_rows($result);
     <form action='' method='post'>
         Nom du Cours: <input type='text' name='txtnomc' value="<?php echo $row['nom_cours'] ?>" required><br>
         Nom de Formation: <select name="txtnomf">
+            <option value="<?php echo $row['nom_formation'] ?>"><?php echo $row['nom_formation'] ?></option>
             <?php
-            $query = "SELECT * FROM etude";
+            $query = "SELECT * FROM formations";
             $result = mysqli_query($connection, $query);
+
             while($row = mysqli_fetch_assoc($result)){
-                echo '<option value="' . $row['nom_formation'] . '">' . $row['nom_formation'] . '</option>';
+
+                echo '<option value="' . $row['nom'] . '">' . $row['nom'] . '</option>';
             }
             ?>
         <br><br>
         <input type='submit' name='btnUpdate' value='Mettre à jour'>
     </form>
     <br><br>
-    <a href='Administrateur/list_formation.php'>Aller à la liste formation</a>
+    <a href='list_formation.php'>Aller à la liste formation</a>
 </body>
 </html>
 

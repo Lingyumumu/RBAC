@@ -1,6 +1,9 @@
 <?php
 //step1: create a database connection
 include('../dbConn.php');
+/*if (isset($_SESSION['role']) != 'administrateur' ){
+    header("location: ../login.php");
+}*/
 
 
 

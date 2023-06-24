@@ -49,7 +49,7 @@ if(isset($_POST['btnRegister'])){
         Nom: <input type='text' name='txtnom' required><br>
         Prenom: <input type='text' name='txtprenom' required><br>
         mot de passe: <input type='password' name='txtmdp' required><br>
-        Confirmation: <input type='password' name='txtmdp2' required><br>
+        Confirmation mot de passe: <input type='password' name='txtmdp2' required><br>
         <input type='submit' name='btnRegister' value='Register'>
     </form>
 </body>
