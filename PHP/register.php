@@ -2,11 +2,17 @@
 //step1: create a database connection
 include('dbConn.php');
 
+$queryformation = "SELECT * FROM formations";
+$resultformation = mysqli_query($connection, $queryformation);
+$row = mysqli_fetch_assoc($resultformation);
+
+
 if(isset($_POST['btnRegister'])){
     $nom = $_POST['txtnom'];
     $prenom = $_POST['txtprenom'];
     $email = $prenom . "." . $nom . "@efrei.fr";
     $mdp = $_POST['txtmdp'];
+    $formation = $_POST['txtformation'];
     
     // Check if password and confirmation are the same
     if ($_POST['txtmdp'] != $_POST['txtmdp2']) {
@@ -23,7 +29,7 @@ if(isset($_POST['btnRegister'])){
     if ($count > 0) {
         echo "Un compte avec cet email existe déjà.";
     } else {
-        $query = "INSERT INTO user(nom,prenom,email,password,role,statut) VALUES('$nom','$prenom','$email','$mdp','étudiant','en attente')";
+        $query = "INSERT INTO user(nom,prenom,email,password,role,statut,formation) VALUES('$nom','$prenom','$email','$mdp','etudiant','en attente','$formation')";
         $results = mysqli_query($connection, $query);
         if ($results) {
             $_SESSION['txtemail'] = $email;
@@ -35,6 +41,8 @@ if(isset($_POST['btnRegister'])){
         }
     }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +56,9 @@ if(isset($_POST['btnRegister'])){
     <form action='' method='post'>
         Nom: <input type='text' name='txtnom' required><br>
         Prenom: <input type='text' name='txtprenom' required><br>
+        Nom de Formation: <select name="txtformation">
+            <option value="<?php echo $row['nom'] ?>"><?php echo $row['nom'] ?></option>
+        </select><br>
         mot de passe: <input type='password' name='txtmdp' required><br>
         Confirmation mot de passe: <input type='password' name='txtmdp2' required><br>
         <input type='submit' name='btnRegister' value='Register'>

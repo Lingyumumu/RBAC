@@ -56,6 +56,7 @@ if (isset($_POST['btnMessage'])) {
         }
 
         .message-box {
+            display: block;
             flex: 2;
         }
 
@@ -140,8 +141,19 @@ if (isset($_POST['btnMessage'])) {
                     <input type='submit' name='btnMessage' value='Envoyer'>
                     <input type='reset' name='btnReset' value='Reset'>
                 </form>
-
+                
+            <?php } 
+            else {
+            ?>
+            <h2>Envoyer un message</h2>
+                <form action='' method='post'>
+                    Destinataire : <input type='text' name='txtemail' value="" required><br>
+                    Texte : <input type='text' name='txttexte' required><br>
+                    <input type='submit' name='btnMessage' value='Envoyer'>
+                    <input type='reset' name='btnReset' value='Reset'>
+                </form>
             <?php } ?>
+            
         </div>
     </div>
 
