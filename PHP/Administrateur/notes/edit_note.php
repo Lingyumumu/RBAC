@@ -36,7 +36,6 @@ $count = mysqli_num_rows($result);
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="edit_note.css">
 </head>
 <body>
 <nav>
