@@ -38,7 +38,7 @@ echo "<a href='list_cours.php'>Aller à la liste des cours</a>";
 <head>
     <meta charset="UTF-8">
     <title>Page de modification</title>
-    <link rel="stylesheet" href="create_prof.css">
+    <link rel="stylesheet" href="ajout_prof.css">
 </head>
 <body>
     <h1>Page de modification</h1>

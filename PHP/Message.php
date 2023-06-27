@@ -45,43 +45,7 @@ if (isset($_POST['btnMessage'])) {
 
 <head>
     <title>Messages</title>
-    <style>
-        .container {
-            display: flex;
-        }
-
-        .conversation-list {
-            flex: 1;
-            margin-right: 20px;
-        }
-
-        .message-box {
-            display: block;
-            flex: 2;
-        }
-
-        .conversation {
-            cursor: pointer;
-            padding: 10px;
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
-        }
-
-        .conversation.active {
-            background-color: #f0f0f0;
-        }
-
-        .message-list {
-            border: 1px solid #ccc;
-            padding: 10px;
-            height: 300px;
-            overflow-y: scroll;
-        }
-
-        .message-item {
-            margin-bottom: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="message.css">
 </head>
 
 <body>

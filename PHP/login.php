@@ -29,7 +29,7 @@
             $_SESSION['email'] = $row['email'];
             $_SESSION['role'] = $row['role'];
 
-            header("location: Message.php");
+            header("location: Administrateur/document/list_documents.php");
             //redirect the user 
             /*
             if($_SESSION['role'] == 'étudiant'){
@@ -75,19 +75,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="login.css">
 </head>
 
 <body>
-    <h1>Login</h1>
-    <form action="" method="post">
-        <input type="text" name="txtemail" placeholder="Adresse Mail"><br>
-        <input type="password" name="txtmdp" placeholder="Mot de passe"><br>
-        <input type="submit" name="btnLogin" value="Connexion">
-    </form>
-    <br>
-    <p>
-        Click<a href="register.php"> here </a> if you do not have an account
-    </p>
+    <div class="login-container">
+        <h2>Connexion</h2>
+        <form action="" method="post">
+            <input type="text" name="txtemail" placeholder="Adresse Mail" required><br>
+            <input type="password" name="txtmdp" placeholder="Mot de passe" required><br>
+            <input type="submit" name="btnLogin" value="Connexion">
+        </form>
+        <p>Vous n'avez pas de compte ? <a href="register.php">Créer un compte</a></p>
+    </div>
 </body>
 </html>
 

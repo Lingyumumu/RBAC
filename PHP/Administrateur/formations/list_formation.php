@@ -32,6 +32,8 @@ include ('../../dbConn.php');
     <body>
     <head>
         <title>Document</title>
+        <link rel="stylesheet" href="list_formation.css">
+    </head>
 
     <table border="1" cellspacing='10'>
         <a href="create_formation.php">Ajouter une formation</a>

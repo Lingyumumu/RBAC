@@ -4,7 +4,7 @@
 
 <head>
     <title>Gestion des notes - Administrateur</title>
-    <link rel="stylesheet" type="text/css" href="../../../CSS/Home_Admin.css">
+    <link rel="stylesheet" type="text/css" href="../../index.css">
 </head>
 
 <body>

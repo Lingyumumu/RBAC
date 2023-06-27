@@ -42,7 +42,6 @@ if(isset($_POST['btnRegister'])){
 <html>
 <head>
     <title>Document</title>
-    <link rel="stylesheet" href="create_formation.css">
 </head>
 
 <body>
@@ -51,7 +50,7 @@ if(isset($_POST['btnRegister'])){
     <form action='' method='post'>
         Nom: <input type='text' name='txtnom' required><br>
         duree: <input type='text' name='txtduree' required><br>
-        niveau etude: <select name='txtniveau_etude'>
+        niveau_etude: <select name='txtniveau_etude'>
             <option value='BAC+1'>1</option>
             <option value='BAC+2'>2</option>
             <option value='BAC+3'>3</option>

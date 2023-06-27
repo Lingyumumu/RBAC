@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+a {
+    color: #003366;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+h1 {
+    color: #003366;
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+form {
+    width: 400px;
+}
+
+form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+form input[type="submit"] {
+    background-color: #003366;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #002147;
+}
+

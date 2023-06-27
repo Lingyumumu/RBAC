@@ -9,6 +9,10 @@ if(isset($_POST['btnRegister'])){
     $nom_c = $_POST['txtnomc'];
     $duree = $_POST['txtduree'];
 
+
+
+
+
     
  // Check if user already exists
 $querysame = "SELECT * FROM cours WHERE nom_cours = '$nom_c'";
@@ -39,7 +43,7 @@ $count = mysqli_num_rows($resultsame);
 <html>
 <head>
     <title>Document</title>
-    <link rel="stylesheet" href="create_cours.css">
+    <link rel="stylesheet" href="ajout_cours.css">
 </head>
 
 <body>

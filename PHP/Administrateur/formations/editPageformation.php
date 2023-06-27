@@ -69,14 +69,13 @@ $row = mysqli_fetch_assoc($result);
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link href="edit_formation.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     <h1>Page de modification</h1>
     <form action='' method='post'>
         Nom: <input type='text' name='txtnom' value="<?php echo $row['nom'] ?>" required><br>
         Durée: <input type='text' name='txtduree' value="<?php echo $row['duree'] ?>" required><br>
-        niveau etude: <select name='txtniveau_etude'>
+        niveau_etude: <select name='txtniveau_etude'>
             <option value='<?php echo $row['nom'] ?>'><?php echo $row['niveau'] ?></option>
             <option value='BAC+1'>BAC+1</option>
             <option value='BAC+2'>BAC+2</option>

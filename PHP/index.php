@@ -11,7 +11,7 @@
 
 <head>
     <title>Page d'accueil</title>
-    <link rel="stylesheet" type="text/css" href="../CSS/index.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body>

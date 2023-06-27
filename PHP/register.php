@@ -49,6 +49,7 @@ if(isset($_POST['btnRegister'])){
 <html>
 <head>
     <title>Document</title>
+    <link rel="stylesheet" href="register.css">
 </head>
 
 <body>

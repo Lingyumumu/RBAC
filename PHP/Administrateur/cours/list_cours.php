@@ -20,6 +20,7 @@ mysqli_close($connection);
 <html>
 <header>
     <h1>Système de Gestion - EFREI</h1>
+    <link rel="stylesheet" href="list_cours.css">
 </header>
 <head>
     <title>Liste des cours - Administrateur</title>
