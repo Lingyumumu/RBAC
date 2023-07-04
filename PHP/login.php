@@ -24,15 +24,22 @@
         if($count == 1){
             echo '<br>User Exists in the database';
             //start a session
-            $_SESSION['nom'] = $row['prenom'] . ' ' . $row['nom'];
+            //$_SESSION['nom'] = $row['prenom'] . ' ' . $row['nom'];
+            $_SESSION['nom'] = $row['nom'];
+            $_SESSION['prenom'] = $row['prenom'];
             $_SESSION['ID'] = $row['ID'];
             $_SESSION['email'] = $row['email'];
             $_SESSION['role'] = $row['role'];
-
-            header("location: Administrateur/document/list_documents.php");
+            //header("location: Etudiant/mes_absences.php");
+            //header("location: Etudiant/notes/list_note.php");
+            //header("location: Etudiant/plannings/list_planning.php");
+            //header("location: Professeur/cours_assigner.php");
+            //header("location: Etudiant/cours_inscrit.php");
+            //header("location: Administrateur_nael/document/list_documents.php");
+            //header("location: Administrateur/document/list_documents.php");
             //redirect the user 
-            /*
-            if($_SESSION['role'] == 'étudiant'){
+            
+            if($_SESSION['role'] == 'etudiant'){
                 header("location: ../PHP/Etudiant/Home_Etudiant.php");
             }
             if($_SESSION['role'] == 'professeur' ){
@@ -51,7 +58,7 @@
 
         else{
             echo '<br>User does not exist in the database';
-        } */
+        } 
         
 
         
@@ -63,7 +70,7 @@
         }*/
         
         }
-    }   
+      
     
     mysqli_close($connection);
 ?>

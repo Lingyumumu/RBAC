@@ -45,6 +45,7 @@ $row1 = mysqli_fetch_assoc($resultformation);
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../Administrateur/user/editPage.css">
     <title></title>
 </head>
 <body>

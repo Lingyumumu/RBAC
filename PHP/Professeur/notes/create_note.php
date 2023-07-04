@@ -1,6 +1,10 @@
 <?php
 include('../../dbConn.php');
 
+if ($_SESSION['role'] != 'professeur') {
+    header("location: ../../login.php");
+}
+
 // Récupérer la liste des cours depuis la base de données
 $queryCours = "SELECT ID, nom_cours FROM cours";
 $resultCours = mysqli_query($connection, $queryCours);
@@ -48,23 +52,20 @@ if (isset($_POST['btnAjouterNote'])) {
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="../../Administrateur/notes/create_note.css">
     <title>Gestion des notes - Administrateur</title>
 </head>
 <body>
+<header>
+        <h1>Système de Gestion - EFREI</h1>
+    </header>
 <nav>
     <ul>
-        <li><a href="../Home_Admin.php">Accueil</a></li>
-        <li><a href="index_notes.php">Notes</a></li>
-        <li><a href="../cours/index_cours.php">Cours</a></li>
-        <li><a href="../formations/index_formations.php">Formations</a></li>
-        <li><a href="../salles/index_salles.php">Salles</a></li>
-        <li><a href="../plannings/index_plannings.php">Plannings</a></li>
-        <li><a href="../absences/index_absences.php">Absences</a></li>
-        <li><a href="etudiants.html">Étudiants</a></li>
-        <li><a href="enseignants.html">Enseignants</a></li>
-        <li><a href="utilisateurs.html">Utilisateurs</a></li>
-        <li><a href="configurations.html">Configurations</a></li>
-        <li><a href="securite.html">Sécurité</a></li>
+        <li><a href="../Home_Professeur.php">Accueil</a></li>
+        <li><a href="../Professeur/notes/list_etudiant_note.php">Notes</a></li>
+        <li><a href="../document/list_documents.php">Documents</a></li>
+        <li><a href="../plannings/list_planning.php">Plannings</a></li>
+        <li><a href="../../logout.php">Deconnexion</a></li>
     </ul>
 </nav>
 

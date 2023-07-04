@@ -1,5 +1,6 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
     margin: 0;
     padding: 20px;
 }
@@ -20,10 +21,12 @@ h2 {
 
 form {
     width: 400px;
+    margin-top: 20px;
 }
 
 form input[type="text"],
-form select {
+form select,
+input[type="file"] {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
@@ -40,4 +43,95 @@ form input[type="submit"] {
 
 form input[type="submit"]:hover {
     background-color: #002147;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #002147;
+}
+
+nav ul li.active a {
+    background-color: #002147;
+}
+
+header {
+    background-color: #003366;
+    padding: 20px;
+    color: #fff;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+nav {
+    background-color: #003366;
+    color: #fff;
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+h2 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th,
+table td {
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #003366;
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+a {
+    color: #003366;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #003366;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
 }

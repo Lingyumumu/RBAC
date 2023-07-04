@@ -18,50 +18,39 @@ mysqli_close($connection);
 
 <!DOCTYPE html>
 <html>
-<header>
-    <h1>Système de Gestion - EFREI</h1>
-    <link rel="stylesheet" href="list_cours.css">
-</header>
+
 <head>
     <title>Liste des cours - Administrateur</title>
-    <style>
-        table {
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-            padding: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="list_cours.css">
 </head>
-<body>
+
+<header>
+    <h1>Système de Gestion - EFREI</h1>
+</header>
+
 <nav>
-    <ul>
-        <li><a href="../Home_Admin.php">Accueil</a></li>
-        <li><a href="../notes/index_notes.php">Notes</a></li>
-        <li><a href="index_cours.php">Cours</a></li>
-        <li><a href="../formations/index_formations.php">Formations</a></li>
-        <li><a href="../salles/index_salles.php">Salles</a></li>
-        <li><a href="../plannings/index_plannings.php">Plannings</a></li>
-        <li><a href="../absences/index_absences.php">Absences</a></li>
-        <li><a href="etudiants.html">Étudiants</a></li>
-        <li><a href="enseignants.html">Enseignants</a></li>
-        <li><a href="utilisateurs.html">Utilisateurs</a></li>
-        <li><a href="configurations.html">Configurations</a></li>
-        <li><a href="securite.html">Sécurité</a></li>
-    </ul>
-</nav>
+        <ul>
+            <li><a href="../Home_Admin.php">Accueil</a></li>
+            <li><a href="../notes/index_notes.php">Notes</a></li>
+            <li><a href="../cours/list_cours.php">Cours</a></li>
+            <li><a href="../formations/list_formation.php">Formations</a></li>
+            <li><a href="../document/list_documents.php">document</a></li>
+            <li><a href="../plannings/list_planning.php">Planning</a></li>
+            <li><a href="../user/list_user.php">Utilisateurs</a></li>
+            <li><a href="../user/list_register.php">Inscription</a></li>
+        </ul>
+    </nav>
 
-<a href='create_cours.php'>ajouter un cours</a>
+<body>
+    <a href='create_cours.php'>ajouter un cours</a>
 
-<h2>Liste des cours</h2>
+    <h2>Liste des cours</h2>
 
-<?php
-// Vérifier si des cours ont été trouvés
-if (mysqli_num_rows($resultCours) > 0) {
-    // Afficher les cours dans un tableau
-    echo "<table>
+    <?php
+    // Vérifier si des cours ont été trouvés
+    if (mysqli_num_rows($resultCours) > 0) {
+        // Afficher les cours dans un tableau
+        echo "<table>
             <tr>
                 <th>ID</th>
                 <th>Enseignant assigné</th>
@@ -70,13 +59,13 @@ if (mysqli_num_rows($resultCours) > 0) {
                 <th colspan='4'>Actions</th>
             </tr>";
 
-    while ($row = mysqli_fetch_assoc($resultCours)) {
-        $idCours = $row['ID'];
-        $enseignant = $row['nom_enseignant'];
-        $nomCours = $row['nom_cours'];
-        $formation = $row['nom_formation'];
+        while ($row = mysqli_fetch_assoc($resultCours)) {
+            $idCours = $row['ID'];
+            $enseignant = $row['nom_enseignant'];
+            $nomCours = $row['nom_cours'];
+            $formation = $row['nom_formation'];
 
-        echo "<tr>
+            echo "<tr>
                 <td>$idCours</td>
                 <td>$enseignant</td>
                 <td>$nomCours</td>
@@ -86,13 +75,16 @@ if (mysqli_num_rows($resultCours) > 0) {
                 <td><a href='edit_cours.php?ID=$idCours'>Modifier</a></td>
                 <td><a href='delete_cours.php?id=$idCours'>Supprimer</a></td>
               </tr>";
+        }
+
+        echo "</table>";
+    } else {
+        echo "Aucun cours trouvé.";
     }
-
-    echo "</table>";
-} else {
-    echo "Aucun cours trouvé.";
-}
-?>
-
+    ?>
+    <footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
 </body>
+
 </html>

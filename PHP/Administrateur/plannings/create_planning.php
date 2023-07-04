@@ -29,24 +29,17 @@ if (isset($_POST['btnRegister'])) {
     $id_professeur = $rowProfessors['ID'];
     $id_salle = $_POST['txtSalle'];
 
-    echo $jour. "<br>";
-    echo $heure_debut. "<br>";
-    echo $heure_fin. "<br>" ;
-    echo $id_cours. "<br>";
-    echo $id_professeur. "<br>";
-    echo $id_salle. "<br>";
-
     // Créer la requête de creation d'un planning
     $query = "INSERT INTO plannings (jour, heure_debut, heure_fin, id_cours, id_professeur,id_salle ) VALUES ('$jour', '$heure_debut', '$heure_fin', '$id_cours', '$id_professeur', '$id_salle')";
     $resultQuery = mysqli_query($connection, $query);
 
     if($resultQuery){
-        echo "L'utilisateur a été mis à jour avec succès.<br>";
+        echo "Le planning a été crée avec succès.<br>";
         // Valider la transaction
         mysqli_commit($connection);
     }
     else{
-        echo "Erreur lors de la mise à jour de l'utilisateur : " . mysqli_error($connection) . "<br>";
+        echo "Erreur lors de la mise à jour du planning : " . mysqli_error($connection) . "<br>";
     }
 }
 
@@ -56,6 +49,7 @@ if (isset($_POST['btnRegister'])) {
 <html>
 <head>
     <title>Création Planning</title>
+    <link rel="stylesheet" href="create_planning.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -68,20 +62,21 @@ if (isset($_POST['btnRegister'])) {
     </script>
 </head>
 <body>
+
+<header>
+    <h1>Création Planning</h1>
+</header>
+
 <nav>
     <ul>
         <li><a href="../Home_Admin.php">Accueil</a></li>
         <li><a href="../notes/index_notes.php">Notes</a></li>
-        <li><a href="../cours/index_cours.php">Cours</a></li>
-        <li><a href="../formations/index_formations.php">Formations</a></li>
-        <li><a href="../salles/index_salles.php">Salles</a></li>
-        <li><a href="index_plannings.php">Plannings</a></li>
-        <li><a href="../absences/index_absences.php">Absences</a></li>
-        <li><a href="etudiants.html">Étudiants</a></li>
-        <li><a href="enseignants.html">Enseignants</a></li>
-        <li><a href="utilisateurs.html">Utilisateurs</a></li>
-        <li><a href="configurations.html">Configurations</a></li>
-        <li><a href="securite.html">Sécurité</a></li>
+        <li><a href="../cours/list_cours.php">Cours</a></li>
+        <li><a href="../formations/list_formation.php">Formations</a></li>
+        <li><a href="../documents/list_documents.php">document</a></li>
+        <li><a href="list_planning.php">Planning</a></li>
+        <li><a href="../user/list_user.php">Utilisateurs</a></li>
+        <li><a href="../user/list_register.php">Inscription</a></li>
     </ul>
 </nav>
 
@@ -147,5 +142,8 @@ if (isset($_POST['btnRegister'])) {
 
     <input type="submit" name="btnRegister" value="Créer Planning">
 </form>
+<footer>
+    <p>© 2023 EFREI - Tous droits réservés</p>
+</footer>
 </body>
 </html>

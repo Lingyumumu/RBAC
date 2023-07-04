@@ -56,6 +56,7 @@ if (isset($_POST['btnRegister'])) {
 <html>
 <head>
     <title>Création Planning</title>
+    <link rel="stylesheet" href="../../Administrateur/plannings/create_planning.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -68,22 +69,24 @@ if (isset($_POST['btnRegister'])) {
     </script>
 </head>
 <body>
+
+<header>
+    <h1>Création Planning</h1>
+</header>
+
 <nav>
-    <ul>
-        <li><a href="../Home_Admin.php">Accueil</a></li>
-        <li><a href="../notes/index_notes.php">Notes</a></li>
-        <li><a href="../cours/index_cours.php">Cours</a></li>
-        <li><a href="../formations/index_formations.php">Formations</a></li>
-        <li><a href="../salles/index_salles.php">Salles</a></li>
-        <li><a href="index_plannings.php">Plannings</a></li>
-        <li><a href="../absences/index_absences.php">Absences</a></li>
-        <li><a href="etudiants.html">Étudiants</a></li>
-        <li><a href="enseignants.html">Enseignants</a></li>
-        <li><a href="utilisateurs.html">Utilisateurs</a></li>
-        <li><a href="configurations.html">Configurations</a></li>
-        <li><a href="securite.html">Sécurité</a></li>
-    </ul>
-</nav>
+        <ul>
+            <li><a href="../Home_Admin.php">Accueil</a></li>
+            <li><a href="../notes/list_note.php">Notes</a></li>
+            <li><a href="../cours/list_cours.php">Cours</a></li>
+            <li><a href="../formations/list_formation.php">Formations</a></li>
+            <li><a href="../document/list_documents.php">document</a></li>
+            <li><a href="../plannings/list_planning.php">Horaires</a></li>
+            <li><a href="">Absences</a></li>
+            <li><a href="../user/list_user.php">Utilisateurs</a></li>
+            <li><a href="../user/list_register.php">Inscription</a></li>
+        </ul>
+    </nav>
 
 <h2>Création Planning</h2>
 <a href="list_planning.php"><button>Liste planning</button></a>

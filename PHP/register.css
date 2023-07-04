@@ -61,5 +61,17 @@ form select option {
     margin-bottom: 10px;
 }
 
+p {
+    margin-top: 10px;
+}
+
+p a {
+    color: #003366;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
 
 

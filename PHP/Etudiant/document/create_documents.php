@@ -1,41 +1,70 @@
 <?php
+include('../../dbConn.php');
 session_start();
-include('dbConn.php');
+
 $id = $_SESSION['ID'];
 $role = $_SESSION['role'];
-
-if (isset($_POST['btnUpload'])) {
-    $nomFichier = $_FILES['fichier']['name'];
-    $typeFichier = $_FILES['fichier']['type'];
-    $tailleFichier = $_FILES['fichier']['size'];
-    $contenuFichier = mysqli_real_escape_string($connection, file_get_contents($_FILES['fichier']['tmp_name']));
-
-    // Requête d'insertion du fichier dans la base de données
-    $query = "INSERT INTO documents (nom_fichier, type_fichier, taille_fichier, contenu_fichier,ID_expediteur,role_expediteur) VALUES ('$nomFichier', '$typeFichier', '$tailleFichier', '$contenuFichier','$id','$role')";
-    $result = mysqli_query($connection, $query);
-
-    if ($result) {
-        echo "Le fichier a été inséré avec succès dans la base de données.<br>";
-        echo '<a href="list_documents.php">Ajouter un document</a>';
-
-    } else {
-        echo "Erreur lors de l'insertion du fichier dans la base de données: " . mysqli_error($connection);
-    }
+$idCours = $_GET['ID'];
+if ($idCours == null) {
+    header("location: ../../login.php");
 }
 
-mysqli_close($connection);
+$query = "SELECT * FROM documents WHERE ID_cours = '$idCours' AND role_expediteur = 'professeur'";
+$results = mysqli_query($connection, $query);
+
+$queryprof = "SELECT * FROM cours WHERE ID = '$idCours'";
+$resultsprof = mysqli_query($connection, $queryprof);
+$rowprof = mysqli_fetch_assoc($resultsprof);
+$nom_prof = $rowprof['nom_prof'];
+
 ?>
 
-<!DOCTYPE html>
+<header>
+    <h1>Système de gestion de l'EFREI</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="../Home_Etudiant.css">Accueil</a></li>
+        <li><a href="../plannings/index_plannings.php">Mon emploi-du-temps</a></li>
+        <li><a href="../notes/list_note.php">Mes notes</a></li>
+        <li><a href="../cours_inscrit.php">Cours</a></li>
+        <li><a href="../mes_absences.php">Mes Absences</a></li>
+        <li><a href="../document/list_documents.php">Documents</a></li>
+    </ul>
+</nav>
+
+<h2>Liste des documents</h2>
 <html>
-<head>
-    <title>Upload de fichier PDF</title>
-</head>
+
 <body>
-    <h2>Uploader un fichier PDF</h2>
-    <form action="" method="POST" enctype="multipart/form-data">
-        <input type="file" name="fichier" required>
-        <input type="submit" name="btnUpload" value="Uploader">
-    </form>
+
+    <head>
+        <title>Document</title>
+    </head>
+
+
+
+    <a href="../cours_inscrit.php">Retour</a>
+    <table border="1" cellspacing='10'>
+        <tr>
+            <th>Nom document</th>
+            <th>Expéditeur</th>
+            <th>Date</th>
+
+        </tr>
+        <?php while ($row = mysqli_fetch_assoc($results)) {
+
+            echo '<tr>';
+            echo '<td><a href="download_documents.php?ID=' . $row['ID'] . '">' . $row['nom_fichier'] . '</a></td>';
+            echo '<td>' . $nom_prof . '</td>';
+            echo '<td>' . $row['date'] . '</td>';
+
+            echo '</tr>';
+        }
+        ?>
+    </table>
+
 </body>
+
 </html>

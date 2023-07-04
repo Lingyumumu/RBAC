@@ -4,8 +4,12 @@ include('dbConn.php');
 
 $queryformation = "SELECT * FROM formations";
 $resultformation = mysqli_query($connection, $queryformation);
-$row = mysqli_fetch_assoc($resultformation);
 
+// Fetch all formations into an array
+$formations = array();
+while ($row = mysqli_fetch_assoc($resultformation)) {
+    $formations[] = $row;
+}
 
 if(isset($_POST['btnRegister'])){
     $nom = $_POST['txtnom'];
@@ -13,7 +17,7 @@ if(isset($_POST['btnRegister'])){
     $email = $prenom . "." . $nom . "@efrei.fr";
     $mdp = $_POST['txtmdp'];
     $formation = $_POST['txtformation'];
-    
+
     // Check if password and confirmation are the same
     if ($_POST['txtmdp'] != $_POST['txtmdp2']) {
         echo "Les mots de passe ne correspondent pas.";
@@ -41,8 +45,6 @@ if(isset($_POST['btnRegister'])){
         }
     }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -53,17 +55,19 @@ if(isset($_POST['btnRegister'])){
 </head>
 
 <body>
+<form action='' method='post'>
     <h2>Registration page</h2>
-    <form action='' method='post'>
-        Nom: <input type='text' name='txtnom' required><br>
-        Prenom: <input type='text' name='txtprenom' required><br>
-        Nom de Formation: <select name="txtformation">
-            <option value="<?php echo $row['nom'] ?>"><?php echo $row['nom'] ?></option>
-        </select><br>
-        mot de passe: <input type='password' name='txtmdp' required><br>
-        Confirmation mot de passe: <input type='password' name='txtmdp2' required><br>
-        <input type='submit' name='btnRegister' value='Register'>
-    </form>
+    Nom: <input type='text' name='txtnom' required><br>
+    Prenom: <input type='text' name='txtprenom' required><br>
+    Formation: <select name="txtformation">
+        <?php foreach ($formations as $formation) { ?>
+            <option value="<?php echo $formation['nom'] ?>"><?php echo $formation['nom'] ?></option>
+        <?php } ?>
+    </select><br>
+    Mot de passe: <input type='password' name='txtmdp' required><br>
+    Confirmation mot de passe: <input type='password' name='txtmdp2' required><br>
+    <input type='submit' name='btnRegister' value='Register'>
+    <p>Vous avez déjà un compte ? <a href="login.php">Connectez-vous</a></p>
+</form>
 </body>
 </html>
-

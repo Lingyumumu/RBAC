@@ -4,20 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Personnel Administratif</title>
-    <link rel="stylesheet" href="../../CSS/Home_Personnel.css">
+    <link rel="stylesheet" href="Home_Personnel.css">
 </head>
 <body>
     <header>
         <h1>EFREI - Personnel Administratif</h1>
         <nav>
             <ul>
-                <li><a href="../index.html">Accueil</a></li>
-                <li><a href="cours.html">Cours</a></li>
-                <li><a href="salles.html">Salles</a></li>
-                <li><a href="horaires.html">Horaires</a></li>
-                <li><a href="absences.html">Absences</a></li>
-                <li><a href="etudiants.html">Étudiants</a></li>
-                <li><a href="enseignants.html">Enseignants</a></li>
+                <li><a href="../Personnel/Home_Personnel.php">Accueil</a></li>
+                <li><a href="../Personnel/cours/list_cours.php">Cours</a></li>
+                <li><a href="../Personnel/plannings/index_plannings.php">Planning</a></li>
+                <li><a href="../Personnel/notes/list_notes.php">Notes</a></li>
+                <li><a href="../Personnel/user/list_user.php">Utilisateurs</a></li>
             </ul>
         </nav>
     </header>
@@ -26,40 +24,26 @@
         <section class="role-section">
             <h3>Informations sur les cours</h3>
             <p>Accédez aux informations sur les cours.</p>
-            <a href="cours.html">Accéder aux cours</a>
+            <a href="../Personnel/cours/list_cours.php">Accéder aux cours</a>
         </section>
 
         <section class="role-section">
-            <h3>Informations sur les salles</h3>
-            <p>Consultez les informations sur les salles.</p>
-            <a href="salles.html">Accéder aux salles</a>
+            <h3>Informations sur les plannings</h3>
+            <p>Accédez aux informations sur les plannings.</p>
+            <a href="../Personnel/plannings/index_plannings.php">Accéder aux plannings</a>
         </section>
 
         <section class="role-section">
-            <h3>Gestion des horaires</h3>
-            <p>Modifiez et créez les horaires.</p>
-            <a href="horaires.html">Gérer les horaires</a>
+            <h3>Informations sur les notes</h3>
+            <p>Accédez aux informations sur les notes.</p>
+            <a href="../Personnel/notes/list_notes.php">Accéder aux notes</a>
         </section>
 
         <section class="role-section">
-            <h3>Gestion des absences</h3>
-            <p>Consultez et enregistrez les absences.</p>
-            <a href="absences.html">Gérer les absences</a>
+            <h3>Informations sur les utilisateurs</h3>
+            <p>Accédez aux informations sur les utilisateurs.</p>
+            <a href="../Personnel/user/list_user.php">Accéder aux utilisateurs</a>
         </section>
-
-        <section class="role-section">
-            <h3>Gestion des étudiants</h3>
-            <p>Accédez aux informations sur les étudiants.</p>
-            <a href="etudiants.html">Gérer les étudiants</a>
-        </section>
-
-        <section class="role-section">
-            <h3>Gestion des enseignants</h3>
-            <p>Consultez et gérez les informations sur les enseignants.</p>
-            <a href="enseignants.html">Gérer les enseignants</a>
-        </section>
-    </main>
-
     <footer>
         <p>EFREI - Tous droits réservés</p>
     </footer>

@@ -50,6 +50,7 @@ echo "<a href='list_user.php'>liste de user</a><br>";
 <html>
 <head>
     <title>Document</title>
+    <link rel="stylesheet" href="../../Administrateur/user/Admin_register.css">
 </head>
 
 <body>

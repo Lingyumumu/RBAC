@@ -3,7 +3,7 @@
 
 <head>
     <title>Accueil - Administrateur</title>
-    <link rel="stylesheet" type="text/css" href="../../CSS/Home_Admin.css">
+    <link rel="stylesheet" type="text/css" href="Home_Admin.css">
 </head>
 
 <body>
@@ -13,17 +13,14 @@
 
     <nav>
         <ul>
-            <li><a href="../index.html">Accueil</a></li>
-            <li><a href="notes.php">Notes</a></li>
-            <li><a href="cours.php">Cours</a></li>
-            <li><a href="salles.html">Salles</a></li>
-            <li><a href="horaires.html">Horaires</a></li>
-            <li><a href="absences.html">Absences</a></li>
-            <li><a href="etudiants.html">Étudiants</a></li>
-            <li><a href="enseignants.html">Enseignants</a></li>
-            <li><a href="utilisateurs.html">Utilisateurs</a></li>
-            <li><a href="configurations.html">Configurations</a></li>
-            <li><a href="securite.html">Sécurité</a></li>
+            <li><a href="Home_Admin.php">Accueil</a></li>
+            <li><a href="../Administrateur/notes/index_notes.php">Notes</a></li>
+            <li><a href="../Administrateur/cours/list_cours.php">Cours</a></li>
+            <li><a href="../Administrateur/formations/list_formation.php">Formations</a></li>
+            <li><a href="../Administrateur/document/list_documents.php">document</a></li>
+            <li><a href="../Administrateur/plannings/list_planning.php">Planning</a></li>
+            <li><a href="../Administrateur/user/list_user.php">Utilisateurs</a></li>
+            <li><a href="../Administrateur/user/list_register.php">Inscription</a></li>
         </ul>
     </nav>
 
@@ -34,61 +31,43 @@
         <div class="role-section">
             <h3>Notes</h3>
             <p>Gérez les notes des étudiants et consultez les performances académiques.</p>
-            <a href="notes.php">Gérer les notes</a>
+            <a href="../Administrateur/notes/index_notes.php">Gérer les notes</a>
         </div>
 
         <div class="role-section">
             <h3>Cours</h3>
             <p>Gérez les informations sur les cours dispensés à l'EFREI.</p>
-            <a href="cours.html">Gérer les cours</a>
+            <a href="../Administrateur/cours/list_cours.php">Gérer les cours</a>
         </div>
 
         <div class="role-section">
-            <h3>Salles</h3>
-            <p>Gérez les informations sur les salles de classe et de réunion.</p>
-            <a href="salles.html">Gérer les salles</a>
+            <h3>Formations</h3>
+            <p>Gérez les informations sur les formations</p>
+            <a href="../Administrateur/formations/list_formation.php">Gérer les formations</a>
         </div>
 
         <div class="role-section">
-            <h3>Horaires</h3>
-            <p>Gérez les horaires des cours et des événements.</p>
-            <a href="horaires.html">Gérer les horaires</a>
+            <h3>Document</h3>
+            <p>Gérez les documents des cours et des événements.</p>
+            <a href="../Administrateur/document/list_documents.php">Gérer les documents</a>
         </div>
 
         <div class="role-section">
-            <h3>Absences</h3>
-            <p>Gérez les informations sur les absences et les congés des étudiants et des enseignants.</p>
-            <a href="absences.html">Gérer les absences</a>
-        </div>
-
-        <div class="role-section">
-            <h3>Étudiants</h3>
-            <p>Gérez les informations sur les étudiants inscrits à l'EFREI.</p>
-            <a href="etudiants.html">Gérer les étudiants</a>
-        </div>
-
-        <div class="role-section">
-            <h3>Enseignants</h3>
-            <p>Gérez les informations sur les enseignants de l'EFREI.</p>
-            <a href="enseignants.html">Gérer les enseignants</a>
+            <h3>Planning</h3>
+            <p>Gérez les informations sur les plannings des étudiants et des enseignants.</p>
+            <a href="../Administrateur/plannings/index_plannings.php">Gérer les plannings</a>
         </div>
 
         <div class="role-section">
             <h3>Utilisateurs</h3>
             <p>Gérez les utilisateurs du système et leurs permissions.</p>
-            <a href="utilisateurs.html">Gérer les utilisateurs</a>
+            <a href="../Administrateur/user/list_user.php">Gérer les utilisateurs</a>
         </div>
 
         <div class="role-section">
-            <h3>Configurations</h3>
-            <p>Configurez les paramètres du système.</p>
-            <a href="configurations.html">Gérer les configurations</a>
-        </div>
-
-        <div class="role-section">
-            <h3>Sécurité</h3>
-            <p>Gérez la sécurité globale du système.</p>
-            <a href="securite.html">Gérer la sécurité</a>
+            <h3>Inscription</h3>
+            <p>Configurez les inscriptions</p>
+            <a href="../Administrateur/user/list_register.php">Gérer les inscriptions</a>
         </div>
     </main>
 

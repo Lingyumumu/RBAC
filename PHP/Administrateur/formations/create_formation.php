@@ -45,6 +45,23 @@ if(isset($_POST['btnRegister'])){
     <link rel="stylesheet" href="create_formation.css">
 </head>
 
+<header>
+    <h1>Système de Gestion - EFREI</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="../Home_Admin.php">Accueil</a></li>
+        <li><a href="../notes/index_notes.php">Notes</a></li>
+        <li><a href="../cours/list_cours.php">Cours</a></li>
+        <li><a href="list_formation.php">Formations</a></li>
+        <li><a href="../documents/list_documents.php">document</a></li>
+        <li><a href="../plannings/list_planning.php">Planning</a></li>
+        <li><a href="../user/list_user.php">Utilisateurs</a></li>
+        <li><a href="../user/list_register.php">Inscription</a></li>
+    </ul>
+</nav>
+
 <body>
     <a href="list_formation.php">liste de formation</a>
     <h2>Ajout Formation</h2>
@@ -62,6 +79,9 @@ if(isset($_POST['btnRegister'])){
         </select><br>
         <input type='submit' name='btnRegister' value='Register'>
     </form>
+    <footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
 </body>
 </html>
 

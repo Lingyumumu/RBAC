@@ -34,11 +34,21 @@ echo "<a href='list_cours.php'>Aller à la liste cours</a>";
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="../../Administrateur/cours/edit_cours.css">
     <meta charset="UTF-8">
     <title></title>
 </head>
 <body>
     <h1>Page de modification</h1>
+        <nav>
+            <ul>
+                <li><a href="../Personnel/Home_Personnel.php">Accueil</a></li>
+                <li><a href="../Personnel/cours/list_cours.php">Cours</a></li>
+                <li><a href="../Personnel/plannings/index_plannings.php">¨Planning</a></li>
+                <li><a href="../Personnel/notes/list_notes.php">Notes</a></li>
+                <li><a href="../Personnel/user/list_user.php">Utilisateurs</a></li>
+            </ul>
+        </nav>
     <form action='' method='post'>
         Nom du Cours: <input type='text' name='txtnomc' value="<?php echo $row['nom_cours'] ?>" required><br>
         Nom de Formation: <select name="txtnomf">

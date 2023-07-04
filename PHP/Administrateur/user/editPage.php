@@ -1,11 +1,11 @@
 <?php
-include ('../../dbConn.php');
+include('../../dbConn.php');
 $id = $_GET['ID'];
-if (isset($_GET['ID']) == null ){
+if (isset($_GET['ID']) == null) {
     header("location: list_user.php");
 }
 
-if (isset($_POST['btnUpdate'])){
+if (isset($_POST['btnUpdate'])) {
     $nom = $_POST['txtnom'];
     $prenom = $_POST['txtprenom'];
     $email = $_POST['txtemail'];
@@ -13,19 +13,17 @@ if (isset($_POST['btnUpdate'])){
     $role = $_POST['txtrole'];
     $formation = $_POST['txtformation'];
 
-    if($role == 'administrateur' || $role == 'personnel'){
+    if ($role == 'administrateur' || $role == 'personnel') {
         $updateQuery = "UPDATE user SET nom = '$nom', prenom = '$prenom', email = '$email', password = '$password', role= '$role', formation = '' WHERE id = '$id'";
-    }
-    else{
+    } else {
         $updateQuery = "UPDATE user SET nom = '$nom', prenom = '$prenom', email = '$email', password = '$password', role= '$role', formation = '$formation' WHERE id = '$id'";
     }
-    
+
     $resultQuery = mysqli_query($connection, $updateQuery);
-    if($resultQuery){
+    if ($resultQuery) {
         echo "the user has been updated<br>";
         header("Location: list_user.php");
-    }
-    else{
+    } else {
         echo "the user has not been updated<br>";
     }
 }
@@ -43,12 +41,30 @@ $row1 = mysqli_fetch_assoc($resultformation);
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" href="editPage.css">
 </head>
+
 <body>
-    <h1>Page de modification</h1>
+    <header>
+        <h1>Page de modification</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="../Home_Admin.php">Accueil</a></li>
+            <li><a href="../notes/index_notes.php">Notes</a></li>
+            <li><a href="../cours/list_cours.php">Cours</a></li>
+            <li><a href="../formations/list_formation.php">Formations</a></li>
+            <li><a href="../documents/list_documents.php">document</a></li>
+            <li><a href="../plannings/list_planning.php">Planning</a></li>
+            <li><a href="list_user.php">Utilisateurs</a></li>
+            <li><a href="list_register.php">Inscription</a></li>
+        </ul>
+    </nav>
+
     <form action='' method='post'>
         Nom: <input type='text' name='txtnom' value="<?php echo $row['nom'] ?>" required><br>
         Prénom: <input type='text' name='txtprenom' value="<?php echo $row['prenom'] ?>" required><br>
@@ -63,12 +79,15 @@ $row1 = mysqli_fetch_assoc($resultformation);
         <br>
         Nom de Formation (vide pour personnel et administrateur): <select name="txtformation">
             <option value="<?php echo $row1['nom'] ?>"><?php echo $row1['nom'] ?></option>
-            <option value='' >(vide)</option>
+            <option value=''>(vide)</option>
         </select>
         <br><br>
         <input type='submit' name='btnUpdate' value='Mettre à jour'>
     </form>
     <br><br>
     <a href='list_user.php'>Aller à la page principale</a>
+    <footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
 </body>
 </html>

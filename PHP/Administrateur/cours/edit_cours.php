@@ -29,7 +29,6 @@ $query = "SELECT * FROM cours WHERE ID = $id";
 $result = mysqli_query($connection, $query);
 $row = mysqli_fetch_assoc($result);
 
-echo "<a href='list_cours.php'>Aller à la liste cours</a>";
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,7 +36,27 @@ echo "<a href='list_cours.php'>Aller à la liste cours</a>";
     <meta charset="UTF-8">
     <link rel="stylesheet" href="edit_cours.css">
 </head>
+
+<header>
+    <h1>Système de Gestion - EFREI</h1>
+</header>
+
+<nav>
+        <ul>
+            <li><a href="../Home_Admin.php">Accueil</a></li>
+            <li><a href="../notes/index_notes.php">Notes</a></li>
+            <li><a href="../cours/list_cours.php">Cours</a></li>
+            <li><a href="../formations/list_formation.php">Formations</a></li>
+            <li><a href="../document/list_documents.php">document</a></li>
+            <li><a href="../plannings/list_planning.php">Planning</a></li>
+            <li><a href="../user/list_user.php">Utilisateurs</a></li>
+            <li><a href="../user/list_register.php">Inscription</a></li>
+        </ul>
+    </nav>
+
 <body>
+<a href='list_cours.php'>liste cours</a>
+
     <h1>Page de modification</h1>
     <form action='' method='post'>
         Nom du Cours: <input type='text' name='txtnomc' value="<?php echo $row['nom_cours'] ?>" required><br>
@@ -56,7 +75,9 @@ echo "<a href='list_cours.php'>Aller à la liste cours</a>";
         <input type='submit' name='btnUpdate' value='Mettre à jour'>
     </form>
     <br><br>
-    <a href='list_formation.php'>Aller à la liste formation</a>
+<footer>
+    <p>© 2023 EFREI - Tous droits réservés</p>
+</footer>
 </body>
 </html>
 

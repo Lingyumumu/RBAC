@@ -10,34 +10,29 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 'etudiant') {
 
 $id = $_SESSION['ID'];
 
+
 $queryUser = "SELECT * FROM user WHERE ID = $id";
 $resultUser = mysqli_query($connection, $queryUser);
-$rowUser = mysqli_fetch_assoc($resultUser);
+$rowUser = mysqli_fetch_array($resultUser);
 $formation = $rowUser['formation'];
-$note = $rowUser['note'];
 
 // Récupérer les cours depuis la base de données avec le nom de l'enseignant et la formation
 $queryCours = "SELECT * FROM cours WHERE nom_formation = '$formation' ";
 $resultCours = mysqli_query($connection, $queryCours);
 
-// Récupérer les notes avec les informations d'étudiant et de cours associées
-$queryNotes = "SELECT notes.note, cours.nom_cours 
-               FROM notes
-               INNER JOIN cours ON notes.id_cours = cours.ID
-               WHERE notes.id_etudiant = $id";
-$resultNotes = mysqli_query($connection, $queryNotes);
+$queryNote = "SELECT * FROM notes WHERE id_etudiant = $id";
+$resultNote = mysqli_query($connection, $queryNote);
 
-// Fermer la connexion à la base de données
+
+
 mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
 <html>
-<header>
-    <h1>Système de Gestion - EFREI</h1>
-</header>
 <head>
     <title>Liste des cours - Administrateur</title>
+    <link rel="stylesheet" href="cours_inscrit.css">
     <style>
         table {
             border-collapse: collapse;
@@ -50,45 +45,51 @@ mysqli_close($connection);
     </style>
 </head>
 <body>
-<nav>
-    <ul>
-        <li><a href="../Administrateur/Home_Admin.php">Accueil</a></li>
-        <li><a href="../Administrateur/notes/index_notes.php">Notes</a></li>
-        <li><a href="../Administrateur/cours/index_cours.php">Cours</a></li>
-        <li><a href="../Administrateur/formations/index_formations.php">Formations</a></li>
-        <li><a href="../Administrateur/salles/index_salles.php">Salles</a></li>
-        <li><a href="../Administrateur/plannings/index_plannings.php">Plannings</a></li>
-        <li><a href="../Administrateur/absences/index_absences.php">Absences</a></li>
-        <li><a href="etudiants.html">Étudiants</a></li>
-        <li><a href="enseignants.html">Enseignants</a></li>
-        <li><a href="utilisateurs.html">Utilisateurs</a></li>
-        <li><a href="configurations.html">Configurations</a></li>
-        <li><a href="securite.html">Sécurité</a></li>
-    </ul>
-</nav>
 
-<a href='create_cours.php'>ajouter un cours</a>
+<header>
+    <h1>Système de Gestion - EFREI</h1>
+</header>
+
+<nav>
+        <ul>
+            <li><a href="../Etudiant/Home_Etudiant.php">Accueil</a></li>
+            <li><a href="../Etudiant/plannings/list_planning.php">Mon emploi-du-temps</a></li>
+            <li><a href="../Etudiant/cours_inscrit.php">Cours</a></li>
+            <li><a href="../Etudiant/notes/list_note.php">Mes notes</a></li>
+            <?php echo '<li><td><a href="mes_absences.php?ID=' . $id . '">Mes Absences</a></td><li>';?>
+            <li><a href="../logout.php">Deconnexion</a></li>
+
+        </ul>
+    </nav>
 
 <h2>Liste des cours</h2>
 
 <?php
 // Vérifier si des cours ont été trouvés
-if (mysqli_num_rows($resultCours) > 0) {
+if (mysqli_num_rows($resultCours)) {
     // Afficher les cours dans un tableau
+    
     echo "<table>
             <tr>
                 <th>Nom du cours</th>
                 <th>Note</th>
             </tr>";
-    while ($row = mysqli_fetch_assoc($resultNotes)) {
-        $nomCours = $row['nom_cours'];
-        $note = $row['note'];
-
-        echo "<tr>
-            <td>$nomCours</td>
-            <td>$note</td>
-          </tr>";
-    }
+            while ($row = mysqli_fetch_assoc($resultCours)) {
+                $idCours = $row['ID'];
+                $nomCours = $row['nom_cours'];
+                if ($rowNote = mysqli_fetch_assoc($resultNote)) {
+                    $note = $rowNote['note'];
+                } else {
+                    $note = 'N/A'; // Remplacez par la valeur souhaitée si aucune note n'est présente
+                }
+                echo "<tr>
+                        <td>$nomCours</td>
+                        <td><a href='document/create_documents.php?ID=$idCours'>Document Cours</a></td>
+                      </tr>";
+            }
+            
+            
+            
 
     echo "</table>";
 } else {

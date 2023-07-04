@@ -8,6 +8,7 @@ include ('../../dbConn.php');
 <html>
 <head>
     <title>Document</title>
+    <link rel="stylesheet" href="list_user.css">
 </head>
 <body>
 

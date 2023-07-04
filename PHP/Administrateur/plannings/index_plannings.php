@@ -4,7 +4,7 @@
 
 <head>
     <title>Gestion des plannings - Administrateur</title>
-    <link rel="stylesheet" type="text/css" href="../../../CSS/Home_Admin.css">
+    <link rel="stylesheet" type="text/css" href="index_planning.css">
 </head>
 
 <body>
@@ -16,16 +16,12 @@
     <ul>
         <li><a href="../Home_Admin.php">Accueil</a></li>
         <li><a href="../notes/index_notes.php">Notes</a></li>
-        <li><a href="../cours/index_cours.php">Cours</a></li>
-        <li><a href="../formations/index_formations.php">Formations</a></li>
-        <li><a href="../salles/index_salles.php">Salles</a></li>
-        <li><a href="index_plannings.php">Plannings</a></li>
-        <li><a href="../absences/index_absences.php">Absences</a></li>
-        <li><a href="etudiants.html">Étudiants</a></li>
-        <li><a href="enseignants.html">Enseignants</a></li>
-        <li><a href="utilisateurs.html">Utilisateurs</a></li>
-        <li><a href="configurations.html">Configurations</a></li>
-        <li><a href="securite.html">Sécurité</a></li>
+        <li><a href="../cours/list_cours.php">Cours</a></li>
+        <li><a href="../formations/list_formation.php">Formations</a></li>
+        <li><a href="../documents/list_documents.php">document</a></li>
+        <li><a href="list_planning.php">Planning</a></li>
+        <li><a href="../user/list_user.php">Utilisateurs</a></li>
+        <li><a href="../user/list_register.php">Inscription</a></li>
     </ul>
 </nav>
 
@@ -62,5 +58,4 @@
     <p>© 2023 EFREI - Tous droits réservés</p>
 </footer>
 </body>
-
 </html>

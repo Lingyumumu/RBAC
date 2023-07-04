@@ -19,10 +19,10 @@ mysqli_close($connection);
 <!DOCTYPE html>
 <html>
 <header>
+    <link rel="stylesheet" href="../../Administrateur/cours/list_cours.css">
     <h1>Système de Gestion - EFREI</h1>
 </header>
 <head>
-    <title>Liste des cours - Administrateur</title>
     <style>
         table {
             border-collapse: collapse;
@@ -35,22 +35,16 @@ mysqli_close($connection);
     </style>
 </head>
 <body>
-<nav>
-    <ul>
-        <li><a href="../Home_Admin.php">Accueil</a></li>
-        <li><a href="../notes/index_notes.php">Notes</a></li>
-        <li><a href="index_cours.php">Cours</a></li>
-        <li><a href="../formations/index_formations.php">Formations</a></li>
-        <li><a href="../salles/index_salles.php">Salles</a></li>
-        <li><a href="../plannings/index_plannings.php">Plannings</a></li>
-        <li><a href="../absences/index_absences.php">Absences</a></li>
-        <li><a href="etudiants.html">Étudiants</a></li>
-        <li><a href="enseignants.html">Enseignants</a></li>
-        <li><a href="utilisateurs.html">Utilisateurs</a></li>
-        <li><a href="configurations.html">Configurations</a></li>
-        <li><a href="securite.html">Sécurité</a></li>
-    </ul>
-</nav>
+<h1>EFREI - Personnel Administratif</h1>
+        <nav>
+            <ul>
+                <li><a href="../Personnel/Home_Personnel.php">Accueil</a></li>
+                <li><a href="../Personnel/cours/list_cours.php">Cours</a></li>
+                <li><a href="../Personnel/plannings/index_plannings.php">¨Planning</a></li>
+                <li><a href="../Personnel/notes/list_notes.php">Notes</a></li>
+                <li><a href="../Personnel/user/list_user.php">Utilisateurs</a></li>
+            </ul>
+        </nav>
 
 <a href='create_cours.php'>ajouter un cours</a>
 

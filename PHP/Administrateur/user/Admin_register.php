@@ -5,7 +5,7 @@ include '../../dbConn.php';
     header("location: ../login.php");
 }*/
 
-if(isset($_POST['btnRegister'])){
+if (isset($_POST['btnRegister'])) {
     $nom = $_POST['txtnom'];
     $prenom = $_POST['txtprenom'];
     $email = $prenom . "." . $nom . "@efrei.fr";
@@ -13,23 +13,22 @@ if(isset($_POST['btnRegister'])){
     $role = $_POST['txtrole'];
     $formation = $_POST['txtformation'];
 
-        
+
     // Check if password and confirmation are the same
     if ($_POST['txtmdp'] != $_POST['txtmdp2']) {
         echo "Les mots de passe ne correspondent pas.";
         exit();
     }
 
- // Check if user already exists
-$querysame = "SELECT * FROM user WHERE email = '$email'";
-$resultsame = mysqli_query($connection, $querysame);
-$count = mysqli_num_rows($resultsame);
+    // Check if user already exists
+    $querysame = "SELECT * FROM user WHERE email = '$email'";
+    $resultsame = mysqli_query($connection, $querysame);
+    $count = mysqli_num_rows($resultsame);
 
- // Check if user already exists
+    // Check if user already exists
     if ($count > 0) {
         echo "Un compte avec cet email existe déjà.";
-    }
-    else {
+    } else {
         $query = "INSERT INTO user(nom,prenom,email,password,role,statut,formation) VALUES('$nom','$prenom','$email','$mdp','$role','validé','$formation')";
         $results = mysqli_query($connection, $query);
         if ($results) {
@@ -48,24 +47,43 @@ echo "<a href='list_user.php'>liste de user</a><br>";
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Document</title>
+    <link rel="stylesheet" href="Admin_register.css">
 </head>
 
 <body>
+    <header>
+        <h1>Système de Gestion - EFREI</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../Home_Admin.php">Accueil</a></li>
+            <li><a href="../notes/index_notes.php">Notes</a></li>
+            <li><a href="../cours/list_cours.php">Cours</a></li>
+            <li><a href="../formations/list_formation.php">Formations</a></li>
+            <li><a href="../documents/list_documents.php">document</a></li>
+            <li><a href="../plannings/list_planning.php">Planning</a></li>
+            <li><a href="list_user.php">Utilisateurs</a></li>
+            <li><a href="list_register.php">Inscription</a></li>
+        </ul>
+    </nav>
+
     <h2>Registration page</h2>
     <form action='' method='post'>
-    
+
         Nom: <input type='text' name='txtnom' required><br>
         Prenom: <input type='text' name='txtprenom' required><br>
         Intitule de la formation: <select name='txtformation' required><br>
-        <?php
-        $queryf = "SELECT * FROM formations";
-        $resultsf = mysqli_query($connection, $queryf);
-        while ($row = mysqli_fetch_array($resultsf)) {
-            echo "<option value='" . $row['nom'] . "'>" . $row['nom'] . "</option>";
-        }
-        ?>
+            <?php
+            $queryf = "SELECT * FROM formations";
+            $resultsf = mysqli_query($connection, $queryf);
+            while ($row = mysqli_fetch_array($resultsf)) {
+                echo "<option value='" . $row['nom'] . "'>" . $row['nom'] . "</option>";
+            }
+            ?>
         </select><br>
         Mot de passe: <input type='password' name='txtmdp' required><br>
         Confirmation mot de passe: <input type='password' name='txtmdp2' required><br>
@@ -74,9 +92,12 @@ echo "<a href='list_user.php'>liste de user</a><br>";
             <option value='personnel'>Personnel</option>
             <option value='professeur'>Professeur</option>
             <option value='etudiant'>Etudiant</option>
-        <input type='submit' name='btnRegister' value='Register'>
-    
-    </form>
-</body>
-</html>
+            <input type='submit' name='btnRegister' value='Register'>
 
+    </form>
+    <footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+</body>
+
+</html>
