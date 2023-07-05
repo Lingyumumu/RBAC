@@ -26,10 +26,12 @@
             <li><a href="../Administrateur/notes/list_formation.php">Notes</a></li>
             <li><a href="../Administrateur/cours/list_formation.php">Cours</a></li>
             <li><a href="../Administrateur/formations/list_formation.php">Formations</a></li>
-            <li><a href="../Administrateur/document/list_documents.php">document</a></li>
+            <li><a href="../Administrateur/document/list_formation.php">document</a></li>
             <li><a href="../Administrateur/plannings/list_formation.php">Planning</a></li>
             <li><a href="../Administrateur/user/list_user.php">Utilisateurs</a></li>
             <li><a href="../Administrateur/user/list_register.php">Inscription</a></li>
+            <li><a href="../Message.php">Message</a></li>
+            <li><a href="../logout.php">Deconnexion</a></li>
         </ul>
     </nav>
 

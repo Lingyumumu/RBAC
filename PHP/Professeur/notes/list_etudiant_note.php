@@ -29,6 +29,7 @@ if ($_SESSION['role'] != 'professeur') {
     <li><a href="list_etudiant_note.php">Notes</a></li>
         <li><a href="../cours_assigner.php">Document</a></li>
         <li><a href="../plannings/list_planning.php">Plannings</a></li>
+        <li><a href="../../Message.php">Message</a></li>
         <li><a href="../../logout.php">Deconnexion</a></li>
     </ul>
 </nav>

@@ -60,6 +60,7 @@ $row3 = mysqli_fetch_assoc($resultfilter3);
             <li><a href="../notes/list_note.php">Mes notes</a></li>
             <li><a href="../cours_inscrit.php">Cours</a></li>
             <?php echo '<li><td><a href="../mes_absences.php?ID=' . $id . '">Mes Absences</a></td><li>';?>
+            <li><a href="../../Message.php">Message</a></li>
             <li><a href="../../logout.php">Deconnexion</a></li>
         </ul>
     </nav>

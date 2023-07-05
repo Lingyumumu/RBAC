@@ -49,6 +49,7 @@ mysqli_close($connection);
         <li><a href="../cours_inscrit.php">Cours</a></li>
         <li><a href="../notes/list_note.php">Mes notes</a></li>
         <?php echo '<li><td><a href="../mes_absences.php?ID=' . $id . '">Mes Absences</a></td><li>';?>
+        <li><a href="../../Message.php">Message</a></li>
         <li><a href="../../logout.php">Deconnexion</a></li>
         
     </ul>

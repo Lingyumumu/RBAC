@@ -1,5 +1,6 @@
 <?php 
 include '../../dbConn.php';
+session_start();
 $id = $_GET['ID'];
 if (isset($_GET['ID']) == null ){
     header("location: list_user.php");

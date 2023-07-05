@@ -52,6 +52,8 @@ $count = mysqli_num_rows($result);
         <li><a href="../notes/list_note.php">Notes</a></li>
         <li><a href="../document/list_documents.php">Documents</a></li>
         <li><a href="../plannings/list_planning.php">Plannings</a></li>
+        <li><a href="../../Message.php">Message</a></li>
+        <li><a href="../../logout.php">Deconnexion</a></li>
     </ul>
 </nav>
 <a href="list_note.php">Liste des notes</a>

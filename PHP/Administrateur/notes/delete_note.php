@@ -31,11 +31,15 @@ mysqli_close($connection);
         <h1>EFREI - Personnel Administratif</h1>
         <nav>
             <ul>
-                <li><a href="../Personnel/Home_Personnel.php">Accueil</a></li>
-                <li><a href="../Personnel/cours/list_cours.php">Cours</a></li>
-                <li><a href="../Personnel/plannings/index_plannings.php">¨Planning</a></li>
-                <li><a href="../Personnel/notes/list_notes.php">Notes</a></li>
-                <li><a href="../Personnel/user/list_user.php">Utilisateurs</a></li>
+            <li><a href="Home_Admin.php">Accueil</a></li>
+            <li><a href="../Administrateur/notes/list_formation.php">Notes</a></li>
+            <li><a href="../Administrateur/cours/list_formation.php">Cours</a></li>
+            <li><a href="../Administrateur/formations/list_formation.php">Formations</a></li>
+            <li><a href="../Administrateur/document/list_formation.php">document</a></li>
+            <li><a href="../Administrateur/plannings/list_formation.php">Planning</a></li>
+            <li><a href="../Administrateur/user/list_user.php">Utilisateurs</a></li>
+            <li><a href="../Administrateur/user/list_register.php">Inscription</a></li>
+            <li><a href="../logout.php">Deconnexion</a></li>
             </ul>
         </nav>
     </header>

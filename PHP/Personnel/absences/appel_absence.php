@@ -109,6 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <li><a href="../../Personnel/plannings/list_formation.php">Planning</a></li>
                 <li><a href="../../Personnel/notes/list_formation.php">Notes</a></li>
                 <li><a href="../../Personnel/user/list_register.php">Utilisateurs</a></li>
+                <li><a href="../../Message.php">Message</a></li>
                 <li><a href="../../logout.php">Deconnexion</a></li>
         </ul>
     </nav>

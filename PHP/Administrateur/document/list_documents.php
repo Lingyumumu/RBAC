@@ -5,9 +5,11 @@ session_start();
 
 $id_cours = $_SESSION['ID'] ;
 $role = $_SESSION['role'];
-if ($_SESSION['role'] != 'professeur') {
+if ($_SESSION['role'] != 'administrateur') {
     header("location: ../../login.php");
 }
+
+$id = $_GET['ID'];
 
 
 
@@ -62,11 +64,16 @@ $resultfilter = mysqli_query($connection, $queryfilter);
     </header>
 <nav>
     <ul>
-        <li><a href="../Home_Professeur.php">Accueil</a></li>
-        <li><a href="../Professeur/notes/list_etudiant_note.php">Notes</a></li>
-        <li><a href="../document/list_documents.php">Documents</a></li>
-        <li><a href="../plannings/list_planning.php">Plannings</a></li>
-        <li><a href="../../logout.php">Deconnexion</a></li>
+    <li><a href="../../Administrateur/Home_Admin.php">Accueil</a></li>
+            <li><a href="../../Administrateur/notes/list_formation.php">Notes</a></li>
+            <li><a href="../../Administrateur/cours/list_formation.php">Cours</a></li>
+            <li><a href="../../Administrateur/formations/list_formation.php">Formations</a></li>
+            <li><a href="../../Administrateur/document/list_formation.php">document</a></li>
+            <li><a href="../../Administrateur/plannings/list_formation.php">Planning</a></li>
+            <li><a href="../../Administrateur/user/list_user.php">Utilisateurs</a></li>
+            <li><a href="../../Administrateur/user/list_register.php">Inscription</a></li>
+            <li><a href="../../Message.php">Message</a></li>
+            <li><a href="../../logout.php">Deconnexion</a></li>
     </ul>
 </nav>
 

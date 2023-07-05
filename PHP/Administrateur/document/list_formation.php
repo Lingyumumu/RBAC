@@ -81,7 +81,7 @@ if (mysqli_num_rows($resultCours) > 0) {
         if ($formation != $prevFormation) {
             echo "<tr>
                     <td>$formation</td>
-                    <td><a href='../plannings/list_cours.php?nom_formation=$formation'>Les cours de la formation</a></td>
+                    <td><a href='../document/cours_assigner.php?nom_formation=$formation'>Les cours de la formation</a></td>
                   </tr>";
         }
 

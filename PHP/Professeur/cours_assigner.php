@@ -45,6 +45,7 @@ $resultCours = mysqli_query($connection, $queryCours);
             <li><a href="../Professeur/notes/list_etudiant_note.php">Notes</a></li>
             <li><a href="cours_assigner.php">Document</a></li>
             <li><a href="../Professeur/plannings/list_planning.php">Planning</a></li>
+            <li><a href="../Message.php">Message</a></li>
             <li><a href="../logout.php">Deconnexion</a></li>
         </ul>
     </nav>

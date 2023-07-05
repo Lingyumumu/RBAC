@@ -65,6 +65,7 @@ if (isset($_POST['btnAjouterNote'])) {
         <li><a href="../Professeur/notes/list_etudiant_note.php">Notes</a></li>
         <li><a href="../document/list_documents.php">Documents</a></li>
         <li><a href="../plannings/list_planning.php">Plannings</a></li>
+        <li><a href="../../Message.php">Message</a></li>
         <li><a href="../../logout.php">Deconnexion</a></li>
     </ul>
 </nav>

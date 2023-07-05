@@ -1,31 +1,29 @@
 <?php
-include('../../dbConn.php');
 session_start();
-
+include('../../dbConn.php');
 if ($_SESSION['role'] != 'administrateur') {
     header("location: ../../login.php");
 }
+
+$formation = $_GET['nom_formation'];
+
+// Vérifier si l'utilisateur est connecté avec un ID dans la session est différent de null
+
+$id = $_SESSION['ID'];
+
+
 // Récupérer les cours depuis la base de données avec le nom de l'enseignant et la formation
-$queryCours = "SELECT cours.*, user.prenom AS nom_enseignant, formations.nom AS nom_formation
-               FROM cours
-               INNER JOIN user ON cours.nom_prof = user.nom
-               INNER JOIN formations ON cours.nom_formation = formations.nom";
-                
-
-
+$queryCours = "SELECT * FROM cours WHERE nom_formation = '$formation' ";
 $resultCours = mysqli_query($connection, $queryCours);
 
 // Fermer la connexion à la base de données
-mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
 <html>
-<header>
-    <link rel="stylesheet" href="../../Administrateur/cours/list_cours.css">
-    <h1>Système de Gestion - EFREI</h1>
-</header>
 <head>
+    <title>Liste des cours - Administrateur</title>
+    <link rel="stylesheet" type="text/css" href="cours_assigner.css">
     <style>
         table {
             border-collapse: collapse;
@@ -38,10 +36,13 @@ mysqli_close($connection);
     </style>
 </head>
 <body>
-<h1>EFREI - Personnel Administratif</h1>
-        <nav>
-            <ul>
-            <li><a href="../../Administrateur/Home_Admin.php">Accueil</a></li>
+<header>
+        <h1>Système de Gestion - EFREI</h1>
+    </header>
+
+    <nav>
+        <ul>
+        <li><a href="../../Administrateur/Home_Admin.php">Accueil</a></li>
             <li><a href="../../Administrateur/notes/list_formation.php">Notes</a></li>
             <li><a href="../../Administrateur/cours/list_formation.php">Cours</a></li>
             <li><a href="../../Administrateur/formations/list_formation.php">Formations</a></li>
@@ -51,42 +52,35 @@ mysqli_close($connection);
             <li><a href="../../Administrateur/user/list_register.php">Inscription</a></li>
             <li><a href="../../Message.php">Message</a></li>
             <li><a href="../../logout.php">Deconnexion</a></li>
-            </ul>
-        </nav>
+        </ul>
+    </nav>
 
-<a href='create_cours.php'>ajouter un cours</a>
+<a href='plannings/list_planning.php'>ajouter un cours</a>
 
 <h2>Liste des cours</h2>
 
 <?php
 // Vérifier si des cours ont été trouvés
 if (mysqli_num_rows($resultCours) > 0) {
-    // Variable pour suivre le nom de la formation précédente
-    $prevFormation = '';
-
     // Afficher les cours dans un tableau
     echo "<table>
             <tr>
+                <th>Nom du cours</th>
                 <th>Formation</th>
-                <th colspan='4'>Actions</th>
+                <th>Actions</th>
             </tr>";
 
     while ($row = mysqli_fetch_assoc($resultCours)) {
         $idCours = $row['ID'];
-        $enseignant = $row['nom_enseignant'];
         $nomCours = $row['nom_cours'];
         $formation = $row['nom_formation'];
+        //<td><a href='document/list_documents.php?ID=$idCours'>Voir</a></td>
+        echo "<tr>
+                <td>$nomCours</td>
+                <td>$formation</td>
+                <td><a href='create_documents.php?ID=$idCours'>Ajouter un Cours</a></td>
 
-        // Vérifier si le nom de la formation est différent du précédent avant de l'afficher
-        if ($formation != $prevFormation) {
-            echo "<tr>
-                    <td>$formation</td>
-                    <td><a href='../plannings/list_cours.php?nom_formation=$formation'>Les cours de la formation</a></td>
-                  </tr>";
-        }
-
-        // Mettre à jour la variable du nom de formation précédent
-        $prevFormation = $formation;
+              </tr>";
     }
 
     echo "</table>";

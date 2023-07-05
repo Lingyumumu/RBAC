@@ -1,6 +1,10 @@
 <?php
 //step1: create a database connection
 include ('../../dbConn.php');
+session_start();
+if ($_SESSION['role'] != 'administrateur') {
+    header("location: ../../login.php");
+}
 ?>
 
 
@@ -18,14 +22,16 @@ include ('../../dbConn.php');
 
 <nav>
     <ul>
-        <li><a href="../Home_Admin.php">Accueil</a></li>
-        <li><a href="../notes/index_notes.php">Notes</a></li>
-        <li><a href="../cours/list_cours.php">Cours</a></li>
-        <li><a href="../formations/list_formation.php">Formations</a></li>
-        <li><a href="../documents/list_documents.php">document</a></li>
-        <li><a href="../plannings/list_planning.php">Planning</a></li>
-        <li><a href="list_user.php">Utilisateurs</a></li>
-        <li><a href="list_register.php">Inscription</a></li>
+    <li><a href="../../Administrateur/Home_Admin.php">Accueil</a></li>
+            <li><a href="../../Administrateur/notes/list_formation.php">Notes</a></li>
+            <li><a href="../../Administrateur/cours/list_formation.php">Cours</a></li>
+            <li><a href="../../Administrateur/formations/list_formation.php">Formations</a></li>
+            <li><a href="../../Administrateur/document/list_formation.php">document</a></li>
+            <li><a href="../../Administrateur/plannings/list_formation.php">Planning</a></li>
+            <li><a href="../../Administrateur/user/list_user.php">Utilisateurs</a></li>
+            <li><a href="../../Administrateur/user/list_register.php">Inscription</a></li>
+            <li><a href="../../Message.php">Message</a></li>
+            <li><a href="../../logout.php">Deconnexion</a></li>
     </ul>
 </nav>
 
