@@ -1,8 +1,12 @@
 <?php
 include('../../dbConn.php');
 
+session_start();  
+
+$idCours = $_GET['ID'];
+
 // Récupérer la liste des cours depuis la base de données
-$queryCours = "SELECT * FROM cours";
+$queryCours = "SELECT * FROM cours ";
 $resultCours = mysqli_query($connection, $queryCours);
 $rowCours = mysqli_fetch_assoc($resultCours);
 
@@ -44,11 +48,16 @@ if (isset($_GET['btnFilter'])) {
 
 // Récupérer la liste des plannings filtrés depuis la base de données
 $query = "SELECT plannings.ID, plannings.jour, plannings.heure_debut, plannings.heure_fin, cours.nom_formation, cours.nom_cours, user.nom AS nom_professeur, salles.nom AS nom_salle
-          FROM plannings
+          FROM plannings 
           INNER JOIN cours ON plannings.id_cours = cours.ID
           INNER JOIN user ON plannings.id_professeur = user.ID
           INNER JOIN salles ON plannings.id_salle = salles.ID
           $whereClause";
+
+if ($idCours != '') {
+    $query .= " AND plannings.id_cours = $idCours";
+}
+
 $result = mysqli_query($connection, $query);
 $row = mysqli_fetch_assoc($result);
 
@@ -83,11 +92,12 @@ $row = mysqli_fetch_assoc($result);
         <h1>EFREI - Personnel Administratif</h1>
         <nav>
             <ul>
-                <li><a href="../Personnel/Home_Personnel.php">Accueil</a></li>
-                <li><a href="../Personnel/cours/list_cours.php">Cours</a></li>
-                <li><a href="../Personnel/plannings/index_plannings.php">¨Planning</a></li>
-                <li><a href="../Personnel/notes/list_notes.php">Notes</a></li>
-                <li><a href="../Personnel/user/list_user.php">Utilisateurs</a></li>
+            <li><a href="../../Personnel/Home_Personnel.php">Accueil</a></li>
+                <li><a href="../../Personnel/cours/list_formation.php">Cours</a></li>
+                <li><a href="../../Personnel/plannings/list_formation.php">Planning</a></li>
+                <li><a href="../../Personnel/notes/list_formation.php">Notes</a></li>
+                <li><a href="../../Personnel/user/list_register.php">Utilisateurs</a></li>
+                <li><a href="../../logout.php">Deconnexion</a></li>
             </ul>
         </nav>
     </header>
@@ -101,7 +111,6 @@ $row = mysqli_fetch_assoc($result);
     }
 </style>
 <h2>Liste des plannings</h2>
-<a href="../cours/list_cours.php">Création planning</a>
 <form action="" method="get">
     <label for="ddlCours">Cours:</label>
     <select name="ddlCours">
@@ -143,7 +152,7 @@ $row = mysqli_fetch_assoc($result);
         <th>Heure de fin</th>
         <th>Professeur</th>
         <th>Salle</th>
-        <th colspan="2">Actions</th>
+        <th colspan="3">Actions</th>
     </tr>
     
     <?php while ($row = mysqli_fetch_assoc($result) ) : ?>

@@ -8,11 +8,6 @@ if ($_SESSION['role'] != 'professeur') {
 
 // Vérifier si l'utilisateur est connecté avec un ID dans la session est différent de null
 
-if (isset($_SESSION['ID']) == null || $_SESSION['role'] != 'professeur') {
-    header('Location: ../../login.php');
-    exit;
-}
-
 $id = $_SESSION['ID'];
 $nom = $_SESSION['nom'];
 

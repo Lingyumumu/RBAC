@@ -1,5 +1,10 @@
 <?php
 include('../../dbConn.php');
+session_start();
+
+if ($_SESSION['role'] != 'administrateur') {
+    header("location: ../../login.php");
+}
 
 $id_etudiant = $_GET['ID'];
 
@@ -11,32 +16,7 @@ $queryNotes = "SELECT notes.ID, notes.note, user.prenom AS etudiant, cours.nom_c
                WHERE user.ID = '$id_etudiant'"; // Ajouter la condition WHERE avec l'ID de l'étudiant
 $resultNotes = mysqli_query($connection, $queryNotes);
 
-// Filtres
-$filterCours = isset($_GET['cours']) ? $_GET['cours'] : '';
-$filterNote = isset($_GET['note']) ? $_GET['note'] : '';
-$filterEtudiant = isset($_GET['etudiant']) ? $_GET['etudiant'] : '';
 
-if (!empty($filterCours)) {
-    $queryNotes .= " WHERE cours.nom_cours LIKE '%$filterCours%'";
-}
-
-if (!empty($filterNote)) {
-    if (!empty($filterCours)) {
-        $queryNotes .= " AND notes.note = '$filterNote'";
-    } else {
-        $queryNotes .= " WHERE notes.note = '$filterNote'";
-    }
-}
-
-if (!empty($filterEtudiant)) {
-    if (!empty($filterCours) || !empty($filterNote)) {
-        $queryNotes .= " AND user.prenom LIKE '%$filterEtudiant%'";
-    } else {
-        $queryNotes .= " WHERE user.prenom LIKE '%$filterEtudiant%'";
-    }
-}
-
-$resultNotes = mysqli_query($connection, $queryNotes);
 
 // Fermer la connexion à la base de données
 mysqli_close($connection);
@@ -67,10 +47,12 @@ mysqli_close($connection);
     </header>
 <nav>
     <ul>
-        <li><a href="../Home_Professeur.php">Accueil</a></li>
-        <li><a href="../notes/list_note.php">Notes</a></li>
-        <li><a href="../cours_assigner.php">Document</a></li>
-        <li><a href="../plannings/list_planning.php">Plannings</a></li>
+    <li><a href="../../Administrateur/Home_Admin.php">Accueil</a></li>
+                <li><a href="../../Personnel/cours/list_formation.php">Cours</a></li>
+                <li><a href="../../Personnel/plannings/list_formation.php">Planning</a></li>
+                <li><a href="../../Personnel/notes/list_formation.php">Notes</a></li>
+                <li><a href="../../Personnel/user/list_register.php">Utilisateurs</a></li>
+                <li><a href="../../logout.php">Deconnexion</a></li>
     </ul>
 </nav>
 
@@ -86,18 +68,6 @@ mysqli_close($connection);
 <h2>Liste des notes</h2>
 <a href="create_note.php">Ajouter une note</a><br>
 
-<form action="" method="GET">
-    <label for="cours">Cours :</label>
-    <input type="text" name="cours" id="cours" value="<?php echo $filterCours; ?>">
-
-    <label for="note">Note :</label>
-    <input type="text" name="note" id="note" value="<?php echo $filterNote; ?>">
-
-    <label for="etudiant">Étudiant :</label>
-    <input type="text" name="etudiant" id="etudiant" value="<?php echo $filterEtudiant; ?>">
-
-    <input type="submit" value="Filtrer">
-</form>
 
 <style>
     table {

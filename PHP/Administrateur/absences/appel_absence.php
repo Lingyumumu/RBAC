@@ -2,6 +2,9 @@
 // Démarrer la session
 session_start();
 include('../../dbConn.php');
+if ($_SESSION['role'] != 'personnel') {
+    header("location: ../../login.php");
+}
 
 // Vérifier si l'ID du planning est passé en paramètre
 if (isset($_GET['ID'])) {
@@ -89,59 +92,68 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Formulaire d'absences</title>
-    <link href="appel_absence.css" rel="stylesheet">
-</head>
-<body>
-<nav>
-    <ul>
-        <li><a href="../Home_Admin.php">Accueil</a></li>
-        <li><a href="../notes/index_notes.php">Notes</a></li>
-        <li><a href="../cours/list_cours.php">Cours</a></li>
-        <li><a href="../formations/list_formation.php">Formations</a></li>
-        <li><a href="../document/list_documents.php">document</a></li>
-        <li><a href="../plannings/list_planning.php">Planning</a></li>
-        <li><a href="../user/list_user.php">Utilisateurs</a></li>
-        <li><a href="../user/list_register.php">Inscription</a></li>
-    </ul>
-</nav>
-<style>
-    table {
-        border-collapse: collapse;
-    }
 
-    table, th, td {
-        border: 1px solid black;
-        padding: 5px;
-    }
-</style>
-<form action="" method="post">
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Absent</th>
-            <th>Action</th>
-        </tr>
-        <?php while ($row = mysqli_fetch_assoc($resultEtudiants)) : ?>
+<head>
+    <link rel="stylesheet" href="../../Administrateur/absences/appel_absence.css">
+    <title>Formulaire d'absences</title>
+</head>
+
+<body>
+    <header>
+        <h1>Système de Gestion - EFREI</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="../../Personnel/Home_Personnel.php">Accueil</a></li>
+                <li><a href="../../Personnel/cours/list_formation.php">Cours</a></li>
+                <li><a href="../../Personnel/plannings/list_formation.php">Planning</a></li>
+                <li><a href="../../Personnel/notes/list_formation.php">Notes</a></li>
+                <li><a href="../../Personnel/user/list_register.php">Utilisateurs</a></li>
+                <li><a href="../../logout.php">Deconnexion</a></li>
+        </ul>
+    </nav>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+    <form action="" method="post">
+        <table>
             <tr>
-                <td><?php echo $row['ID']; ?></td>
-                <td><?php echo $row['nom']; ?></td>
-                <td><?php echo $row['prenom']; ?></td>
-                <td><input type="checkbox" name="absent[]"
-                           value="<?php echo $row['ID']; ?>" <?php if (in_array($row['ID'], $existingAbsences)) echo "checked"; ?>>
-                </td>
-                <td><a href="total_absences.php?etudiant=<?php echo $row['ID']; ?>">Check absence</a></td>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Absent</th>
+                <th>Action</th>
             </tr>
-        <?php endwhile; ?>
-    </table>
-    <input type="submit" value="Enregistrer">
-</form>
-<a href="../plannings/list_planning.php">Liste planning</a>
-<footer>
-    <p>© 2023 EFREI - Tous droits réservés</p>
-</footer>
+            <?php while ($row = mysqli_fetch_assoc($resultEtudiants)): ?>
+                <tr>
+                    <td>
+                        <?php echo $row['ID']; ?>
+                    </td>
+                    <td>
+                        <?php echo $row['nom']; ?>
+                    </td>
+                    <td>
+                        <?php echo $row['prenom']; ?>
+                    </td>
+                    <td><input type="checkbox" name="absent[]" value="<?php echo $row['ID']; ?>" <?php if (in_array($row['ID'], $existingAbsences))
+                           echo "checked"; ?>>
+                    </td>
+                    <td><a href="total_absences.php?etudiant=<?php echo $row['ID']; ?>">Check absence</a></td>
+                </tr>
+            <?php endwhile; ?>
+        </table>
+        <input type="submit" value="Enregistrer">
+    </form>
+    <a href="../plannings/list_planning.php">Liste planning</a>
 </body>
+
 </html>

@@ -1,9 +1,17 @@
 <?php
 include('../../dbConn.php');
 
+session_start();  
+if ($_SESSION['role'] != 'administrateur') {
+    header("location: ../../login.php");
+}
+
+$idCours = $_GET['ID'];
+
 // Récupérer la liste des cours depuis la base de données
-$queryCours = "SELECT ID, nom_cours FROM cours";
+$queryCours = "SELECT * FROM cours ";
 $resultCours = mysqli_query($connection, $queryCours);
+$rowCours = mysqli_fetch_assoc($resultCours);
 
 $queryProfessors = "SELECT ID, nom FROM user WHERE role = 'professeur'";
 $resultProfessors = mysqli_query($connection, $queryProfessors);
@@ -42,23 +50,29 @@ if (isset($_GET['btnFilter'])) {
 
 
 // Récupérer la liste des plannings filtrés depuis la base de données
-$query = "SELECT plannings.ID, plannings.jour, plannings.heure_debut, plannings.heure_fin, cours.nom_formation , cours.nom_cours, user.nom AS nom_professeur, salles.nom AS nom_salle
-          FROM plannings
+$query = "SELECT plannings.ID, plannings.jour, plannings.heure_debut, plannings.heure_fin, cours.nom_formation, cours.nom_cours, user.nom AS nom_professeur, salles.nom AS nom_salle
+          FROM plannings 
           INNER JOIN cours ON plannings.id_cours = cours.ID
           INNER JOIN user ON plannings.id_professeur = user.ID
           INNER JOIN salles ON plannings.id_salle = salles.ID
           $whereClause";
+
+if ($idCours != '') {
+    $query .= " AND plannings.id_cours = $idCours";
+}
+
 $result = mysqli_query($connection, $query);
+$row = mysqli_fetch_assoc($result);
 
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="create_planning.css">
+    <link rel="stylesheet" href="../../Administrateur/plannings/list_planning.css">
     <title>Liste des plannings</title>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $("#datepicker").datepicker({
                 dateFormat: 'dd-mm-yy',
                 altFormat: 'mm',
@@ -66,33 +80,40 @@ $result = mysqli_query($connection, $query);
             });
         });
     </script>
-
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
-<nav>
-    <ul>
-        <li><a href="../Home_Admin.php">Accueil</a></li>
-        <li><a href="../notes/index_notes.php">Notes</a></li>
-        <li><a href="../cours/list_cours.php">Cours</a></li>
-        <li><a href="../formations/list_formation.php">Formations</a></li>
-        <li><a href="../documents/list_documents.php">document</a></li>
-        <li><a href="list_planning.php">Planning</a></li>
-        <li><a href="../user/list_user.php">Utilisateurs</a></li>
-        <li><a href="../user/list_register.php">Inscription</a></li>
-    </ul>
-</nav>
+<header>
+        <h1>EFREI - Personnel Administratif</h1>
+        <nav>
+            <ul>
+            <li><a href="../../Personnel/Home_Personnel.php">Accueil</a></li>
+                <li><a href="../../Personnel/cours/list_formation.php">Cours</a></li>
+                <li><a href="../../Personnel/plannings/list_formation.php">Planning</a></li>
+                <li><a href="../../Personnel/notes/list_formation.php">Notes</a></li>
+                <li><a href="../../Personnel/user/list_register.php">Utilisateurs</a></li>
+                <li><a href="../../logout.php">Deconnexion</a></li>
+            </ul>
+        </nav>
+    </header>
 <style>
     table {
         border-collapse: collapse;
     }
-
     table, th, td {
         border: 1px solid black;
         padding: 5px;
     }
 </style>
 <h2>Liste des plannings</h2>
-<a href="../cours/list_cours.php">Création planning</a>
 <form action="" method="get">
     <label for="ddlCours">Cours:</label>
     <select name="ddlCours">
@@ -127,35 +148,34 @@ $result = mysqli_query($connection, $query);
 
 <table>
     <tr>
-        <th>ID</th>
+    <th>Formation</th>
+        <th>Cours</th>
         <th>Jour</th>
         <th>Heure de début</th>
         <th>Heure de fin</th>
-        <th>Formation</th>
-        <th>Cours</th>
         <th>Professeur</th>
         <th>Salle</th>
         <th colspan="3">Actions</th>
     </tr>
-    <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-        <tr>
-            <td><?php echo $row['ID']; ?></td>
+    
+    <?php while ($row = mysqli_fetch_assoc($result) ) : ?>
+
+        <tr>     
+            <td><?php echo $row['nom_formation']; ?></td>     
+            <td><?php echo $row['nom_cours']; ?></td>  
             <td><?php echo $row['jour']; ?></td>
             <td><?php echo $row['heure_debut']; ?></td>
             <td><?php echo $row['heure_fin']; ?></td>
-            <td><?php echo $row['nom_formation']; ?></td>
-            <td><?php echo $row['nom_cours']; ?></td>
             <td><?php echo $row['nom_professeur']; ?></td>
             <td><?php echo $row['nom_salle']; ?></td>
             <td><a href="../absences/appel_absence.php?ID=<?php echo $row['ID']; ?>">Appel absence</a></td>
             <td><a href="edit_planning.php?ID=<?php echo $row['ID']; ?>">Modifier</a></td>
             <td><a href="delete_planning.php?ID=<?php echo $row['ID']; ?>">Supprimer</a></td>
+            
         </tr>
     <?php endwhile; ?>
+
 </table>
-<footer>
-    <p>© 2023 EFREI - Tous droits réservés</p>
-</footer>
 </body>
 </html>
 

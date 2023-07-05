@@ -56,7 +56,6 @@ mysqli_close($connection);
             </ul>
         </nav>
 
-<a href='create_cours.php'>ajouter un cours</a>
 
 <h2>Liste des cours <?php echo $formation ?></h2>
 
@@ -66,7 +65,6 @@ if (mysqli_num_rows($resultCours) > 0) {
     // Afficher les cours dans un tableau
     echo "<table>
             <tr>
-                <th>ID</th>
                 <th>Enseignant assigné</th>
                 <th>Nom du cours</th>
                 <th colspan='4'>Actions</th>
@@ -79,10 +77,10 @@ if (mysqli_num_rows($resultCours) > 0) {
         $formation = $row['nom_formation'];
 
         echo "<tr>
-                <td>$idCours</td>
                 <td>$enseignant</td>
                 <td>$nomCours</td>
-                <td><a href='create_prof.php?ID=$idCours'>Ajouter un prof</a></td>
+                <td><a href='../plannings/list_planning.php?ID=$idCours'>Voir Planning</a></td>
+                <td><a href='../plannings/create_planning.php?ID=$idCours'>Ajouter Planning</a></td>
                 <td><a href='edit_cours.php?ID=$idCours'>Modifier</a></td>
                 <td><a href='delete_cours.php?id=$idCours'>Supprimer</a></td>
               </tr>";
@@ -92,7 +90,6 @@ if (mysqli_num_rows($resultCours) > 0) {
 } else {
     echo "Aucun cours trouvé.";
 }
-//<td><a href='../plannings/create_planning.php?ID=$idCours'>Planning</a></td>
 ?>
 
 </body>

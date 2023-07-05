@@ -46,7 +46,7 @@
                 header("location: ../PHP/Professeur/Home_Professeur.php");
             }
             if($_SESSION['role'] == 'personnel'){
-                header("location: ../PHP/Personnel_Admin/Home_Personnel_Admin.php");
+                header("location: ../PHP/Personnel/Home_Personnel.php");
             }
             if ($_SESSION['role'] == 'administrateur') {
                 header("location: ../PHP/Administrateur/Home_Admin.php");

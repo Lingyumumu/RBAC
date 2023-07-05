@@ -1,6 +1,7 @@
 <?php
 //step1: create a database connection
 include '../../dbConn.php';
+session_start();
 /*if (isset($_SESSION['role']) != 'administrateur' ){
     header("location: ../login.php");
 }*/
@@ -11,13 +12,22 @@ if (isset($_POST['btnRegister'])) {
     $email = $prenom . "." . $nom . "@efrei.fr";
     $mdp = $_POST['txtmdp'];
     $role = $_POST['txtrole'];
-    $formation = $_POST['txtformation'];
 
 
     // Check if password and confirmation are the same
     if ($_POST['txtmdp'] != $_POST['txtmdp2']) {
         echo "Les mots de passe ne correspondent pas.";
         exit();
+    }
+
+    if ($role = $_POST['txtrole'] == 'personnel' || $role = $_POST['txtrole'] == 'administrateur') {
+        $formation = '';
+        $role = $_POST['txtrole'];
+    } else {
+        $formation = $_POST['txtformation'];
+        $role = $_POST['txtrole'];
+
+
     }
 
     // Check if user already exists

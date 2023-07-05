@@ -29,12 +29,7 @@ if (isset($_POST['btnRegister'])) {
     $id_professeur = $rowProfessors['ID'];
     $id_salle = $_POST['txtSalle'];
 
-    echo $jour. "<br>";
-    echo $heure_debut. "<br>";
-    echo $heure_fin. "<br>" ;
-    echo $id_cours. "<br>";
-    echo $id_professeur. "<br>";
-    echo $id_salle. "<br>";
+
 
     // Créer la requête de creation d'un planning
     $query = "INSERT INTO plannings (jour, heure_debut, heure_fin, id_cours, id_professeur,id_salle ) VALUES ('$jour', '$heure_debut', '$heure_fin', '$id_cours', '$id_professeur', '$id_salle')";
@@ -76,20 +71,17 @@ if (isset($_POST['btnRegister'])) {
 
 <nav>
         <ul>
-            <li><a href="../Home_Admin.php">Accueil</a></li>
-            <li><a href="../notes/list_note.php">Notes</a></li>
-            <li><a href="../cours/list_cours.php">Cours</a></li>
-            <li><a href="../formations/list_formation.php">Formations</a></li>
-            <li><a href="../document/list_documents.php">document</a></li>
-            <li><a href="../plannings/list_planning.php">Horaires</a></li>
-            <li><a href="">Absences</a></li>
-            <li><a href="../user/list_user.php">Utilisateurs</a></li>
-            <li><a href="../user/list_register.php">Inscription</a></li>
+        <li><a href="../../Personnel/Home_Personnel.php">Accueil</a></li>
+                <li><a href="../../Personnel/cours/list_formation.php">Cours</a></li>
+                <li><a href="../../Personnel/plannings/list_formation.php">Planning</a></li>
+                <li><a href="../../Personnel/notes/list_formation.php">Notes</a></li>
+                <li><a href="../../Personnel/user/list_register.php">Utilisateurs</a></li>
+                <li><a href="../../logout.php">Deconnexion</a></li>
         </ul>
     </nav>
 
 <h2>Création Planning</h2>
-<a href="list_planning.php"><button>Liste planning</button></a>
+<a href="list_formation.php"><button>Liste planning</button></a>
 <form action="" method="post">
     Jour: <input type="text" id="datepicker" name="txtjour" required><br>
 

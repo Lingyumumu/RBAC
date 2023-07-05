@@ -1,5 +1,9 @@
 <?php
 include('../../dbConn.php');
+session_start();
+if ($_SESSION['role'] != 'personnel') {
+    header("location: ../../login.php");
+}
 
 // Vérifier si l'ID de l'étudiant est passé en paramètre
 if (isset($_GET['etudiant'])) {
@@ -32,8 +36,8 @@ if (isset($_GET['etudiant'])) {
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="../../Administrateur/absences/total_absences.css">
     <title>Total des absences</title>
-    <link rel="stylesheet" href="total_absences.css">
     <style>
         table {
             border-collapse: collapse;
@@ -46,16 +50,17 @@ if (isset($_GET['etudiant'])) {
     </style>
 </head>
 <body>
+<header>
+        <h1>Système de Gestion - EFREI</h1>
+    </header>
 <nav>
     <ul>
-        <li><a href="../Home_Admin.php">Accueil</a></li>
-        <li><a href="../notes/index_notes.php">Notes</a></li>
-        <li><a href="../cours/list_cours.php">Cours</a></li>
-        <li><a href="../formations/list_formation.php">Formations</a></li>
-        <li><a href="../document/list_documents.php">document</a></li>
-        <li><a href="../plannings/list_planning.php">Planning</a></li>
-        <li><a href="../user/list_user.php">Utilisateurs</a></li>
-        <li><a href="../user/list_register.php">Inscription</a></li>
+                <li><a href="../../Personnel/Home_Personnel.php">Accueil</a></li>
+                <li><a href="../../Personnel/cours/list_formation.php">Cours</a></li>
+                <li><a href="../../Personnel/plannings/list_formation.php">Planning</a></li>
+                <li><a href="../../Personnel/notes/list_formation.php">Notes</a></li>
+                <li><a href="../../Personnel/user/list_register.php">Utilisateurs</a></li>
+                <li><a href="../../logout.php">Deconnexion</a></li>
     </ul>
 </nav>
 <h2>Total des absences</h2>
@@ -91,8 +96,5 @@ if (isset($rowEtudiant)) {
     echo "<p>Aucune information d'étudiant trouvée.</p>";
 }
 ?>
-<footer>
-    <p>© 2023 EFREI - Tous droits réservés</p>
-</footer>
 </body>
 </html>

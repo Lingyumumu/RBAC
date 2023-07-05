@@ -1,9 +1,8 @@
 <?php
 include '../../dbConn.php';
 
-if (isset($_GET['ID']) == null) {
-    header("location: edit_note.php");
-    exit();
+if ($_SESSION['role'] != 'administrateur') {
+    header("location: ../../login.php");
 }
 
 $id = $_GET['ID'];
@@ -33,40 +32,32 @@ $count = mysqli_num_rows($result);
 
 <!DOCTYPE html>
 <html>
-
 <head>
+    <link rel="stylesheet" href="../../Administrateur/notes/edit_note.css">
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="edit_note.css">
 </head>
-
 <body>
 <header>
-    <h1>Système de Gestion - EFREI</h1>
-</header>
-
-<nav>
-    <ul>
-        <li><a href="../Home_Admin.php">Accueil</a></li>
-        <li><a href="index_notes.php">Notes</a></li>
-        <li><a href="../cours/list_cours.php">Cours</a></li>
-        <li><a href="../formations/list_formation.php">Formations</a></li>
-        <li><a href="../document/list_documents.php">document</a></li>
-        <li><a href="../plannings/list_planning.php">Planning</a></li>
-        <li><a href="../user/list_user.php">Utilisateurs</a></li>
-        <li><a href="../user/list_register.php">Inscription</a></li>
-    </ul>
-</nav>
-    <a href="list_note.php">Liste des notes</a>
-    <h1>Page de modification</h1>
-    <form action='' method='post'>
-        Note: <input type='text' name='txtnote' value="<?php echo $row['note'] ?>" required><br>
-        <br><br>
-        <input type='submit' name='btnUpdate' value='Mettre à jour'>
-    </form>
+        <h1>EFREI - Personnel Administratif</h1>
+        <nav>
+            <ul>
+                <li><a href="../../Personnel/Home_Personnel.php">Accueil</a></li>
+                <li><a href="../../Personnel/cours/list_formation.php">Cours</a></li>
+                <li><a href="../../Personnel/plannings/list_formation.php">Planning</a></li>
+                <li><a href="../../Personnel/notes/list_formation.php">Notes</a></li>
+                <li><a href="../../Personnel/user/list_register.php">Utilisateurs</a></li>
+                <li><a href="../../logout.php">Deconnexion</a></li>
+            </ul>
+        </nav>
+    </header>
+<a href="list_note.php">Liste des notes</a>
+<h1>Page de modification</h1>
+<form action='' method='post'>
+    Note: <input type='text' name='txtnote' value="<?php echo $row['note'] ?>" required><br>
     <br><br>
-<footer>
-    <p>© 2023 EFREI - Tous droits réservés</p>
-</footer>
+    <input type='submit' name='btnUpdate' value='Mettre à jour'>
+</form>
+<br><br>
 </body>
 </html>

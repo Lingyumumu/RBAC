@@ -29,35 +29,27 @@ $query = "SELECT * FROM cours WHERE ID = $id";
 $result = mysqli_query($connection, $query);
 $row = mysqli_fetch_assoc($result);
 
+echo "<a href='list_cours.php'>Aller à la liste cours</a>";
 ?>
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="../../Administrateur/cours/edit_cours.css">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="edit_cours.css">
+    <title></title>
 </head>
-
-<header>
-    <h1>Système de Gestion - EFREI</h1>
-</header>
-
-<nav>
-        <ul>
-            <li><a href="../Home_Admin.php">Accueil</a></li>
-            <li><a href="../notes/index_notes.php">Notes</a></li>
-            <li><a href="../cours/list_cours.php">Cours</a></li>
-            <li><a href="../formations/list_formation.php">Formations</a></li>
-            <li><a href="../document/list_documents.php">document</a></li>
-            <li><a href="../plannings/list_planning.php">Planning</a></li>
-            <li><a href="../user/list_user.php">Utilisateurs</a></li>
-            <li><a href="../user/list_register.php">Inscription</a></li>
-        </ul>
-    </nav>
-
 <body>
-<a href='list_cours.php'>liste cours</a>
-
     <h1>Page de modification</h1>
+        <nav>
+            <ul>
+            <li><a href="../../Personnel/Home_Personnel.php">Accueil</a></li>
+                <li><a href="../../Personnel/cours/list_formation.php">Cours</a></li>
+                <li><a href="../../Personnel/plannings/list_formation.php">Planning</a></li>
+                <li><a href="../../Personnel/notes/list_formation.php">Notes</a></li>
+                <li><a href="../../Personnel/user/list_register.php">Utilisateurs</a></li>
+                <li><a href="../../logout.php">Deconnexion</a></li>
+            </ul>
+        </nav>
     <form action='' method='post'>
         Nom du Cours: <input type='text' name='txtnomc' value="<?php echo $row['nom_cours'] ?>" required><br>
         Nom de Formation: <select name="txtnomf">
@@ -75,9 +67,7 @@ $row = mysqli_fetch_assoc($result);
         <input type='submit' name='btnUpdate' value='Mettre à jour'>
     </form>
     <br><br>
-<footer>
-    <p>© 2023 EFREI - Tous droits réservés</p>
-</footer>
+    <a href='list_formation.php'>Aller à la liste formation</a>
 </body>
 </html>
 

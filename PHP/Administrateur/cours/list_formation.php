@@ -1,22 +1,12 @@
 <?php
-session_start();
 include('../../dbConn.php');
-
-$formation = $_GET['nom_formation'];
-
-if($_GET['nom_formation'] == 'null'){
-    header("location: ../Personnel/Home_Personnel.php");
-}
-
+session_start();
 // Récupérer les cours depuis la base de données avec le nom de l'enseignant et la formation
 $queryCours = "SELECT cours.*, user.prenom AS nom_enseignant, formations.nom AS nom_formation
                FROM cours
                INNER JOIN user ON cours.nom_prof = user.nom
-               INNER JOIN formations ON cours.nom_formation = formations.nom
-               WHERE nom_formation = '$formation'";
-               
-
-
+               INNER JOIN formations ON cours.nom_formation = formations.nom";
+                
 
 
 $resultCours = mysqli_query($connection, $queryCours);
@@ -58,17 +48,18 @@ mysqli_close($connection);
 
 <a href='create_cours.php'>ajouter un cours</a>
 
-<h2>Liste des cours <?php echo $formation ?></h2>
+<h2>Liste des cours</h2>
 
 <?php
 // Vérifier si des cours ont été trouvés
 if (mysqli_num_rows($resultCours) > 0) {
+    // Variable pour suivre le nom de la formation précédente
+    $prevFormation = '';
+
     // Afficher les cours dans un tableau
     echo "<table>
             <tr>
-                <th>ID</th>
-                <th>Enseignant assigné</th>
-                <th>Nom du cours</th>
+                <th>Formation</th>
                 <th colspan='4'>Actions</th>
             </tr>";
 
@@ -78,21 +69,22 @@ if (mysqli_num_rows($resultCours) > 0) {
         $nomCours = $row['nom_cours'];
         $formation = $row['nom_formation'];
 
-        echo "<tr>
-                <td>$idCours</td>
-                <td>$enseignant</td>
-                <td>$nomCours</td>
-                <td><a href='create_prof.php?ID=$idCours'>Ajouter un prof</a></td>
-                <td><a href='edit_cours.php?ID=$idCours'>Modifier</a></td>
-                <td><a href='delete_cours.php?id=$idCours'>Supprimer</a></td>
-              </tr>";
+        // Vérifier si le nom de la formation est différent du précédent avant de l'afficher
+        if ($formation != $prevFormation) {
+            echo "<tr>
+                    <td>$formation</td>
+                    <td><a href='../cours/list_cours.php?nom_formation=$formation'>Les cours de la formation</a></td>
+                  </tr>";
+        }
+
+        // Mettre à jour la variable du nom de formation précédent
+        $prevFormation = $formation;
     }
 
     echo "</table>";
 } else {
     echo "Aucun cours trouvé.";
 }
-//<td><a href='../plannings/create_planning.php?ID=$idCours'>Planning</a></td>
 ?>
 
 </body>

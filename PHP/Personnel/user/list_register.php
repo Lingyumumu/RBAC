@@ -49,14 +49,12 @@ echo '<a href="../../index.php">Retour</a>';
 
     <nav>
         <ul>
-            <li><a href="../Home_Admin.php">Accueil</a></li>
-            <li><a href="../notes/list_note.php">Notes</a></li>
-            <li><a href="../cours/list_cours.php">Cours</a></li>
-            <li><a href="../formations/list_formation.php">Formations</a></li>
-            <li><a href="../document/list_documents.php">document</a></li>
-            <li><a href="../plannings/list_planning.php">Horaires</a></li>
-            <li><a href="">Absences</a></li>
-            <li><a href="../user/list_user.php">Utilisateurs</a></li>
+                <li><a href="../../Personnel/Home_Personnel.php">Accueil</a></li>
+                <li><a href="../../Personnel/cours/list_formation.php">Cours</a></li>
+                <li><a href="../../Personnel/plannings/list_formation.php">Planning</a></li>
+                <li><a href="../../Personnel/notes/list_formation.php">Notes</a></li>
+                <li><a href="../../Personnel/user/list_register.php">Utilisateurs</a></li>
+                <li><a href="../../logout.php">Deconnexion</a></li>
         </ul>
     </nav>
 

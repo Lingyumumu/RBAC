@@ -1,11 +1,20 @@
 <?php
+session_start();
 include('../../dbConn.php');
+
+$formation = $_GET['nom_formation'];
+
+if($_GET['nom_formation'] == 'null'){
+    header("location: ../Personnel/Home_Personnel.php");
+}
 
 // Récupérer les cours depuis la base de données avec le nom de l'enseignant et la formation
 $queryCours = "SELECT cours.*, user.prenom AS nom_enseignant, formations.nom AS nom_formation
                FROM cours
                INNER JOIN user ON cours.nom_prof = user.nom
-               INNER JOIN formations ON cours.nom_formation = formations.nom";
+               INNER JOIN formations ON cours.nom_formation = formations.nom
+               WHERE nom_formation = '$formation'";
+               
 
 
 
@@ -38,17 +47,18 @@ mysqli_close($connection);
 <h1>EFREI - Personnel Administratif</h1>
         <nav>
             <ul>
-                <li><a href="../Personnel/Home_Personnel.php">Accueil</a></li>
-                <li><a href="../Personnel/cours/list_cours.php">Cours</a></li>
-                <li><a href="../Personnel/plannings/index_plannings.php">¨Planning</a></li>
-                <li><a href="../Personnel/notes/list_notes.php">Notes</a></li>
-                <li><a href="../Personnel/user/list_user.php">Utilisateurs</a></li>
+                <li><a href="../../Personnel/Home_Personnel.php">Accueil</a></li>
+                <li><a href="../../Personnel/cours/list_formation.php">Cours</a></li>
+                <li><a href="../../Personnel/plannings/list_formation.php">Planning</a></li>
+                <li><a href="../../Personnel/notes/list_formation.php">Notes</a></li>
+                <li><a href="../../Personnel/user/list_register.php">Utilisateurs</a></li>
+                <li><a href="../../logout.php">Deconnexion</a></li>
             </ul>
         </nav>
 
 <a href='create_cours.php'>ajouter un cours</a>
 
-<h2>Liste des cours</h2>
+<h2>Liste des cours <?php echo $formation ?></h2>
 
 <?php
 // Vérifier si des cours ont été trouvés
@@ -59,7 +69,6 @@ if (mysqli_num_rows($resultCours) > 0) {
                 <th>ID</th>
                 <th>Enseignant assigné</th>
                 <th>Nom du cours</th>
-                <th>Formation</th>
                 <th colspan='4'>Actions</th>
             </tr>";
 
@@ -73,8 +82,6 @@ if (mysqli_num_rows($resultCours) > 0) {
                 <td>$idCours</td>
                 <td>$enseignant</td>
                 <td>$nomCours</td>
-                <td>$formation</td>
-                <td><a href='../plannings/create_planning.php?ID=$idCours'>Planning</a></td>
                 <td><a href='create_prof.php?ID=$idCours'>Ajouter un prof</a></td>
                 <td><a href='edit_cours.php?ID=$idCours'>Modifier</a></td>
                 <td><a href='delete_cours.php?id=$idCours'>Supprimer</a></td>
@@ -85,6 +92,7 @@ if (mysqli_num_rows($resultCours) > 0) {
 } else {
     echo "Aucun cours trouvé.";
 }
+//<td><a href='../plannings/create_planning.php?ID=$idCours'>Planning</a></td>
 ?>
 
 </body>

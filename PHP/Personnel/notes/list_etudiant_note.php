@@ -3,7 +3,7 @@
 include ('../../dbConn.php');
 session_start();
 
-if ($_SESSION['role'] != 'administrateur') {
+if ($_SESSION['role'] != 'personnel') {
     header("location: ../../login.php");
 }
 

@@ -1,6 +1,10 @@
 <?php
+session_start();
 include('../../dbConn.php');
 
+if ($_SESSION['role'] != 'administrateur') {
+    header("location: ../../login.php");
+}
 // Vérifier si la clé 'cours' existe dans $_GET
 $id = $_GET['ID'];
 if ($id == null) {
@@ -56,7 +60,7 @@ if (isset($_POST['btnRegister'])) {
 <html>
 <head>
     <title>Création Planning</title>
-    <link rel="stylesheet" href="edit_planning.css">
+    <link rel="stylesheet" href="../../Administrateur/plannings/edit_planning.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -71,19 +75,17 @@ if (isset($_POST['btnRegister'])) {
 <body>
 <nav>
     <ul>
-        <li><a href="../Home_Admin.php">Accueil</a></li>
-        <li><a href="../notes/index_notes.php">Notes</a></li>
-        <li><a href="../cours/list_cours.php">Cours</a></li>
-        <li><a href="../formations/list_formation.php">Formations</a></li>
-        <li><a href="../documents/list_documents.php">document</a></li>
-        <li><a href="list_planning.php">Planning</a></li>
-        <li><a href="../user/list_user.php">Utilisateurs</a></li>
-        <li><a href="../user/list_register.php">Inscription</a></li>
+                <li><a href="../../Personnel/Home_Personnel.php">Accueil</a></li>
+                <li><a href="../../Personnel/cours/list_formation.php">Cours</a></li>
+                <li><a href="../../Personnel/plannings/list_formation.php">Planning</a></li>
+                <li><a href="../../Personnel/notes/list_formation.php">Notes</a></li>
+                <li><a href="../../Personnel/user/list_register.php">Utilisateurs</a></li>
+                <li><a href="../../logout.php">Deconnexion</a></li>
     </ul>
 </nav>
 
 <h2>Création Planning</h2>
-<a href="list_planning.php"><button>Liste planning</button></a>
+<a href="list_formation.php"><button>Liste planning</button></a>
 <?php  
     if (isset($_POST['btnRegister'])) {
         echo "<br> Jour plannifier actuel : " . $jour;
@@ -175,8 +177,5 @@ if (isset($_POST['btnRegister'])) {
 
     <input type="submit" name="btnRegister" value="Créer Planning">
 </form>
-<footer>
-    <p>© 2023 EFREI - Tous droits réservés</p>
-</footer>
 </body>
 </html>
