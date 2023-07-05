@@ -1,7 +1,8 @@
 <?php
 include('../../dbConn.php');
 session_start();
-//Si l'utilisateur n'est pas connecté ou n'est pas un étudiant, le rediriger vers la page de connexion
+
+// Si l'utilisateur n'est pas connecté ou n'est pas un étudiant, le rediriger vers la page de connexion
 if (!isset($_SESSION['role']) || $_SESSION['role'] != 'etudiant') {
     header('Location: ../../login.php');
     exit;
@@ -11,7 +12,7 @@ $id = $_SESSION['ID'];
 $queryformation = "SELECT formation FROM user WHERE ID = '$id'";
 $resultformation = mysqli_query($connection, $queryformation);
 $rowformation = mysqli_fetch_assoc($resultformation);
-$formation = $rowformation['formation']; 
+$formation = $rowformation['formation'];
 
 // Récupérer la liste des cours depuis la base de données
 $queryCours = "SELECT ID, nom_cours FROM cours WHERE nom_formation = '$formation'";
@@ -24,42 +25,13 @@ $resultProfessors = mysqli_query($connection, $queryProfessors);
 $querySalles = "SELECT ID, nom FROM salles";
 $resultSalles = mysqli_query($connection, $querySalles);
 
-// Filtrer les plannings en fonction des critères sélectionnés
-$whereClause = '';
-$whereConditions = array();
-
-/*
-if (isset($_GET['btnFilter'])) {
-    $coursFilter = $_GET['ddlCours'];
-    $jourFilter = isset($_GET['txtjour']) ? $_GET['txtjour'] : '';
-    $salleFilter = $_GET['ddlSalles'];
-    $professeurFilter = $_GET['ddlProfesseurs'];
-
-    if ($coursFilter != '0') {
-        $whereConditions[] = "plannings.id_cours = '$coursFilter'";
-    }
-    if (!empty($jourFilter)) {
-        $whereConditions[] = "plannings.jour = '$jourFilter'";
-    }
-    if ($salleFilter != '0') {
-        $whereConditions[] = "plannings.id_salle = '$salleFilter'";
-    }
-    if ($professeurFilter != '0') {
-        $whereConditions[] = "user.ID = '$professeurFilter'";
-    }
-
-    if (!empty($whereConditions)) {
-        $whereClause = 'WHERE ' . implode(' AND ', $whereConditions);
-    }
-}*/
-
 // Récupérer la liste des plannings filtrés depuis la base de données
 $query = "SELECT plannings.ID, plannings.jour, plannings.heure_debut, plannings.heure_fin, cours.nom_cours, user.nom AS nom_professeur, salles.nom AS nom_salle
           FROM plannings
           INNER JOIN cours ON plannings.id_cours = cours.ID
           INNER JOIN user ON plannings.id_professeur = user.ID
           INNER JOIN salles ON plannings.id_salle = salles.ID
-          $whereClause";
+          ORDER BY plannings.jour ASC, plannings.heure_debut ASC"; // Ajoutez ORDER BY pour trier par jour et heure de début
 $result = mysqli_query($connection, $query);
 
 // Grouper les plannings par jour
@@ -70,6 +42,18 @@ while ($row = mysqli_fetch_assoc($result)) {
         $planningsByDay[$jour] = array();
     }
     $planningsByDay[$jour][] = $row;
+}
+
+// Obtenir le numéro de la semaine actuelle
+$currentWeekNumber = date('W');
+
+// Filtrer les plannings pour n'afficher que ceux de la semaine actuelle
+$planningsByWeek = array();
+foreach ($planningsByDay as $jour => $plannings) {
+    $planningWeekNumber = date('W', strtotime($jour));
+    if ($planningWeekNumber == $currentWeekNumber) {
+        $planningsByWeek[$jour] = $plannings;
+    }
 }
 ?>
 
@@ -114,42 +98,9 @@ while ($row = mysqli_fetch_assoc($result)) {
         
     </ul>
 </nav>
-<?php /*
-<h2>Liste des plannings</h2>
-<form action="" method="get">
-    <label for="ddlCours">Cours:</label>
-    <select name="ddlCours">
-        <option value="0">Tous les cours</option>
-        <?php while ($row = mysqli_fetch_assoc($resultCours)) : ?>
-            <option value="<?php echo $row['ID']; ?>" <?php if (isset($_GET['ddlCours']) && $_GET['ddlCours'] == $row['ID']) echo 'selected'; ?>><?php echo $row['nom_cours']; ?></option>
-        <?php endwhile; ?>
-    </select>
-
-    <label for="ddlProfesseurs">Professeur:</label>
-    <select name="ddlProfesseurs">
-        <option value="0">Tous les professeurs</option>
-        <?php while ($row = mysqli_fetch_assoc($resultProfessors)) : ?>
-            <option value="<?php echo $row['ID']; ?>" <?php if (isset($_GET['ddlProfesseurs']) && $_GET['ddlProfesseurs'] == $row['ID']) echo 'selected'; ?>><?php echo $row['nom']; ?></option>
-        <?php endwhile; ?>
-    </select>
 
 
-    <label for="ddlSalles">Salle:</label>
-    <select name="ddlSalles">
-        <option value="0">Toutes les salles</option>
-        <?php while ($row = mysqli_fetch_assoc($resultSalles)) : ?>
-            <option value="<?php echo $row['ID']; ?>" <?php if (isset($_GET['ddlSalles']) && $_GET['ddlSalles'] == $row['ID']) echo 'selected'; ?>><?php echo $row['nom']; ?></option>
-        <?php endwhile; ?>
-    </select>
-
-    <input type="submit" name="btnFilter" value="Filtrer">
-
-    <input type="hidden" id="monthpicker" name="txtmois">
-
-</form>
-*/ ?>
-
-<?php foreach ($planningsByDay as $jour => $plannings) : ?>
+<?php foreach ($planningsByWeek as $jour => $plannings) : ?>
     <h3><?php echo $jour; ?></h3>
     <table>
         <tr>

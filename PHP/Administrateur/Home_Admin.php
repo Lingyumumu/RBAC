@@ -42,13 +42,13 @@
         <div class="role-section">
             <h3>Notes</h3>
             <p>Gérez les notes des étudiants et consultez les performances académiques.</p>
-            <a href="../Administrateur/notes/index_notes.php">Gérer les notes</a>
+            <a href="../Administrateur/notes/list_formation.php">Gérer les notes</a>
         </div>
 
         <div class="role-section">
             <h3>Cours</h3>
             <p>Gérez les informations sur les cours dispensés à l'EFREI.</p>
-            <a href="../Administrateur/cours/list_cours.php">Gérer les cours</a>
+            <a href="../Administrateur/cours/list_formation.php">Gérer les cours</a>
         </div>
 
         <div class="role-section">
@@ -60,13 +60,13 @@
         <div class="role-section">
             <h3>Document</h3>
             <p>Gérez les documents des cours et des événements.</p>
-            <a href="../Administrateur/document/list_documents.php">Gérer les documents</a>
+            <a href="../Administrateur/document/list_formation.php">Gérer les documents</a>
         </div>
 
         <div class="role-section">
             <h3>Planning</h3>
             <p>Gérez les informations sur les plannings des étudiants et des enseignants.</p>
-            <a href="../Administrateur/plannings/index_plannings.php">Gérer les plannings</a>
+            <a href="../Administrateur/plannings/list_formation.php">Gérer les plannings</a>
         </div>
 
         <div class="role-section">
