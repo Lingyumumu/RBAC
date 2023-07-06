@@ -50,7 +50,6 @@ mysqli_close($connection);
             </ul>
         </nav>
 
-<a href='create_cours.php'>ajouter un cours</a>
 
 <h2>Liste des planning</h2>
 

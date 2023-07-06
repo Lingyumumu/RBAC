@@ -114,6 +114,7 @@ if ($_SESSION['role'] != 'administrateur') {
             <th>Rôle</th>
             <th>Statut</th>
             <th>Formation</th>
+            <th colspan="2">Actions</th>
         </tr>
         <?php while($row = mysqli_fetch_assoc($results)){
             echo '<tr>';

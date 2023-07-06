@@ -94,26 +94,42 @@ if (isset($_POST['btnMessage'])) {
         </ul>
    </nav>
     <div class="container">
-        <div class="conversation-list">
-            <h2>Conversations</h2>
-            <?php
-            // Récupérer les utilisateurs distincts
-            $queryUsers = "SELECT DISTINCT destinataire_email FROM messages WHERE expediteur_email = ? OR destinataire_email = ?";
-            $stmtUsers = mysqli_prepare($connection, $queryUsers);
-            mysqli_stmt_bind_param($stmtUsers, "ss", $expediteurEmail, $expediteurEmail);
-            mysqli_stmt_execute($stmtUsers);
-            $resultUsers = mysqli_stmt_get_result($stmtUsers);
+    <div class="conversation-list">
+        <h2>Conversations</h2>
+        <?php
+        // Récupérer les utilisateurs distincts (expéditeurs et destinataires) avec la date du dernier message envoyé
+        $queryUsers = "(SELECT expediteur_email AS contact_email, MAX(date_envoi) AS last_message_date FROM messages WHERE destinataire_email = ? GROUP BY expediteur_email)
+                    UNION
+                    (SELECT destinataire_email AS contact_email, MAX(date_envoi) AS last_message_date FROM messages WHERE expediteur_email = ? GROUP BY destinataire_email)
+                    ORDER BY last_message_date DESC";
+        $stmtUsers = mysqli_prepare($connection, $queryUsers);
+        mysqli_stmt_bind_param($stmtUsers, "ss", $expediteurEmail, $expediteurEmail);
+        mysqli_stmt_execute($stmtUsers);
+        $resultUsers = mysqli_stmt_get_result($stmtUsers);
 
-            while ($rowUser = mysqli_fetch_assoc($resultUsers)) {
-                $destinataireEmail = $rowUser['destinataire_email'];
-                $activeClass = (isset($_GET['destinataire']) && $_GET['destinataire'] == $destinataireEmail) ? 'active' : '';
+        $contacts = array(); // Tableau pour stocker les contacts uniques
+
+        while ($rowUser = mysqli_fetch_assoc($resultUsers)) {
+            $contactEmail = $rowUser['contact_email'];
+            $lastMessageDate = $rowUser['last_message_date'];
+
+            // Vérifier si le contact est déjà ajouté dans le tableau
+            if (!in_array($contactEmail, $contacts)) {
+                $contacts[] = $contactEmail;
+
+                $activeClass = (isset($_GET['destinataire']) && $_GET['destinataire'] == $contactEmail) ? 'active' : '';
 
                 echo '<div class="conversation ' . $activeClass . '">';
-                echo '<a href="?destinataire=' . $destinataireEmail . '">' . $destinataireEmail . '</a>';
+                echo '<a href="?destinataire=' . $contactEmail . '">' . $contactEmail . '</a>';
+                echo '<span class="last-message-date"><br> ' . $lastMessageDate . '</span>';
                 echo '</div>';
             }
-            ?>
-        </div>
+        }
+        ?>
+</div>
+
+
+
 
         <div class="message-box">
             <h2>Conversation avec <?php echo isset($_GET['destinataire']) ? $_GET['destinataire'] : ''; ?></h2>
@@ -150,8 +166,8 @@ if (isset($_POST['btnMessage'])) {
             <?php } ?>
             <h2>Envoyer un message</h2>
             <form action='' method='post'>
-                Destinataire : <input type='text' name='txtemail' value="<?php echo isset($_GET['destinataire']) ? $_GET['destinataire'] : ''; ?>" required><br>
-                Texte : <input type='text' name='txttexte' required><br>
+                Destinataire :<br> <input type='text' name='txtemail' value="<?php echo isset($_GET['destinataire']) ? $_GET['destinataire'] : ''; ?>" required><br>
+                Texte : <br> <input type='text' name='txttexte' required><br>
                 <input type='submit' name='btnMessage' value='Envoyer'>
                 <input type='reset' name='btnReset' value='Reset'>
             </form>

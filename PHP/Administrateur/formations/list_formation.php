@@ -68,6 +68,7 @@ if(isset($_POST['btnDelete'])){
             <th>Nom de Formation</th>
             <th>Niveau</th>
             <th>Durée</th>
+            <th colspan="2">Actions</th>
         </tr>
         <?php while ($row = mysqli_fetch_assoc($results)) {
             echo '<tr>';

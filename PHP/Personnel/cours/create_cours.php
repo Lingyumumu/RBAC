@@ -59,7 +59,7 @@ $count = mysqli_num_rows($resultsame);
                 <li><a href="../../logout.php">Deconnexion</a></li>
             </ul>
         </nav>
-    <a href="list_cours.php">liste de cours</a>
+    <a href="list_formation.php">liste de cours</a>
     <h2>Ajout cours page</h2>
     <form action='' method='post'>
     Nom du Cours: <input type='text' name='txtnomc' required><br>

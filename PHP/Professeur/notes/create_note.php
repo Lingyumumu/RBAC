@@ -91,8 +91,10 @@ if (isset($_POST['btnAjouterNote'])) {
     </select><br>
 
     <label for="txtNote">Note :</label>
-    <input type="text" name="txtNote" required>
-    <br>
+<input type="text" name="txtNote" required pattern="^(0|[1-9]|1[0-9]|20)$">
+<span class="error">La note doit être comprise entre 0 et 20.</span>
+<br>
+
 
     <input type="submit" name="btnAjouterNote" value="Ajouter la note">
 </form>

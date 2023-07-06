@@ -6,12 +6,14 @@ if ($_SESSION['role'] != 'personnel') {
     header("Location: ../../login.php");
     exit();
 }
-$idCours = $_GET['ID'];
+$queryformation = "SELECT * FROM user";
+$resultformation = mysqli_query($connection, $queryformation);
+$rowformation = mysqli_fetch_assoc($resultformation);
+$formation = $rowformation['formation'];
 
 // Récupérer la liste des cours depuis la base de données
-$queryCours = "SELECT * FROM cours ";
+$queryCours = "SELECT ID, nom_cours FROM cours WHERE nom_formation = '$formation'";
 $resultCours = mysqli_query($connection, $queryCours);
-$rowCours = mysqli_fetch_assoc($resultCours);
 
 $queryProfessors = "SELECT ID, nom FROM user WHERE role = 'professeur'";
 $resultProfessors = mysqli_query($connection, $queryProfessors);
@@ -20,57 +22,49 @@ $resultProfessors = mysqli_query($connection, $queryProfessors);
 $querySalles = "SELECT ID, nom FROM salles";
 $resultSalles = mysqli_query($connection, $querySalles);
 
-// Filtrer les plannings en fonction des critères sélectionnés
-$whereClause = '';
-$whereConditions = array();
-
-if (isset($_GET['btnFilter'])) {
-    $coursFilter = $_GET['ddlCours'];
-    $jourFilter = isset($_GET['txtjour']) ? $_GET['txtjour'] : '';
-    $salleFilter = $_GET['ddlSalles'];
-    $professeurFilter = $_GET['ddlProfesseurs'];
-
-    if ($coursFilter != '0') {
-        $whereConditions[] = "plannings.id_cours = '$coursFilter'";
-    }
-    if (!empty($jourFilter)) {
-        $whereConditions[] = "plannings.jour = '$jourFilter'";
-    }
-    if ($salleFilter != '0') {
-        $whereConditions[] = "plannings.id_salle = '$salleFilter'";
-    }
-    if ($professeurFilter != '0') {
-        $whereConditions[] = "user.ID = '$professeurFilter'";
-    }
-
-    if (!empty($whereConditions)) {
-        $whereClause = 'WHERE ' . implode(' AND ', $whereConditions);
-    }
-}
-
-
 // Récupérer la liste des plannings filtrés depuis la base de données
-$query = "SELECT plannings.ID, plannings.jour, plannings.heure_debut, plannings.heure_fin, cours.nom_formation, cours.nom_cours, user.nom AS nom_professeur, salles.nom AS nom_salle
-          FROM plannings 
+if (isset($_POST['btnRegister']) && ($_POST['txtjour'] != '')) {
+    $jour = $_POST['txtjour'];
+    $query = "SELECT plannings.ID, plannings.jour, plannings.heure_debut, plannings.heure_fin, cours.nom_cours, cours.nom_formation, user.nom AS nom_professeur, salles.nom AS nom_salle
+          FROM plannings
           INNER JOIN cours ON plannings.id_cours = cours.ID
           INNER JOIN user ON plannings.id_professeur = user.ID
           INNER JOIN salles ON plannings.id_salle = salles.ID
-          $whereClause";
+          WHERE plannings.jour = '$jour'
+          ORDER BY plannings.jour ASC, plannings.heure_debut ASC";
 
-if ($idCours != '') {
-    $query .= " AND plannings.id_cours = $idCours";
+
+}else{
+$query = "SELECT plannings.ID, plannings.jour, plannings.heure_debut, plannings.heure_fin, cours.nom_cours,cours.nom_formation, user.nom AS nom_professeur, salles.nom AS nom_salle
+          FROM plannings
+          INNER JOIN cours ON plannings.id_cours = cours.ID
+          INNER JOIN user ON plannings.id_professeur = user.ID
+          INNER JOIN salles ON plannings.id_salle = salles.ID
+          ORDER BY plannings.jour ASC, plannings.heure_debut ASC"; // Ajoutez ORDER BY pour trier par jour et heure de début
+
 }
 
 $result = mysqli_query($connection, $query);
 
+// Fermer la connexion à la base de données
+mysqli_close($connection);
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../../Administrateur/plannings/list_planning.css">
     <title>Liste des plannings</title>
+    <link rel="stylesheet" href="../../Administrateur/plannings/list_planning.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    
     <script>
+         $(document).ready(function() {
+            $("#datepicker").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        });
         $(document).ready(function() {
             $("#datepicker").datepicker({
                 dateFormat: 'dd-mm-yy',
@@ -87,6 +81,11 @@ $result = mysqli_query($connection, $query);
             border: 1px solid black;
             padding: 5px;
         }
+
+        footer{
+        text-align: center;
+        }
+        
     </style>
 </head>
 <body>
@@ -114,37 +113,10 @@ $result = mysqli_query($connection, $query);
     }
 </style>
 <h2>Liste des plannings</h2>
-<form action="" method="get">
-    <label for="ddlCours">Cours:</label>
-    <select name="ddlCours">
-        <option value="0">Tous les cours</option>
-        <?php while ($row = mysqli_fetch_assoc($resultCours)) : ?>
-            <option value="<?php echo $row['ID']; ?>" <?php if (isset($_GET['ddlCours']) && $_GET['ddlCours'] == $row['ID']) echo 'selected'; ?>><?php echo $row['nom_cours']; ?></option>
-        <?php endwhile; ?>
-    </select>
-
-    <label for="ddlProfesseurs">Professeur:</label>
-    <select name="ddlProfesseurs">
-        <option value="0">Tous les professeurs</option>
-        <?php while ($row = mysqli_fetch_assoc($resultProfessors)) : ?>
-            <option value="<?php echo $row['ID']; ?>" <?php if (isset($_GET['ddlProfesseurs']) && $_GET['ddlProfesseurs'] == $row['ID']) echo 'selected'; ?>><?php echo $row['nom']; ?></option>
-        <?php endwhile; ?>
-    </select>
-
-
-    <label for="ddlSalles">Salle:</label>
-    <select name="ddlSalles">
-        <option value="0">Toutes les salles</option>
-        <?php while ($row = mysqli_fetch_assoc($resultSalles)) : ?>
-            <option value="<?php echo $row['ID']; ?>" <?php if (isset($_GET['ddlSalles']) && $_GET['ddlSalles'] == $row['ID']) echo 'selected'; ?>><?php echo $row['nom']; ?></option>
-        <?php endwhile; ?>
-    </select>
-
-    <input type="submit" name="btnFilter" value="Filtrer">
-
-    <input type="hidden" id="monthpicker" name="txtmois">
-
-</form>
+<form action="" method="post">
+    Jour: <input type="text" id="datepicker" name="txtjour">
+    <input type="submit" name="btnRegister" value="Filtrer">
+    </form>
 
 <table>
     <tr>
