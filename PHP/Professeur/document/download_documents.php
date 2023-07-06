@@ -1,6 +1,10 @@
 <?php
 include('../../dbConn.php');
 session_start();
+
+if ($_SESSION['role'] != 'professeur') {
+    header("location: ../../login.php");
+}
 // Récupérer l'identifiant du PDF à télécharger
 $documentId = $_GET['ID'];
 if (isset($_GET['ID']) == null ){

@@ -5,6 +5,8 @@ if ($_SESSION['role'] != 'administrateur') {
     header("location: ../../login.php");
 }
 
+
+
 $formation = $_GET['nom_formation'];
 
 // Vérifier si l'utilisateur est connecté avec un ID dans la session est différent de null

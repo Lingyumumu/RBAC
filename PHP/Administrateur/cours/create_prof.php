@@ -1,10 +1,16 @@
 <?php
 include ('../../dbConn.php');
+session_start();
 $id = $_GET['ID'];
 if (isset($_GET['ID']) == null ){
     header("location: list_cours.php");
     exit;
 }
+
+if ($_SESSION['role'] != 'administrateur') {
+    header("location: ../../login.php");
+}
+
 
 if (isset($_POST['btnUpdate'])){
     $prof = $_POST['txtnomf'];

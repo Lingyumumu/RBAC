@@ -1,8 +1,15 @@
 <?php
+session_start();
 include ('../../dbConn.php');
 if (isset($_GET['ID']) == null ){
     header("location: list_formation.php");
 }
+
+if ($_SESSION['role'] != 'administrateur') {
+    header("location: ../../login.php");
+}
+
+
 $id = $_GET['ID'];
 // Récupérer l'ancien nom de formation
 /*

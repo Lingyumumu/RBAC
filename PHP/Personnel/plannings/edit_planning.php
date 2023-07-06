@@ -1,5 +1,9 @@
 <?php
+session_start();
 include('../../dbConn.php');
+if ($_SESSION['role'] != 'personnel') {
+    header("location: ../../login.php");
+}
 
 // Vérifier si la clé 'cours' existe dans $_GET
 $id = $_GET['ID'];

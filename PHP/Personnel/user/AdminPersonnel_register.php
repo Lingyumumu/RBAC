@@ -1,9 +1,10 @@
 <?php
 //step1: create a database connection
 include '../../dbConn.php';
-/*if (isset($_SESSION['role']) != 'personnel' ){
-    header("location: ../login.php");
-}*/
+session_start();
+if ($_SESSION['role'] != 'personnel') {
+    header("location: ../../login.php");
+}
 
 if(isset($_POST['btnRegister'])){
     $nom = $_POST['txtnom'];

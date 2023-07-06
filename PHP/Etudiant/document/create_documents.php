@@ -1,6 +1,9 @@
 <?php
 include('../../dbConn.php');
 session_start();
+if ($_SESSION['role'] != 'etudiant') {
+    header("location: ../../login.php");
+}
 
 $id = $_SESSION['ID'];
 $role = $_SESSION['role'];
@@ -9,7 +12,7 @@ if ($idCours == null) {
     header("location: ../../login.php");
 }
 
-$query = "SELECT * FROM documents WHERE ID_cours = '$idCours' AND role_expediteur = 'professeur'";
+$query = "SELECT * FROM documents WHERE ID_cours = '$idCours' AND (role_expediteur = 'professeur' OR role_expediteur = 'administrateur')";
 $results = mysqli_query($connection, $query);
 
 $queryprof = "SELECT * FROM cours WHERE ID = '$idCours'";

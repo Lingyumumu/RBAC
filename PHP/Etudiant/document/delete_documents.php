@@ -2,6 +2,9 @@
 <?php
 session_start();
 include '../../dbConn.php';
+if ($_SESSION['role'] != 'etudiant') {
+    header("location: ../../login.php");
+}
 if (isset($_GET['ID']) == null ){
     header("location: list_documents.php");
 }

@@ -2,6 +2,13 @@
 
 //step1: create a database connection
 include('../../dbConn.php');
+session_start();
+
+if ($_SESSION['role'] != 'administrateur') {
+    header("location: ../../login.php");
+}
+
+
 // Exécuter la requête avec la clause WHERE appropriée
 $query = "SELECT * FROM formations";
 $results = mysqli_query($connection, $query);

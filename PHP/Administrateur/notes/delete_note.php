@@ -2,6 +2,11 @@
 include '../../dbConn.php';
 session_start();
 
+if ($_SESSION['role'] != 'administrateur') {
+    header("location: ../../login.php");
+}
+
+
 if (isset($_GET['ID'])) {
     $id = $_GET['ID'];
 

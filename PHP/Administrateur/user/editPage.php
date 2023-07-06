@@ -83,9 +83,14 @@ $row1 = mysqli_fetch_assoc($resultformation);
             <option value='etudiant'>Etudiant</option>
         </select>
         <br>
-        Nom de Formation (vide pour personnel et administrateur): <select name="txtformation">
-            <option value="<?php echo $row1['nom'] ?>"><?php echo $row1['nom'] ?></option>
-            <option value=''>(vide)</option>
+        Formation: <select name='txtformation' value='<?php echo $row['formation'] ?>'>
+        <?php
+            $queryf = "SELECT * FROM formations";
+            $resultsf = mysqli_query($connection, $queryf);
+            while ($row = mysqli_fetch_array($resultsf)) {
+                echo "<option value='" . $row['nom'] . "'>" . $row['nom'] . "</option>";
+            }
+            ?>
         </select>
         <br><br>
         <input type='submit' name='btnUpdate' value='Mettre à jour'>

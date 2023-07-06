@@ -1,5 +1,10 @@
 <?php
+session_start();
 include('../../dbConn.php');
+
+if ($_SESSION['role'] != 'personnel') {
+    header("location: ../../login.php");
+}
 
 // Récupérer la liste des cours depuis la base de données
 $queryCours = "SELECT ID, nom_cours FROM cours";

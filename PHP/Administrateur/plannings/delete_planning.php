@@ -1,5 +1,11 @@
 <?php
+session_start();
 include('../../dbConn.php');
+if ($_SESSION['role'] != 'administrateur') {
+    header("location: ../../login.php");
+}
+
+
 
 // Vérifier si l'ID du planning est passé dans l'URL
 

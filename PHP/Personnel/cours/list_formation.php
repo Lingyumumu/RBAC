@@ -1,6 +1,9 @@
 <?php
 include('../../dbConn.php');
 session_start();
+if ($_SESSION['role'] != 'personnel') {
+    header("location: ../../login.php");
+}
 // Récupérer les cours depuis la base de données avec le nom de l'enseignant et la formation
 $queryCours = "SELECT cours.*, user.prenom AS nom_enseignant, formations.nom AS nom_formation
                FROM cours

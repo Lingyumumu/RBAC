@@ -1,6 +1,9 @@
 <?php
 session_start();
 include('../../dbConn.php');
+if ($_SESSION['role'] != 'personnel') {
+    header("location: ../../login.php");
+}
 
 $formation = $_GET['nom_formation'];
 

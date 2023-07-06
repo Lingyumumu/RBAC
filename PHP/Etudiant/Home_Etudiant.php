@@ -2,6 +2,10 @@
 
 session_start();
 
+if ($_SESSION['role'] != 'etudiant') {
+    header("location: ../../login.php");
+}
+
 if (isset($_SESSION['ID']) == null) {
     header("location: ../login.php");
 }

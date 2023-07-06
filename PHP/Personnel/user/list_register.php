@@ -1,6 +1,10 @@
 <?php
 //step1: create a database connection
 include('../../dbConn.php');
+session_start();
+if ($_SESSION['role'] != 'personnel') {
+    header("location: ../../login.php");
+}
 
 // Vérifier si une action d'update a été soumise
 if (isset($_POST['btnUpdate'])) {

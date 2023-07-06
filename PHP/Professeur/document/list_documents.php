@@ -3,7 +3,8 @@ include('../../dbConn.php');
 session_start();
 
 
-$id_cours = $_SESSION['ID'] ;
+$id_cours = $_GET['ID'] ;
+$id = $_SESSION['ID'];
 $role = $_SESSION['role'];
 if ($_SESSION['role'] != 'professeur') {
     header("location: ../../login.php");
@@ -42,7 +43,7 @@ if (isset($_POST['btnUpload'])) {
 }
 
 
-$queryfilter = "SELECT * FROM documents where ID_expediteur = '$id_cours' and ID_cours = '$id_cours' ";
+$queryfilter = "SELECT * FROM documents where ID_cours = '$id_cours' AND role_expediteur = 'professeur' ";
 $resultfilter = mysqli_query($connection, $queryfilter);   
  
 

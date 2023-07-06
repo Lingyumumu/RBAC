@@ -2,9 +2,9 @@
 include('../../dbConn.php');
 session_start();
 
+
 $id = $_SESSION['ID'];
-$role = $_SESSION['role'];
-if  ($id == null) {
+if ($_SESSION['role'] != 'etudiant') {
     header("location: ../../login.php");
 }
 

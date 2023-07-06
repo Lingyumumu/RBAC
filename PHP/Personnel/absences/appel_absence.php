@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </table>
         <input type="submit" value="Enregistrer">
     </form>
-    <a href="../plannings/list_planning.php">Liste planning</a>
+    <a href="../plannings/list_formation.php">Liste planning</a>
 </body>
 
 <footer>

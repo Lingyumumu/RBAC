@@ -4,6 +4,10 @@ session_start();
 
 include('../dbConn.php');
 
+if ($_SESSION['role'] != 'etudiant') {
+    header("location: ../../login.php");
+}
+
 $id = $_SESSION['ID'];
 
 

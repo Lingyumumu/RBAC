@@ -1,5 +1,10 @@
 <?php
+session_start();
 include '../../dbConn.php';
+if ($_SESSION['role'] != 'personnel') {
+    header("location: ../../login.php");
+}
+
 
 if (isset($_GET['ID']) == null) {
     header("location: edit_note.php");

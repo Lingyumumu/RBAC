@@ -58,7 +58,7 @@ if (isset($_POST['btnUpload'])) {
 }
 
 
-$queryfilter = "SELECT * FROM documents where ID_expediteur = '$id' and ID_cours = '$id_cours' ";
+$queryfilter = "SELECT * FROM documents where  ID_cours = '$id_cours' AND (role_expediteur = 'administrateur' OR role_expediteur = 'professeur') ";
 $resultfilter = mysqli_query($connection, $queryfilter);   
  
 
