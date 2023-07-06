@@ -92,7 +92,7 @@ $row = mysqli_fetch_assoc($result);
 </head>
 <body>
 <header>
-        <h1>EFREI - Personnel Administratif</h1>
+        <h1>EFREI - Administrateur</h1>
         <nav>
             <ul>
             <li><a href="../../Administrateur/Home_Admin.php">Accueil</a></li>
@@ -181,6 +181,11 @@ $row = mysqli_fetch_assoc($result);
 
 </table>
 </body>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
 </html>
 
 

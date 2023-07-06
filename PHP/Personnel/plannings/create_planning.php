@@ -144,4 +144,9 @@ if (isset($_POST['btnRegister'])) {
     <input type="submit" name="btnRegister" value="Créer Planning">
 </form>
 </body>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
 </html>

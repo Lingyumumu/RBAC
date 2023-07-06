@@ -35,12 +35,21 @@ $count = mysqli_num_rows($result);
 <html>
 <head>
     <link rel="stylesheet" href="../../Administrateur/notes/edit_note.css">
+    <style>
+        footer{
+        text-align: center;
+        }
+
+        h1{
+            color : white;
+        }
+    </style>
     <meta charset="UTF-8">
     <title></title>
 </head>
 <body>
 <header>
-        <h1>EFREI - Personnel Administratif</h1>
+        <h1>EFREI - Administrateur</h1>
         <nav>
             <ul>
             <li><a href="../../Administrateur/Home_Admin.php">Accueil</a></li>
@@ -57,12 +66,16 @@ $count = mysqli_num_rows($result);
         </nav>
     </header>
 <a href="list_note.php">Liste des notes</a>
-<h1>Page de modification</h1>
+<h2>Page de modification</h2>
 <form action='' method='post'>
     Note: <input type='text' name='txtnote' value="<?php echo $row['note'] ?>" required><br>
     <br><br>
     <input type='submit' name='btnUpdate' value='Mettre à jour'>
 </form>
 <br><br>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
 </body>
 </html>

@@ -55,10 +55,15 @@ if (isset($_POST['btnAjouterNote'])) {
 <html>
 <head>
     <link rel="stylesheet" href="../../Administrateur/notes/create_note.css">
+    <style>
+        footer{
+        text-align: center;
+        }
+    </style>
     <title>Gestion des notes - Personnel</title>
 </head>
 <body>
-<h1>EFREI - Personnel Administratif</h1>
+<h1>EFREI - Administrateur</h1>
         <nav>
             <ul>
             <li><a href="../../Administrateur/Home_Admin.php">Accueil</a></li>
@@ -98,5 +103,9 @@ if (isset($_POST['btnAjouterNote'])) {
 
     <input type="submit" name="btnAjouterNote" value="Ajouter la note">
 </form>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
 </body>
 </html>

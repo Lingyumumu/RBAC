@@ -157,4 +157,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <a href="../plannings/list_planning.php">Liste planning</a>
 </body>
 
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
 </html>

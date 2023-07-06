@@ -85,6 +85,10 @@ mysqli_close($connection);
             border: 1px solid black;
             padding: 5px;
         }
+
+        footer{
+        text-align: center;
+        }
         
     </style>
 </head>
@@ -133,4 +137,9 @@ mysqli_close($connection);
 
 
 </body>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
 </html>

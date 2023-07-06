@@ -158,6 +158,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="submit" value="Enregistrer">
     </form>
     <a href="../plannings/list_planning.php">Liste planning</a>
+
+    <footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
 </body>
 
 </html>

@@ -84,6 +84,10 @@ mysqli_close($connection);
             border: 1px solid black;
             padding: 5px;
         }
+
+        footer{
+        text-align: center;
+        }
         
     </style>
 </head>
@@ -104,10 +108,10 @@ mysqli_close($connection);
         
     </ul>
 </nav>
-    <h1>Liste des plannings</h1>
+    <br><h1>Liste des plannings</h1><br>
     <form action="" method="post">
     Jour: <input type="text" id="datepicker" name="txtjour">
-    <input type="submit" name="btnRegister" value="Filtrer">
+    <input type="submit" name="btnRegister" value="Filtrer"><br><br>
     </form>
     <?php if (mysqli_num_rows($result) > 0) : ?>
         <table>
@@ -132,6 +136,9 @@ mysqli_close($connection);
         <p>Il n'y a pas.</p>
     <?php endif; ?>
 
+    <footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
 
 </body>
 </html>

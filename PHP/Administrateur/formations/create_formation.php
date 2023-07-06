@@ -85,5 +85,9 @@ if(isset($_POST['btnRegister'])){
         <p>© 2023 EFREI - Tous droits réservés</p>
     </footer>
 </body>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
 </html>
 

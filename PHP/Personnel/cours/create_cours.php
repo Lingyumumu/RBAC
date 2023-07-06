@@ -74,5 +74,10 @@ $count = mysqli_num_rows($resultsame);
 </form>
 
 </body>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
 </html>
 

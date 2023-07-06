@@ -70,4 +70,9 @@ if(isset($_POST['btnRegister'])){
     <p>Vous avez déjà un compte ? <a href="login.php">Connectez-vous</a></p>
 </form>
 </body>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
 </html>

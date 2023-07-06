@@ -97,4 +97,9 @@ if (isset($_POST['btnAjouterNote'])) {
     <input type="submit" name="btnAjouterNote" value="Ajouter la note">
 </form>
 </body>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
 </html>

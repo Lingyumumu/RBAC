@@ -35,10 +35,16 @@ mysqli_close($connection);
             border: 1px solid black;
             padding: 5px;
         }
+
+        footer{
+        text-align: center;
+        }
+
+
     </style>
 </head>
 <body>
-<h1>EFREI - Personnel Administratif</h1>
+<h1>EFREI -  Administrateur</h1>
         <nav>
             <ul>
             <li><a href="../../Administrateur/Home_Admin.php">Accueil</a></li>
@@ -54,7 +60,7 @@ mysqli_close($connection);
             </ul>
         </nav>
 
-<a href='create_cours.php'>ajouter un cours</a>
+<a href='create_note.php'>ajouter une note</a>
 
 <h2>Liste des cours</h2>
 
@@ -94,6 +100,10 @@ if (mysqli_num_rows($resultCours) > 0) {
     echo "Aucun cours trouvé.";
 }
 ?>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
 
 </body>
 </html>

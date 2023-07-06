@@ -82,6 +82,11 @@ mysqli_close($connection);
         border: 1px solid black;
         padding: 5px;
     }
+
+
+        footer{
+        text-align: center;
+        }
 </style>
 <h2>Liste des notes</h2>
 
@@ -117,5 +122,9 @@ if (mysqli_num_rows($resultNotes) > 0) {
     echo "Aucune note trouvée.";
 }
 ?>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
 </body>
 </html>

@@ -36,7 +36,11 @@ $count = mysqli_num_rows($result);
 <head>
     <link rel="stylesheet" href="../../Administrateur/notes/edit_note.css">
     <meta charset="UTF-8">
-    <title></title>
+    <style>
+        footer{
+        text-align: center;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -62,4 +66,9 @@ $count = mysqli_num_rows($result);
 </form>
 <br><br>
 </body>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
 </html>

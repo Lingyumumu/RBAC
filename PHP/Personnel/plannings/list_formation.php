@@ -88,5 +88,9 @@ if (mysqli_num_rows($resultCours) > 0) {
 }
 ?>
 
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
 </body>
 </html>

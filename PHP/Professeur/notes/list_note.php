@@ -39,6 +39,10 @@ mysqli_close($connection);
             border: 1px solid black;
             padding: 5px;
         }
+
+        footer{
+        text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -112,4 +116,9 @@ if (mysqli_num_rows($resultNotes) > 0) {
 }
 ?>
 </body>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
 </html>

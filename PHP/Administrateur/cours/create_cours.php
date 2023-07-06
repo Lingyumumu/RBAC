@@ -43,7 +43,7 @@ $count = mysqli_num_rows($resultsame);
 </head>
 
 <body>
-    <h1>EFREI - Personnel Administratif</h1>
+    <h1>EFREI - Administrateur</h1>
         <nav>
             <ul>
             <li><a href="../../Administrateur/Home_Admin.php">Accueil</a></li>
@@ -75,6 +75,10 @@ $count = mysqli_num_rows($resultsame);
         
     <input type='submit' name='btnRegister' value='Register'>
 </form>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
 
 </body>
 </html>

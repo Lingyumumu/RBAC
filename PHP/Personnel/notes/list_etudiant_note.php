@@ -45,6 +45,11 @@ $results = mysqli_query($connection, $query);
 <head>
     <title>Document</title>
     <link rel="stylesheet" href="list_etudiant_note.css">
+    <style>
+        footer{
+        text-align: center;
+        }
+    </style>
 </head>
 <body>
 <header>

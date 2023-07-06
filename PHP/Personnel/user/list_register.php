@@ -102,4 +102,8 @@ echo '<a href="../../index.php">Retour</a>';
     </table>
 </body>
 
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
 </html>

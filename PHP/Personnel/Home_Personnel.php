@@ -55,7 +55,8 @@ if ($_SESSION['role'] != 'personnel') {
             <a href="../Personnel/user/list_register.php">Accéder aux utilisateurs</a>
         </section>
     <footer>
-        <p>EFREI - Tous droits réservés</p>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+
     </footer>
 </body>
 </html>

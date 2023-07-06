@@ -107,6 +107,11 @@ $row3 = mysqli_fetch_assoc($resultfilter3);
 
 
 </body>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
 </html>
 
     

@@ -79,5 +79,9 @@ echo "<a href='list_formation.php'>Aller à la liste des formation</a>";
     </form>
     <br><br>
     <a href="list_formation.php">Aller à la liste des formations</a>
+
+    <footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
 </body>
 </html>

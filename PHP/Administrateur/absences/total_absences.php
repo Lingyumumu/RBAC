@@ -1,7 +1,7 @@
 <?php
 include('../../dbConn.php');
 session_start();
-if ($_SESSION['role'] != 'personnel') {
+if ($_SESSION['role'] != 'administrateur') {
     header("location: ../../login.php");
 }
 
@@ -100,5 +100,9 @@ if (isset($rowEtudiant)) {
     echo "<p>Aucune information d'étudiant trouvée.</p>";
 }
 ?>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
 </body>
 </html>

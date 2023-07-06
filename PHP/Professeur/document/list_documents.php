@@ -95,6 +95,11 @@ $resultfilter = mysqli_query($connection, $queryfilter);
     </table>
     
     </body>
+
+    <footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
     </html>
 
     

@@ -93,5 +93,10 @@ if (mysqli_num_rows($resultNotes) > 0) {
     echo "Aucune note trouvée.";
 }
 ?>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
 </body>
 </html>

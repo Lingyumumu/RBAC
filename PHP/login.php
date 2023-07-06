@@ -84,6 +84,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="login.css">
+    <style>
+        footer{
+        text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -97,5 +102,10 @@
         <p>Vous n'avez pas de compte ? <a href="register.php">Créer un compte</a></p>
     </div>
 </body>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
 </html>
 

@@ -97,5 +97,10 @@ if (mysqli_num_rows($resultCours)) {
     echo "Aucun cours trouvé.";
 }
 ?>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
 </body>
 </html>

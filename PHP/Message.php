@@ -50,6 +50,11 @@ if (isset($_POST['btnMessage'])) {
 <head>
     <title>Messages</title>
     <link rel="stylesheet" href="Message.css">
+    <style>
+        footer{
+        text-align: center;
+        }
+    </style>
 </head>
 <header>
 <h1>Système de Gestion de l'EFREI</h1>
@@ -153,4 +158,9 @@ if (isset($_POST['btnMessage'])) {
         </div>
     </div>
 </body>
+
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
+
 </html>

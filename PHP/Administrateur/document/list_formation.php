@@ -38,7 +38,7 @@ mysqli_close($connection);
     </style>
 </head>
 <body>
-<h1>EFREI - Personnel Administratif</h1>
+<h1>EFREI - Administrateur</h1>
         <nav>
             <ul>
             <li><a href="../../Administrateur/Home_Admin.php">Accueil</a></li>
@@ -96,4 +96,7 @@ if (mysqli_num_rows($resultCours) > 0) {
 ?>
 
 </body>
+<footer>
+        <p>© 2023 EFREI - Tous droits réservés</p>
+    </footer>
 </html>
