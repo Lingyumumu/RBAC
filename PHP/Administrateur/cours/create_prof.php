@@ -30,7 +30,7 @@ $form = $row1['nom_formation'];
 $query = "SELECT * FROM user WHERE role = 'professeur' AND formation = '$form'";
 $result = mysqli_query($connection, $query);
 
-echo "<a href='list_cours.php'>Aller à la liste des cours</a>";
+echo "<a href='list_formation.php'>Aller à la liste des formation</a>";
 ?>
 
 <!DOCTYPE html>

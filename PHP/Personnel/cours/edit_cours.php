@@ -2,7 +2,7 @@
 include ('../../dbConn.php');
 $id = $_GET['ID'];
 if (isset($_GET['ID']) == null ){
-    header("location: list_cours.php");
+    header("location: list_formation.php");
 }
 // Récupérer l'ancien nom de formation
 
@@ -29,7 +29,7 @@ $query = "SELECT * FROM cours WHERE ID = $id";
 $result = mysqli_query($connection, $query);
 $row = mysqli_fetch_assoc($result);
 
-echo "<a href='list_cours.php'>Aller à la liste cours</a>";
+echo "<a href='list_formation.php'>Aller à la liste cours</a>";
 ?>
 <!DOCTYPE html>
 <html>

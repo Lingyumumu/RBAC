@@ -64,7 +64,7 @@ $resultfilter = mysqli_query($connection, $queryfilter);
 
 
 ?>
-<h2>Liste des documents</h2>
+
 <html>
 
 <body>
@@ -80,7 +80,7 @@ $resultfilter = mysqli_query($connection, $queryfilter);
     <ul>
         <li><a href="../Home_Professeur.php">Accueil</a></li>
         <li><a href="../Professeur/notes/list_etudiant_note.php">Notes</a></li>
-        <li><a href="../document/list_documents.php">Documents</a></li>
+        <li><a href="../cours_assigner.php">Documents</a></li>
         <li><a href="../plannings/list_planning.php">Plannings</a></li>
         <li><a href="../../Message.php">Message</a></li>
         <li><a href="../../logout.php">Deconnexion</a></li>
@@ -88,6 +88,7 @@ $resultfilter = mysqli_query($connection, $queryfilter);
 </nav>
 
 <title>Upload de fichier PDF</title>
+<h2>Liste des documents</h2>
     <h2>Deposer le document sous format PDF dans l'espace cours  <?php echo $rowCourse['nom_cours'];  ?>
     </h2>
     <form action="" method="POST" enctype="multipart/form-data">

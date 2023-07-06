@@ -53,7 +53,7 @@ $count = mysqli_num_rows($result);
             </ul>
         </nav>
     </header>
-<a href="list_note.php">Liste des notes</a>
+<a href="list_formation.php">Liste des notes</a>
 <h1>Page de modification</h1>
 <form action='' method='post'>
     Note: <input type='text' name='txtnote' value="<?php echo $row['note'] ?>" required><br>

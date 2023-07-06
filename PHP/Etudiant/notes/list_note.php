@@ -46,7 +46,7 @@ mysqli_close($connection);
     <ul>
         <li><a href="../Home_Etudiant.php">Accueil</a></li>
         <li><a href="../plannings/list_planning.php">Mon emploi-du-temps</a></li>
-        <li><a href="../cours_inscrit.php">Cours</a></li>
+        <li><a href="../cours_inscrit.php">Documents</a></li>
         <li><a href="../notes/list_note.php">Mes notes</a></li>
         <?php echo '<li><td><a href="../mes_absences.php?ID=' . $id . '">Mes Absences</a></td><li>';?>
         <li><a href="../../Message.php">Message</a></li>

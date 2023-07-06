@@ -24,7 +24,7 @@ $count = mysqli_num_rows($resultsame);
         $results = mysqli_query($connection, $query);
         if ($results) {
             echo "Creation de cours reussis.";
-            echo "<a href='list_cours.php'>Aller à la page principale</a>";
+            echo "<a href='list_formation.php'>Aller a la page de cours</a>";
         } else {
             echo "Échec de la création de cours.";
         }
@@ -58,7 +58,7 @@ $count = mysqli_num_rows($resultsame);
             <li><a href="../../logout.php">Deconnexion</a></li>
             </ul>
         </nav>
-    <a href="list_cours.php">liste de cours</a>
+    <a href="list_formation.php">liste de cours</a>
     <h2>Ajout cours page</h2>
     <form action='' method='post'>
     Nom du Cours: <input type='text' name='txtnomc' required><br>

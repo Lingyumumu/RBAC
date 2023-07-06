@@ -1,11 +1,18 @@
 <?php 
+session_start();
 include ('../../dbConn.php');
 $id = $_GET['ID'];
-$query = "DELETE FROM etude WHERE ID = $id";
+$querynote = "DELETE FROM notes WHERE id_cours = $id";
+$query = "DELETE FROM cours WHERE ID = $id";
 
-if(mysqli_query($connection, $query)){
+if(mysqli_query($connection, $querynote)){
+    if(mysqli_query($connection, $query)){
+        header("Location: list_formation.php");
+    }
+    else{
+        echo "Error: " . $query . "<br>" . mysqli_error($conn);
+    }
 
-    header("Location: list_cours.php");
 }
 else{
     echo "Error: " . $query . "<br>" . mysqli_error($conn);

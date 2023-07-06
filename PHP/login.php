@@ -41,16 +41,16 @@
             //redirect the user 
             
             if($_SESSION['role'] == 'etudiant'){
-                header("location: ../PHP/Etudiant/Home_Etudiant.php");
+                header("location: Etudiant/Home_Etudiant.php");
             }
             if($_SESSION['role'] == 'professeur' ){
-                header("location: ../PHP/Professeur/Home_Professeur.php");
+                header("location: Professeur/Home_Professeur.php");
             }
             if($_SESSION['role'] == 'personnel'){
-                header("location: ../PHP/Personnel/Home_Personnel.php");
+                header("location: Personnel/Home_Personnel.php");
             }
             if ($_SESSION['role'] == 'administrateur') {
-                header("location: ../PHP/Administrateur/Home_Admin.php");
+                header("location: Administrateur/Home_Admin.php");
             }
             
         } elseif($countfailed == 1){

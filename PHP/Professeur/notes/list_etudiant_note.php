@@ -67,33 +67,36 @@ if ($_SESSION['role'] != 'professeur') {
 
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $conditions = array();
-
+    
         if (!empty($_GET['nom'])) {
             $nom = $_GET['nom'];
             $conditions[] = "nom LIKE '%$nom%'";
         }
-
+    
         if (!empty($_GET['prenom'])) {
             $prenom = $_GET['prenom'];
             $conditions[] = "prenom LIKE '%$prenom%'";
         }
-
+    
         if (!empty($_GET['role'])) {
             $role = $_GET['role'];
             $conditions[] = "role = '$role'";
         }
-
+    
         if (!empty($_GET['statut'])) {
             $statut = $_GET['statut'];
             $conditions[] = "statut = '$statut'";
         }
-
+    
+        // Ajouter la condition pour filtrer uniquement les utilisateurs avec le rôle 'etudiant'
+        $conditions[] = "role = 'etudiant'";
+    
         // Construire la clause WHERE en combinant les conditions
         $whereClause = "";
         if (!empty($conditions)) {
             $whereClause = "WHERE " . implode(" AND ", $conditions);
         }
-
+    
         // Exécuter la requête avec la clause WHERE appropriée
         $query = "SELECT * FROM user $whereClause";
         $results = mysqli_query($connection, $query);
@@ -101,7 +104,7 @@ if ($_SESSION['role'] != 'professeur') {
 
             
     //step3: execute the query
-    echo '<a href="Admin_register.php">Ajouter un utilisateur</a>';
+    echo '<a href="create_note.php">Ajouter une note</a>';
     ?>
     <table border="1" cellspacing='10'>
         <tr>

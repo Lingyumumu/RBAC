@@ -8,6 +8,7 @@ if ($_SESSION['role'] != 'administrateur') {
 
 $id_etudiant = $_GET['ID'];
 
+
 // Récupérer les notes avec les informations d'étudiant et de cours associées
 $queryNotes = "SELECT notes.ID, notes.note, user.prenom AS etudiant, cours.nom_cours AS cours
                FROM notes
@@ -106,8 +107,8 @@ if (mysqli_num_rows($resultNotes) > 0) {
                 <td>$etudiant</td>
                 <td>$cours</td>
                 <td>$note</td>
-                <td><a href='edit_absence.php?ID=$noteID'>Modifier</a></td>
-                <td><a href='delete_absence.php?ID=$noteID'>Supprimer</a></td>
+                <td><a href='edit_note.php?ID=$noteID'>Modifier</a></td>
+                <td><a href='delete_note.php?ID=$noteID'>Supprimer</a></td>
             </tr>";
     }
 

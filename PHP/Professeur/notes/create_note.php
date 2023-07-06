@@ -1,6 +1,6 @@
 <?php
 include('../../dbConn.php');
-
+session_start();
 if ($_SESSION['role'] != 'professeur') {
     header("location: ../../login.php");
 }
@@ -61,17 +61,19 @@ if (isset($_POST['btnAjouterNote'])) {
     </header>
 <nav>
     <ul>
-        <li><a href="../Home_Professeur.php">Accueil</a></li>
-        <li><a href="../Professeur/notes/list_etudiant_note.php">Notes</a></li>
-        <li><a href="../document/list_documents.php">Documents</a></li>
-        <li><a href="../plannings/list_planning.php">Plannings</a></li>
-        <li><a href="../../Message.php">Message</a></li>
-        <li><a href="../../logout.php">Deconnexion</a></li>
+    <ul>
+            <li><a href="../../Professeur/Home_Professeur.php">Accueil</a></li>
+            <li><a href="../../Professeur/notes/list_etudiant_note.php">Notes</a></li>
+            <li><a href="../cours_assigner.php">Document</a></li>
+            <li><a href="../../Professeur/plannings/list_planning.php">Planning</a></li>
+            <li><a href="../../Message.php">Message</a></li>
+            <li><a href="../../logout.php">Deconnexion</a></li>
+        </ul>
     </ul>
 </nav>
 
 <h2>Ajouter une note</h2>
-<a href="list_note.php">Liste des notes</a>
+<a href="list_etudiant_note.php">Liste des notes</a>
 
 <form action="create_note.php" method="POST">
     <label for="ddlCours">Cours:</label>

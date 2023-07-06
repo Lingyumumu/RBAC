@@ -2,7 +2,7 @@
 // Démarrer la session
 session_start();
 include('../../dbConn.php');
-if ($_SESSION['role'] != 'personnel') {
+if ($_SESSION['role'] != 'administrateur') {
     header("location: ../../login.php");
 }
 

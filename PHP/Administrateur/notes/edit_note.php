@@ -1,6 +1,6 @@
 <?php
 include '../../dbConn.php';
-
+session_start();
 if ($_SESSION['role'] != 'administrateur') {
     header("location: ../../login.php");
 }
@@ -21,6 +21,7 @@ if (isset($_POST['btnUpdate'])) {
 
     if ($resultQuery) {
         echo "La note a été mise à jour avec succès.<br>";
+        header("Location: list_formation.php");
     }
 }
 

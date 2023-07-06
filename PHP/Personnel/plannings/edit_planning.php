@@ -28,12 +28,6 @@ if (isset($_POST['btnRegister'])) {
     $id_professeur = $rowActuel['id_professeur'];
     $id_salle = $_POST['txtSalle'];
 
-    echo $jour. "<br>";
-    echo $heure_debut. "<br>";
-    echo $heure_fin. "<br>" ;
-    echo $id_cours. "<br>";
-    echo $id_professeur. "<br>";
-    echo $id_salle. "<br>";
 
     // Créer la requête de creation d'un planning
     $query = "UPDATE plannings SET jour = '$jour', heure_debut = '$heure_debut',

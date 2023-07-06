@@ -78,7 +78,6 @@ mysqli_close($connection);
         padding: 5px;
     }
 </style>
-<h2>Liste des notes</h2>
 
 <?php
 // Vérifier si des notes ont été trouvées
@@ -102,8 +101,8 @@ if (mysqli_num_rows($resultNotes) > 0) {
                 <td>$etudiant</td>
                 <td>$cours</td>
                 <td>$note</td>
-                <td><a href='edit_absence.php?ID=$noteID'>Modifier</a></td>
-                <td><a href='delete_absence.php?ID=$noteID'>Supprimer</a></td>
+                <td><a href='edit_note.php?ID=$noteID'>Modifier</a></td>
+                <td><a href='delete_note.php?ID=$noteID'>Supprimer</a></td>
             </tr>";
     }
 

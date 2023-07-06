@@ -85,7 +85,7 @@ if (mysqli_num_rows($resultCours) > 0) {
                 <td>$nomCours</td>
                 <td><a href='create_prof.php?ID=$idCours'>Ajouter un prof</a></td>
                 <td><a href='edit_cours.php?ID=$idCours'>Modifier</a></td>
-                <td><a href='delete_cours.php?id=$idCours'>Supprimer</a></td>
+                <td><a href='delete_cours.php?ID=$idCours'>Supprimer</a></td>
               </tr>";
     }
 

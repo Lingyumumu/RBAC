@@ -50,9 +50,8 @@ $resultCours = mysqli_query($connection, $queryCours);
         </ul>
     </nav>
 
-<a href='plannings/list_planning.php'>ajouter un cours</a>
 
-<h2>Liste des cours</h2>
+<h2>Liste des Documents</h2>
 
 <?php
 // Vérifier si des cours ont été trouvés

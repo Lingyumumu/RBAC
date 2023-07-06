@@ -17,24 +17,3 @@ if (isset($_GET['ID'])) {
 
 mysqli_close($connection);
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-<header>
-        <h1>Système de Gestion - EFREI</h1>
-    </header>
-<nav>
-    <ul>
-        <li><a href="../Home_Professeur.php">Accueil</a></li>
-        <li><a href="../notes/list_note.php">Notes</a></li>
-        <li><a href="../document/list_documents.php">Documents</a></li>
-        <li><a href="../plannings/list_planning.php">Plannings</a></li>
-    </ul>
-</nav>
-</body>
-</html>

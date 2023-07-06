@@ -30,9 +30,9 @@ session_write_close();
         <ul>
             <li><a href="../Etudiant/Home_Etudiant.php">Accueil</a></li>
             <li><a href="../Etudiant/plannings/list_planning.php">Mon emploi-du-temps</a></li>
-            <li><a href="../Etudiant/cours_inscrit.php">Cours</a></li>
+            <li><a href="../Etudiant/cours_inscrit.php">Documents</a></li>
             <li><a href="../Etudiant/notes/list_note.php">Mes notes</a></li>
-            <?php echo '<li><td><a href="mes_absences.php?ID=' . $id . '">Mes Absences</a></td><li>';?>
+            <?php echo '<li><a href="mes_absences.php?ID=' . $id . '">Mes Absences</a><li>';?>
             <li><a href="../Message.php">Message</a></li>
             <li><a href="../logout.php">Deconnexion</a></li>
         </ul>
@@ -59,7 +59,7 @@ session_write_close();
         <div class="role-section">
             <h3>Absences</h3>
             <p>Consultez les informations sur les absences et les congés.</p>
-            <a href="../Etudiant/mes_absences.php">Voir les absences</a>
+            <?php echo '<a href="mes_absences.php?ID=' . $id . '">Voir les absences</a>';?></a>
         </div>
 
         <div class="role-section">

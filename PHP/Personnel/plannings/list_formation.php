@@ -49,7 +49,7 @@ mysqli_close($connection);
 
 <a href='create_cours.php'>ajouter un cours</a>
 
-<h2>Liste des cours</h2>
+<h2>Liste des planning</h2>
 
 <?php
 // Vérifier si des cours ont été trouvés

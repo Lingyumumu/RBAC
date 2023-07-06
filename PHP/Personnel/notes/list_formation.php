@@ -47,9 +47,9 @@ mysqli_close($connection);
             </ul>
         </nav>
 
-<a href='create_cours.php'>ajouter un cours</a>
+<a href='create_note.php'>ajouter une note</a>
 
-<h2>Liste des cours</h2>
+<h2>Liste des notes</h2>
 
 <?php
 // Vérifier si des cours ont été trouvés

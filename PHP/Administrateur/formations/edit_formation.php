@@ -35,9 +35,11 @@ $oldValue = $rowOldValue['nom'];
 
 if (isset($_POST['btnUpdate'])) {
     $nom = $_POST['txtnom'];
+    $etude = $_POST['txtniveau_etude'];
+    $duree = $_POST['txtduree'];
 
     // Mettre à jour le nom de formation dans la table etude
-    $updateQuery = "UPDATE formations SET nom = '$nom' WHERE ID = $id";
+    $updateQuery = "UPDATE formations SET nom = '$nom', niveau = '$etude', duree = '$duree'  WHERE ID = $id";
     $resultQuery = mysqli_query($connection, $updateQuery);
 
     if ($resultQuery) {
@@ -49,6 +51,7 @@ if (isset($_POST['btnUpdate'])) {
         
         if ($resultUpdateCours) {
             echo "Les cours associés ont été mis à jour avec succès.";
+            header("Location: list_formation.php");
         } else {
             echo "Erreur lors de la mise à jour des cours associés.";
         }
@@ -97,7 +100,7 @@ $row = mysqli_fetch_assoc($result);
         Nom: <input type='text' name='txtnom' value="<?php echo $row['nom'] ?>" required><br>
         Durée: <input type='text' name='txtduree' value="<?php echo $row['duree'] ?>" required><br>
         niveau etude: <select name='txtniveau_etude'>
-            <option value='<?php echo $row['nom'] ?>'><?php echo $row['niveau'] ?></option>
+            <option value='<?php echo $row['niveau'] ?>'><?php echo $row['niveau'] ?></option>
             <option value='BAC+1'>BAC+1</option>
             <option value='BAC+2'>BAC+2</option>
             <option value='BAC+3'>BAC+3</option>

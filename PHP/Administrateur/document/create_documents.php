@@ -50,7 +50,6 @@ if (isset($_POST['btnUpload'])) {
 
     if ($result) {
         echo "Le fichier a été inséré avec succès dans la base de données.<br>";
-        echo '<a href="list_documents.php">Ajouter un document</a>';
 
     } else {
         echo "Erreur lors de l'insertion du fichier dans la base de données: " . mysqli_error($connection);

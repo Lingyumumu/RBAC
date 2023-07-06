@@ -41,11 +41,17 @@ $count = mysqli_num_rows($result);
     <link rel="stylesheet" href="../../Administrateur/notes/edit_note.css">
     <meta charset="UTF-8">
     <title></title>
+    <style>
+        h1 {
+            color: white;
+            margin-bottom: -10px;
+        }
+        </style>
 </head>
 <body>
 <header>
-        <h1>Système de Gestion - EFREI</h1>
-    </header>
+<h1>Système de Gestion - EFREI</h1>
+</header>
 <nav>
     <ul>
         <li><a href="../Home_Professeur.php">Accueil</a></li>
@@ -56,8 +62,9 @@ $count = mysqli_num_rows($result);
         <li><a href="../../logout.php">Deconnexion</a></li>
     </ul>
 </nav>
-<a href="list_note.php">Liste des notes</a>
-<h1>Page de modification</h1>
+<br>
+<a href="list_etudiant_note.php">Liste des notes</a>
+<h2>Page de modification de note</h2>
 <form action='' method='post'>
     Note: <input type='text' name='txtnote' value="<?php echo $row['note'] ?>" required><br>
     <br><br>

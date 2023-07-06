@@ -10,7 +10,7 @@ if ($_SESSION['role'] != 'personnel') {
 $formation = $_GET['nom_formation'];
 
 //step2: create a database query
-$query = "SELECT * FROM user WHERE formation = '$formation'";
+$query = "SELECT * FROM user WHERE formation = '$formation' AND role = 'etudiant'";
 
 // Ajouter les conditions de filtrage si les valeurs sont définies
 if (isset($_GET['btnSend'])) {

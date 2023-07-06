@@ -25,11 +25,11 @@ $nom_prof = $rowprof['nom_prof'];
 
 <nav>
     <ul>
-            <li><a href="../Home_Etudiant.css">Accueil</a></li>
+            <li><a href="../Home_Etudiant.php">Accueil</a></li>
             <li><a href="../plannings/index_plannings.php">Mon emploi-du-temps</a></li>
             <li><a href="../notes/list_note.php">Mes notes</a></li>
-            <li><a href="../cours_inscrit.php">Cours</a></li>
-            <?php echo '<li><td><a href="../mes_absences.php?ID=' . $id . '">Mes Absences</a></td><li>';?>
+            <li><a href="../cours_inscrit.php">Documents</a></li>
+            <?php echo '<li><a href="../mes_absences.php?ID=' . $id . '">Mes Absences</a><li>';?>
             <li><a href="../../Message.php">Message</a></li>
             <li><a href="../../logout.php">Deconnexion</a></li>
     </ul>
@@ -42,6 +42,7 @@ $nom_prof = $rowprof['nom_prof'];
 
     <head>
         <title>Document</title>
+        <link rel="stylesheet" type="text/css" href="create_documents.css">
     </head>
 
 

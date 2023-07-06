@@ -29,7 +29,7 @@ $query = "SELECT * FROM cours WHERE ID = $id";
 $result = mysqli_query($connection, $query);
 $row = mysqli_fetch_assoc($result);
 
-echo "<a href='list_cours.php'>Aller à la liste cours</a>";
+echo "<a href='list_formation.php'>Aller à la liste cours</a>";
 ?>
 <!DOCTYPE html>
 <html>

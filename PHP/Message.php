@@ -65,10 +65,9 @@ if (isset($_POST['btnMessage'])) {
                 <li><a href="Etudiant/mes_absences.php?ID=<?php echo $id; ?>">Mes Absences</a></li>
             <?php } elseif ($_SESSION['role'] == 'professeur') { ?>
                 <li><a href="Professeur/Home_Professeur.php">Accueil</a></li>
-                <li><a href="Professeur/plannings/list_planning.php">Mon emploi-du-temps</a></li>
-                <li><a href="Professeur/cours/list_cours.php">Cours</a></li>
-                <li><a href="Professeur/notes/list_note.php">Mes notes</a></li>
-                <li><a href="Professeur/absences/list_absence.php">Mes absences</a></li>
+                <li><a href="Professeur/notes/list_etudiant_note.php">Notes</a></li>
+                <li><a href="Professeur/cours_assigner.php">Document</a></li>
+                <li><a href="Professeur/plannings/list_planning.php">Planning</a></li>
             <?php } elseif ($_SESSION['role'] == 'administrateur') { ?>
                 <li><a href="Administrateur/Home_Admin.php">Accueil</a></li>
                 <li><a href="Administrateur/notes/list_formation.php">Notes</a></li>

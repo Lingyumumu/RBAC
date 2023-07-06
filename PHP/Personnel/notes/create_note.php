@@ -20,9 +20,10 @@ if (isset($_POST['btnAjouterNote'])) {
     $queryCheckNote = "SELECT * FROM notes WHERE id_cours = $id_cours AND id_etudiant = $id_etudiant";
     $resultCheckNote = mysqli_query($connection, $queryCheckNote);
     $row = mysqli_fetch_assoc($resultCheckNote);
-    $id_note = $row['ID'];
+    
     // Vérifier le nombre de lignes retournées
     if (mysqli_num_rows($resultCheckNote) > 0) {
+        $id_note = $row['ID'];
         echo "La note a été mise à jour.";
         // Mettre à jour la note
         $updateQuery = "UPDATE notes SET note = '$note' WHERE ID = $id_note";
@@ -66,7 +67,7 @@ if (isset($_POST['btnAjouterNote'])) {
         </nav>
 
 <h2>Ajouter une note</h2>
-<a href="list_note.php">Liste des notes</a>
+<a href="list_formation.php">Liste des notes</a>
 
 <form action="create_note.php" method="POST">
     <label for="ddlCours">Cours:</label>
