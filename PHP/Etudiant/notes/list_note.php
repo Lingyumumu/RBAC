@@ -39,7 +39,7 @@ mysqli_close($connection);
 </head>
 <body>
 <header>
-    <h1>Système de gestion de l'EFREI</h1>
+<h1>Système de Gestion de l'EFREI</h1>
 </header>
 
 <nav>

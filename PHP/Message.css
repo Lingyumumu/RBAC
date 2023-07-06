@@ -7,8 +7,8 @@
     width: 30%;
     background-color: #f2f2f2;
     padding: 20px;
-    overflow-y: scroll;
-    margin-right: 10px; /* Ajout de la marge pour compenser la barre de défilement */
+    overflow-y: auto;
+    margin-right: 10px;
 }
 
 .conversation {
@@ -32,11 +32,10 @@
 
 .message-list {
     margin-bottom: 20px;
-    overflow-y: scroll;
-    max-height: 400px; /* Hauteur maximale pour la liste des messages */
-    padding-right: 20px; /* Ajout de l'espace à droite de la liste des messages */
+    overflow-y: auto;
+    max-height: 400px;
+    padding-right: 20px;
 }
-
 
 .message-item {
     margin-bottom: 10px;
@@ -82,5 +81,35 @@ h2 {
     margin-bottom: 10px;
 }
 
+nav {
+    background-color: #003366;
+    color: #fff;
+    padding: 10px;
+}
 
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
 
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header {
+    background-color: #003366;
+    padding: 20px;
+    color: #fff;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}

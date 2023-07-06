@@ -20,7 +20,7 @@ $nom_prof = $rowprof['nom_prof'];
 ?>
 
 <header>
-    <h1>Système de gestion de l'EFREI</h1>
+<h1>Système de Gestion de l'EFREI</h1>
 </header>
 
 <nav>

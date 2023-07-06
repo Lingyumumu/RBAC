@@ -163,7 +163,7 @@ $row = mysqli_fetch_assoc($result);
     </tr>
     
     <?php while ($row = mysqli_fetch_assoc($result) ) : ?>
-
+        
         <tr>     
             <td><?php echo $row['nom_formation']; ?></td>     
             <td><?php echo $row['nom_cours']; ?></td>  

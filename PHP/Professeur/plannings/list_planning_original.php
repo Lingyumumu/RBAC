@@ -1,17 +1,15 @@
 <?php
 include('../../dbConn.php');
-
-session_start();  
-if ($_SESSION['role'] != 'personnel') {
-    header("Location: ../../login.php");
-    exit();
+session_start();
+if (!isset($_SESSION['ID'])&& !isset($_SESSION['role']) != 'professeur') {
+    header("location: ../../login.php");
 }
-$idCours = $_GET['ID'];
+
+$id = $_SESSION['ID'];
 
 // Récupérer la liste des cours depuis la base de données
-$queryCours = "SELECT * FROM cours ";
+$queryCours = "SELECT ID, nom_cours FROM cours";
 $resultCours = mysqli_query($connection, $queryCours);
-$rowCours = mysqli_fetch_assoc($resultCours);
 
 $queryProfessors = "SELECT ID, nom FROM user WHERE role = 'professeur'";
 $resultProfessors = mysqli_query($connection, $queryProfessors);
@@ -49,18 +47,14 @@ if (isset($_GET['btnFilter'])) {
 }
 
 
+
 // Récupérer la liste des plannings filtrés depuis la base de données
 $query = "SELECT plannings.ID, plannings.jour, plannings.heure_debut, plannings.heure_fin, cours.nom_formation, cours.nom_cours, user.nom AS nom_professeur, salles.nom AS nom_salle
-          FROM plannings 
+          FROM plannings
           INNER JOIN cours ON plannings.id_cours = cours.ID
           INNER JOIN user ON plannings.id_professeur = user.ID
           INNER JOIN salles ON plannings.id_salle = salles.ID
           $whereClause";
-
-if ($idCours != '') {
-    $query .= " AND plannings.id_cours = $idCours";
-}
-
 $result = mysqli_query($connection, $query);
 $row = mysqli_fetch_assoc($result);
 
@@ -92,19 +86,18 @@ $row = mysqli_fetch_assoc($result);
 </head>
 <body>
 <header>
-        <h1>EFREI - Personnel Administratif</h1>
-        <nav>
-            <ul>
-            <li><a href="../../Personnel/Home_Personnel.php">Accueil</a></li>
-                <li><a href="../../Personnel/cours/list_formation.php">Cours</a></li>
-                <li><a href="../../Personnel/plannings/list_formation.php">Planning</a></li>
-                <li><a href="../../Personnel/notes/list_formation.php">Notes</a></li>
-                <li><a href="../../Personnel/user/list_register.php">Utilisateurs</a></li>
-                <li><a href="../../Message.php">Message</a></li>
-                <li><a href="../../logout.php">Deconnexion</a></li>
-            </ul>
-        </nav>
+        <h1>Système de Gestion - EFREI</h1>
     </header>
+<nav>
+    <ul>
+        <li><a href="../Home_Professeur.php">Accueil</a></li>
+        <li><a href="../notes/list_etudiant_note.php">Notes</a></li>
+        <li><a href="../cours_assigner.php">Document</a></li>
+        <li><a href="../plannings/list_planning.php">Plannings</a></li>
+        <li><a href="../../Message.php">Message</a></li>
+        <li><a href="../../logout.php">Deconnexion</a></li>
+    </ul>
+</nav>
 <style>
     table {
         border-collapse: collapse;
@@ -156,7 +149,6 @@ $row = mysqli_fetch_assoc($result);
         <th>Heure de fin</th>
         <th>Professeur</th>
         <th>Salle</th>
-        <th colspan="3">Actions</th>
     </tr>
     
     <?php while ($row = mysqli_fetch_assoc($result) ) : ?>
@@ -170,9 +162,6 @@ $row = mysqli_fetch_assoc($result);
             <td><?php echo $row['nom_professeur']; ?></td>
             <td><?php echo $row['nom_salle']; ?></td>
             <td><a href="../absences/appel_absence.php?ID=<?php echo $row['ID']; ?>">Appel absence</a></td>
-            <td><a href="edit_planning.php?ID=<?php echo $row['ID']; ?>">Modifier</a></td>
-            <td><a href="delete_planning.php?ID=<?php echo $row['ID']; ?>">Supprimer</a></td>
-            
         </tr>
     <?php endwhile; ?>
 

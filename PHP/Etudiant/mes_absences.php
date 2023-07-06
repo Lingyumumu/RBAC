@@ -65,7 +65,7 @@ if (isset($_GET['ID'])) {
 <body>
 
     <header>
-        <h1>Système de gestion de l'EFREI</h1>
+        <h1>Système de Gestion de l'EFREI</h1>
     </header>
 
     <nav>
@@ -75,7 +75,7 @@ if (isset($_GET['ID'])) {
             <li><a href="../Etudiant/cours_inscrit.php">Cours</a></li>
             <li><a href="../Etudiant/notes/list_note.php">Mes notes</a></li>
             <?php echo '<li><td><a href="mes_absences.php?ID=' . $id . '">Mes Absences</a></td><li>';?>
-            <li><a href="../../Message.php">Message</a></li>
+            <li><a href="../Message.php">Message</a></li>
             <li><a href="../logout.php">Deconnexion</a></li>
         </ul>
     </nav>

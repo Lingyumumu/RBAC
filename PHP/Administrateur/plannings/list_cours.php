@@ -89,8 +89,6 @@ if (mysqli_num_rows($resultCours) > 0) {
                 <td>$nomCours</td>
                 <td><a href='../plannings/list_planning.php?ID=$idCours'>Voir Planning</a></td>
                 <td><a href='../plannings/create_planning.php?ID=$idCours'>Ajouter Planning</a></td>
-                <td><a href='edit_cours.php?ID=$idCours'>Modifier</a></td>
-                <td><a href='delete_cours.php?id=$idCours'>Supprimer</a></td>
               </tr>";
     }
 

@@ -2,10 +2,7 @@
 include('../../dbConn.php');
 
 // Vérifier si l'ID du planning est passé dans l'URL
-if (!isset($_GET['ID'])) {
-    header("Location: list_planning.php");
-    exit();
-}
+
 
 // Récupérer l'ID du planning à supprimer
 $id = $_GET['ID'];

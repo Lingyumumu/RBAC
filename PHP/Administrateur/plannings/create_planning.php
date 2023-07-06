@@ -105,7 +105,7 @@ if (isset($_POST['btnRegister'])) {
 
     h:<select name="txtMinuted">
         <?php
-        for ($i = 0; $i <= 59; $i= $i + 5) {
+        for ($i = 0; $i <= 59; $i= $i + 15) {
             $minute = sprintf("%02d", $i);
             echo "<option value=\"$minute\">$minute</option>";
         }
@@ -125,7 +125,7 @@ if (isset($_POST['btnRegister'])) {
     h:
     <select name="txtMinutef">
         <?php
-        for ($i = 0; $i <= 59; $i= $i + 5) {
+        for ($i = 0; $i <= 59; $i= $i + 15) {
             $minute = sprintf("%02d", $i);
             echo "<option value=\"$minute\">$minute</option>";
         }

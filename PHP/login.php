@@ -30,6 +30,7 @@
             $_SESSION['ID'] = $row['ID'];
             $_SESSION['email'] = $row['email'];
             $_SESSION['role'] = $row['role'];
+            $_SESSION['formation'] = $row['formation'];
             //header("location: Etudiant/mes_absences.php");
             //header("location: Etudiant/notes/list_note.php");
             //header("location: Etudiant/plannings/list_planning.php");
