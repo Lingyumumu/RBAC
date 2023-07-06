@@ -6,12 +6,8 @@ if ($_SESSION['role'] != 'administrateur') {
     header("location: ../../login.php");
 }
 // Récupérer les cours depuis la base de données avec le nom de l'enseignant et la formation
-$queryCours = "SELECT cours.*, user.prenom AS nom_enseignant, formations.nom AS nom_formation
-               FROM cours
-               INNER JOIN user ON cours.nom_prof = user.nom
-               INNER JOIN formations ON cours.nom_formation = formations.nom";
-                
-
+$queryCours = "SELECT * From formations ";
+   
 
 $resultCours = mysqli_query($connection, $queryCours);
 
@@ -79,9 +75,7 @@ if (mysqli_num_rows($resultCours) > 0) {
 
     while ($row = mysqli_fetch_assoc($resultCours)) {
         $idCours = $row['ID'];
-        $enseignant = $row['nom_enseignant'];
-        $nomCours = $row['nom_cours'];
-        $formation = $row['nom_formation'];
+        $formation = $row['nom'];
 
         // Vérifier si le nom de la formation est différent du précédent avant de l'afficher
         if ($formation != $prevFormation) {
