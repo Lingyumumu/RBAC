@@ -49,6 +49,7 @@ if (isset($_POST['btnAjouterNote'])) {
         // Exécution de la requête
         if (mysqli_query($connection, $query)) {
             echo "La note a été ajoutée avec succès.";
+            header ("Location: list_formation.php");
         } else {
             echo "Erreur lors de l'ajout de la note : " . mysqli_error($connection);
         }

@@ -31,7 +31,7 @@ if (isset($_GET['ID'])) {
     $result = mysqli_query($connection, $deleteQuery);
 
     if ($result) {
-        header("Location: list_planning.php");
+        header("Location: list_formation.php");
         exit();
     } else {
         echo "Erreur lors de la suppression du planning : " . mysqli_error($connection);
