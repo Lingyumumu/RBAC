@@ -56,7 +56,6 @@ mysqli_close($connection);
             </ul>
         </nav>
 
-<a href='create_note.php'>ajouter une note</a>
 
 <h2>Liste des cours</h2>
 

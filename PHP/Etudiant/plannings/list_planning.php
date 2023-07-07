@@ -8,15 +8,23 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 'etudiant') {
     exit;
 }
 
+
 $id = $_SESSION['ID'];
 $queryformation = "SELECT formation FROM user WHERE ID = '$id'";
 $resultformation = mysqli_query($connection, $queryformation);
 $rowformation = mysqli_fetch_assoc($resultformation);
 $formation = $rowformation['formation'];
 
+
+
+
 // Récupérer la liste des cours depuis la base de données
-$queryCours = "SELECT ID, nom_cours FROM cours WHERE nom_formation = '$formation'";
+$queryCours = "SELECT * FROM cours WHERE nom_formation = '$formation'";
 $resultCours = mysqli_query($connection, $queryCours);
+$rowcours = mysqli_fetch_assoc($resultCours);
+$cours =$rowcours['ID'];
+
+
 
 $queryProfessors = "SELECT ID, nom FROM user WHERE role = 'professeur'";
 $resultProfessors = mysqli_query($connection, $queryProfessors);
@@ -33,7 +41,7 @@ if (isset($_POST['btnRegister']) && ($_POST['txtjour'] != '')) {
           INNER JOIN cours ON plannings.id_cours = cours.ID
           INNER JOIN user ON plannings.id_professeur = user.ID
           INNER JOIN salles ON plannings.id_salle = salles.ID
-          WHERE plannings.jour = '$jour'
+          WHERE plannings.jour = '$jour' AND id_cours = $cours
           ORDER BY plannings.jour ASC, plannings.heure_debut ASC";
 
 
@@ -43,6 +51,7 @@ $query = "SELECT plannings.ID, plannings.jour, plannings.heure_debut, plannings.
           INNER JOIN cours ON plannings.id_cours = cours.ID
           INNER JOIN user ON plannings.id_professeur = user.ID
           INNER JOIN salles ON plannings.id_salle = salles.ID
+          WHERE id_cours = $cours
           ORDER BY plannings.jour ASC, plannings.heure_debut ASC"; // Ajoutez ORDER BY pour trier par jour et heure de début
 
 }

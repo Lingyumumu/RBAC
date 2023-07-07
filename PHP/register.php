@@ -52,11 +52,16 @@ if(isset($_POST['btnRegister'])){
 <head>
     <title>Document</title>
     <link rel="stylesheet" href="register.css">
+    <style>
+        footer{
+        text-align: center;
+        }
+    </style>
 </head>
 
 <body>
 <form action='' method='post'>
-    <h2>Registration page</h2>
+    <h2>Page d'Inscription</h2>
     Nom: <input type='text' name='txtnom' required><br>
     Prenom: <input type='text' name='txtprenom' required><br>
     Formation: <select name="txtformation">
@@ -66,7 +71,7 @@ if(isset($_POST['btnRegister'])){
     </select><br>
     Mot de passe: <input type='password' name='txtmdp' required><br>
     Confirmation mot de passe: <input type='password' name='txtmdp2' required><br>
-    <input type='submit' name='btnRegister' value='Register'>
+    <input type='submit' name='btnRegister' value='Inscription'>
     <p>Vous avez déjà un compte ? <a href="login.php">Connectez-vous</a></p>
 </form>
 </body>
