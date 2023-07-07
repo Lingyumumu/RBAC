@@ -71,7 +71,8 @@ mysqli_close($connection);
     }
 </style>
 <h2>Liste des notes</h2>
-<a href="create_note.php">Ajouter une note</a><br>
+
+<?php echo "<a href='create_note.php?id_etudiant=$id_etudiant'>Ajouter une note</a>" ?>
 
 
 <style>
@@ -88,7 +89,6 @@ mysqli_close($connection);
         text-align: center;
         }
 </style>
-<h2>Liste des notes</h2>
 
 <?php
 // Vérifier si des notes ont été trouvées

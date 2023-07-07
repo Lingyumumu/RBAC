@@ -1,53 +1,59 @@
 <?php
-include('../../dbConn.php');
 session_start();
+include('../../dbConn.php');
+
 if ($_SESSION['role'] != 'administrateur') {
     header("location: ../../login.php");
 }
 
-$id = $_GET['id_etudiant'];
+// Vérifier si l'ID de l'étudiant est passé dans l'URL
 
-$queryformation = "SELECT *FROM user WHERE role = 'etudiant' AND ID = '$id'";
-$resultformation = mysqli_query($connection, $queryformation);
-$rowformation = mysqli_fetch_assoc($resultformation);
-$formation = $rowformation['formation'];
+$id_etudiant = $_GET['id_etudiant'];
+echo $id_etudiant;
 
+$queryEtudiants = "SELECT * FROM user WHERE role = 'etudiant' AND ID = $id_etudiant";
+$resultEtudiants = mysqli_query($connection, $queryEtudiants);
 
+$queryEtudiant = "SELECT * FROM user WHERE role = 'etudiant' AND ID = $id_etudiant";
+$resultEtudiant = mysqli_query($connection, $queryEtudiant);
+$rowEtudiant = mysqli_fetch_assoc($resultEtudiant);
+$formation = $rowEtudiant['formation'];
 
 // Récupérer la liste des cours depuis la base de données
-$queryCours = "SELECT ID, nom_cours FROM cours WHERE nom_formation = '$formation' ";
+$queryCours = "SELECT * FROM cours WHERE nom_formation = '$formation'";
 $resultCours = mysqli_query($connection, $queryCours);
-
-// Récupérer la liste des étudiants depuis la base de données
-$queryEtudiants = "SELECT ID, prenom FROM user WHERE role = 'etudiant' AND ID = '$id'";
-$resultEtudiants = mysqli_query($connection, $queryEtudiants);
 
 // Vérifier si le formulaire a été soumis
 if (isset($_POST['btnAjouterNote'])) {
     // Récupérer les valeurs du formulaire
-    $id_etudiant = $_POST['ddlEtudiant'];
     $id_cours = $_POST['ddlCours'];
     $note = $_POST['txtNote'];
 
     // Vérifier si une note existe déjà pour ce cours et cet étudiant
     $queryCheckNote = "SELECT * FROM notes WHERE id_cours = $id_cours AND id_etudiant = $id_etudiant";
     $resultCheckNote = mysqli_query($connection, $queryCheckNote);
-    $row = mysqli_fetch_assoc($resultCheckNote);
-    $id_note = $row['ID'];
-    // Vérifier le nombre de lignes retournées
+    
     if (mysqli_num_rows($resultCheckNote) > 0) {
-        echo "La note a été mise à jour.";
-        // Mettre à jour la note
+        // Note existante, effectuer la mise à jour
+        $row = mysqli_fetch_assoc($resultCheckNote);
+        $id_note = $row['ID'];
+    
         $updateQuery = "UPDATE notes SET note = '$note' WHERE ID = $id_note";
         $resultQuery = mysqli_query($connection, $updateQuery);
-        header ("Location: list_formation.php");
-
+    
+        if ($resultQuery) {
+            echo "La note a été mise à jour avec succès.";
+            header("Location: list_formation.php");
+            exit();
+        } else {
+            echo "Erreur lors de la mise à jour de la note : " . mysqli_error($connection);
+        }
     } else {
-        // Requête d'insertion de la note dans la table "notes"
-        $query = "INSERT INTO notes (note, id_cours, id_etudiant) VALUES ('$note', '$id_cours', '$id_etudiant')";
-
-        // Exécution de la requête
-        if (mysqli_query($connection, $query)) {
+        // Note inexistante, effectuer l'insertion
+        $insertQuery = "INSERT INTO notes (note, id_cours, id_etudiant) VALUES ('$note', '$id_cours', '$id_etudiant')";
+        $resultQuery = mysqli_query($connection, $insertQuery);
+    
+        if ($resultQuery) {
             echo "La note a été ajoutée avec succès.";
         } else {
             echo "Erreur lors de l'ajout de la note : " . mysqli_error($connection);
@@ -63,13 +69,15 @@ if (isset($_POST['btnAjouterNote'])) {
 <html>
 <head>
     <link rel="stylesheet" href="../../Administrateur/notes/create_note.css">
-    <title>Gestion des notes - Administrateur</title>
+    <style>
+        footer{
+        text-align: center;
+        }
+    </style>
+    <title>Gestion des notes - Personnel</title>
 </head>
 <body>
-<header>
-        <h1>Système de Gestion - EFREI</h1>
-    </header>
-    <h1>EFREI - Administrateur</h1>
+<h1>EFREI - Administrateur</h1>
         <nav>
             <ul>
             <li><a href="../../Administrateur/Home_Admin.php">Accueil</a></li>
@@ -86,7 +94,7 @@ if (isset($_POST['btnAjouterNote'])) {
         </nav>
 
 <h2>Ajouter une note</h2>
-<a href="list_etudiant_note.php">Liste des notes</a>
+<a href="list_formation.php">Liste des notes</a>
 
 <form action="create_note.php" method="POST">
     <label for="ddlCours">Cours:</label>
@@ -111,10 +119,9 @@ if (isset($_POST['btnAjouterNote'])) {
 
     <input type="submit" name="btnAjouterNote" value="Ajouter la note">
 </form>
-</body>
 
 <footer>
         <p>© 2023 EFREI - Tous droits réservés</p>
     </footer>
-
+</body>
 </html>

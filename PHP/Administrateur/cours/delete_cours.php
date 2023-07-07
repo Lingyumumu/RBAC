@@ -1,21 +1,27 @@
-<?php 
+<?php
 session_start();
-include ('../../dbConn.php');
+include('../../dbConn.php');
 $id = $_GET['ID'];
-$querynote = "DELETE FROM notes WHERE id_cours = $id";
-$query = "DELETE FROM cours WHERE ID = $id";
 
-if(mysqli_query($connection, $querynote)){
-    if(mysqli_query($connection, $query)){
-        header("Location: list_formation.php");
+// Supprimer les plannings liés au cours
+$queryDeletePlannings = "DELETE FROM plannings WHERE id_cours = $id";
+if (mysqli_query($connection, $queryDeletePlannings)) {
+    // Supprimer les notes liées au cours
+    $queryDeleteNotes = "DELETE FROM notes WHERE id_cours = $id";
+    if (mysqli_query($connection, $queryDeleteNotes)) {
+        // Supprimer le cours
+        $queryDeleteCours = "DELETE FROM cours WHERE ID = $id";
+        if (mysqli_query($connection, $queryDeleteCours)) {
+            header("Location: list_formation.php");
+        } else {
+            echo "Erreur lors de la suppression du cours : " . mysqli_error($connection);
+        }
+    } else {
+        echo "Erreur lors de la suppression des notes : " . mysqli_error($connection);
     }
-    else{
-        echo "Error: " . $query . "<br>" . mysqli_error($conn);
-    }
+} else {
+    echo "Erreur lors de la suppression des plannings : " . mysqli_error($connection);
+}
 
-}
-else{
-    echo "Error: " . $query . "<br>" . mysqli_error($conn);
-}
-mysql_close($connection);
+mysqli_close($connection);
 ?>

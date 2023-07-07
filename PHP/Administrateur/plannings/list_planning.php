@@ -6,6 +6,8 @@ if ($_SESSION['role'] != 'administrateur') {
     header("location: ../../login.php");
 }
 
+$idCours = $_GET['ID'];
+
 $queryformation = "SELECT * FROM user";
 $resultformation = mysqli_query($connection, $queryformation);
 $rowformation = mysqli_fetch_assoc($resultformation);
@@ -30,7 +32,7 @@ if (isset($_POST['btnRegister']) && ($_POST['txtjour'] != '')) {
           INNER JOIN cours ON plannings.id_cours = cours.ID
           INNER JOIN user ON plannings.id_professeur = user.ID
           INNER JOIN salles ON plannings.id_salle = salles.ID
-          WHERE plannings.jour = '$jour'
+          WHERE plannings.jour = '$jour' AND cours.ID = '$idCours'
           ORDER BY plannings.jour ASC, plannings.heure_debut ASC";
 
 
@@ -40,6 +42,7 @@ $query = "SELECT plannings.ID, plannings.jour, plannings.heure_debut, plannings.
           INNER JOIN cours ON plannings.id_cours = cours.ID
           INNER JOIN user ON plannings.id_professeur = user.ID
           INNER JOIN salles ON plannings.id_salle = salles.ID
+          WHERE cours.ID = '$idCours'
           ORDER BY plannings.jour ASC, plannings.heure_debut ASC"; // Ajoutez ORDER BY pour trier par jour et heure de début
 
 }
